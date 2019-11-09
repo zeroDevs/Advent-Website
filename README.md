@@ -25,3 +25,10 @@ This year we would like to provide a form on the website people can use to send 
 - [Last Years Discord Embeds](https://cdn.discordapp.com/attachments/598312632407293963/642793643379261471/unknown.png)
 - Testing and Discussion discord server... ask Matt or Ankur for an invite
 - Trello - again ask for invite 
+
+### Trello
+ - Feel free to pick up any task in `Backlog` and move it to `In Progress`, assign it to yourself so everyone knows who is working on it
+ - If you cant complete the task, create a PR with what you have and update the trello card and place back in backlog. Please ping Matt or Ankur, just so we are aware and can take action if its a blocker
+ - Creating tasks - If we have missed anything, feel free to create one in the `Needs Grooming` section. We can then validate and specify its requirements and release it to backlog
+ 
+ 
