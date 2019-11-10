@@ -55,6 +55,7 @@ function SubmitForm({ name, handleClose }) {
   };
 
   const handleUrlInputChange = event => setUrl(event.target.value);
+  const handleDateChange = event => setDate(event.target.value);
 
   return (
     <>
@@ -78,6 +79,7 @@ function SubmitForm({ name, handleClose }) {
           label="Advent Challenge Date"
           type="date"
           value={date}
+          onChange={handleDateChange}
           className={classes.textField}
           InputLabelProps={{
             shrink: true,
