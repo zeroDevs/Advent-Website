@@ -14,7 +14,6 @@ export const NavigationContainer = styled.nav`
   width: 100vw;
   z-index: 1000;
   background: ${({ theme }) => theme.palette.background.paper};
-  height: 60px;
   padding: 0 2rem;
 
   display: flex;
@@ -73,6 +72,8 @@ export const NavUserName = styled.div``;
 export const NavUserIcon = styled.img``;
 
 const convertHex3To6 = hex =>
-  hex
-    .split("")
-    .reduce((acc, item, index) => acc + (index > 0 ? item : "") + item, "");
+  hex.length === 4
+    ? hex
+        .split("")
+        .reduce((acc, item, index) => acc + (index > 0 ? item : "") + item, "")
+    : hex;

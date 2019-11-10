@@ -15,8 +15,7 @@ import {
 const Nav = ({ user = {}, location }) => {
   const theme = useTheme();
   const [float, setFloat] = useState(false);
-  console.log(theme);
-  console.log(location);
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) setFloat(true);
