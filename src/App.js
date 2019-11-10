@@ -10,6 +10,8 @@ import FourZeroFour from "./pages/FourZeroFour";
 
 import Nav from "./components/navigation/navigation.component";
 
+import "./App.css";
+
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.background.default,
@@ -25,12 +27,14 @@ function App() {
       <CssBaseline />
       <main className={classes.root}>
         <Router>
-          <Nav />
-          <Switch>
-            <Route exact path="/about" component={About} />
-            <Route exact path="/solutions" component={Solutions} />
-            <Route path="*" component={FourZeroFour} />
-          </Switch>
+          <Nav className="navbar" />
+          <section className="main-section">
+            <Switch>
+              <Route exact path="/about" component={About} />
+              <Route exact path="/solutions" component={Solutions} />
+              <Route path="*" component={FourZeroFour} />
+            </Switch>
+          </section>
         </Router>
       </main>
     </React.Fragment>

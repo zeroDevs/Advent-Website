@@ -4,3 +4,19 @@ html {
   padding: 0;
   box-sizing: border-box;
 }
+
+main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.navbar {
+  height: 60px;
+  flex-grow: 0;
+}
+
+.main-section {
+  padding-top: 60px;
+  flex-grow: 1;
+}
