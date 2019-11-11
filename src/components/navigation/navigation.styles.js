@@ -13,7 +13,8 @@ export const NavigationContainer = styled.nav`
   top: 0;
   width: 100vw;
   z-index: 1000;
-  background: ${({ theme }) => theme.palette.background.paper};
+  background: ${({ theme }) => theme.palette.primary.main};
+  color: ${({ theme }) => theme.palette.primary.contrastText};
   padding: 0 2rem;
 
   display: flex;

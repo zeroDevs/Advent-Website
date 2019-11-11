@@ -4,6 +4,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // pages
+import Home from "./pages/Home";
 import About from "./pages/About";
 import Solutions from "./pages/Solutions";
 import FourZeroFour from "./pages/FourZeroFour";
@@ -28,6 +29,7 @@ function App() {
           <Nav className="navbar" />
           <section className="main-section">
             <Switch>
+              <Route exact path="/" component={Home} />
               <Route exact path="/about" component={About} />
               <Route exact path="/solutions" component={Solutions} />
               <Route path="*" component={FourZeroFour} />
