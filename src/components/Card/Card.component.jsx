@@ -1,6 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-// material stuffs
 import {
   Card as MUICard,
   CardMedia,
@@ -9,8 +9,7 @@ import {
   Link,
   Icon,
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import CalendarTodayOutlined from '@material-ui/icons/CalendarTodayOutlined';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -45,9 +44,6 @@ const useStyles = makeStyles(theme => ({
 export default function Card(props) {
   const { avatar_url, username, date, day, solution_url } = props;
   const classes = useStyles();
-
-  if (!username || !date || !day || !solution_url)
-    throw new Error(`You've missed a prop in Card Component`);
 
   return (
     <>
@@ -106,3 +102,11 @@ export default function Card(props) {
     </>
   );
 }
+
+Card.propTypes = {
+  username: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  day: PropTypes.number.isRequired,
+  avatar_url: PropTypes.string,
+  solution_url: PropTypes.string.isRequired,
+};
