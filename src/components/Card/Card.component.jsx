@@ -7,10 +7,12 @@ import {
   Typography,
   CardContent,
   Link,
+  Icon,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import CalendarTodayOutlined from '@material-ui/icons/CalendarTodayOutlined';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 300,
     minHeight: 300,
@@ -26,7 +28,11 @@ const useStyles = makeStyles({
     padding: '1rem',
     borderRadius: '0.3em',
   },
-});
+  cardBottom: {
+    background: theme.palette.common.white,
+    color: theme.palette.common.black,
+  },
+}));
 
 /**
  * Card component. Accepts a few params:
@@ -40,8 +46,8 @@ export default function Card(props) {
   const { avatar_url, username, date, day, solution_url } = props;
   const classes = useStyles();
 
-  // if (!username || !date || !day || !solution_url)
-  //   throw new Error(`You've missed a prop in Card Component`);
+  if (!username || !date || !day || !solution_url)
+    throw new Error(`You've missed a prop in Card Component`);
 
   return (
     <>
@@ -50,17 +56,24 @@ export default function Card(props) {
           style={{
             position: 'absolute',
             display: 'inline',
-            height: '50px',
-            width: '50px',
-            background: 'blue',
-            top: 10,
+            background: '#fff',
+            top: 15,
             left: 10,
-            lineHeight: '50px', // keep it same as `height`
             borderRadius: '0.3em',
           }}
           image=''
         >
-          <strong>{day || 1}</strong>
+          <Typography
+            style={{
+              fontWeight: 'bold',
+              color: '#424242',
+              height: '50px',
+              width: '50px',
+              lineHeight: '50px', // keep it same as `height`
+            }}
+          >
+            {day || 1}
+          </Typography>
         </CardMedia>
         <CardMedia
           className={classes.cardMedia}
@@ -86,7 +99,7 @@ export default function Card(props) {
           </Typography>
         </CardContent>
 
-        <CardContent style={{ background: '#ffffff', color: '#424242' }}>
+        <CardContent className={classes.cardBottom}>
           <Typography>Submitted 11 Months Ago</Typography>
         </CardContent>
       </MUICard>
