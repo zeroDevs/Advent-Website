@@ -33,12 +33,25 @@ NavigationContainer.displayName = "NavigationContainer";
 // `;
 // NavContentContainer.displayName = "NavContentContainer";
 
-export const NavLogo = styled.h1`
-  ${"" /* color: #af1313; */}
+export const NavLogo = styled(Link)`
   font-family: "Kaushan Script";
   margin-right: auto;
+  color: ${({ theme }) => theme.palette.text.primary};
+  text-decoration: none;
+  @media (min-width: 420px) and (max-width: 600px) {
+    position: absolute;
+    margin-right: 0;
+  }
 `;
 NavLogo.displayName = "NavLogo";
+
+export const NavItemContainer = styled.div`
+  position: absolute;
+  display: flex;
+  @media (max-width: 600px) {
+    display: none;
+  }
+`;
 
 export const NavItem = styled(Link)`
   border-bottom: ${props =>
@@ -67,9 +80,26 @@ export const NavUserContainer = styled.div`
   align-items: center;
 `;
 
-export const NavUserName = styled.div``;
+export const NavUserName = styled.div`
+  @media (max-width: 600px) {
+    display: none;
+  }
+`;
 
 export const NavUserIcon = styled.img``;
+
+export const MenuButton = styled.div`
+  margin-left: 1rem;
+  padding: 0.5rem;
+  @media (min-width: 600px) {
+    display: none;
+  }
+`;
+
+export const MenuLink = styled(Link)`
+  text-decoration: none;
+  color: ${({ theme }) => theme.palette.text.primary};
+`;
 
 const convertHex3To6 = hex =>
   hex.length === 4
