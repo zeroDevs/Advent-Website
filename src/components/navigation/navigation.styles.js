@@ -48,6 +48,8 @@ NavLogo.displayName = "NavLogo";
 export const NavItemContainer = styled.div`
   position: absolute;
   display: flex;
+  height: 100%;
+  align-items: center;
   @media (max-width: 600px) {
     display: none;
   }
@@ -81,6 +83,7 @@ export const NavUserContainer = styled.div`
 `;
 
 export const NavUserName = styled.div`
+  margin-right: 0.5rem;
   @media (max-width: 600px) {
     display: none;
   }
