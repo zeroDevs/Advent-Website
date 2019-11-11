@@ -1,6 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-// material stuffs
 import {
   Card as MUICard,
   CardMedia,
@@ -9,30 +9,8 @@ import {
   Link,
   Icon,
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import CalendarTodayOutlined from '@material-ui/icons/CalendarTodayOutlined';
 
-const useStyles = makeStyles(theme => ({
-  card: {
-    maxWidth: 300,
-    minHeight: 300,
-    textAlign: 'center',
-    position: 'relative',
-  },
-  cardMedia: {
-    minHeight: 300,
-  },
-  linkToSolution: {
-    border: '1px solid orange',
-    display: 'inline-block',
-    padding: '1rem',
-    borderRadius: '0.3em',
-  },
-  cardBottom: {
-    background: theme.palette.common.white,
-    color: theme.palette.common.black,
-  },
-}));
+import useStyles from './Card.styles';
 
 /**
  * Card component. Accepts a few params:
@@ -45,9 +23,6 @@ const useStyles = makeStyles(theme => ({
 export default function Card(props) {
   const { avatar_url, username, date, day, solution_url } = props;
   const classes = useStyles();
-
-  if (!username || !date || !day || !solution_url)
-    throw new Error(`You've missed a prop in Card Component`);
 
   return (
     <>
@@ -106,3 +81,11 @@ export default function Card(props) {
     </>
   );
 }
+
+Card.propTypes = {
+  username: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  day: PropTypes.number.isRequired,
+  avatar_url: PropTypes.string,
+  solution_url: PropTypes.string.isRequired,
+};
