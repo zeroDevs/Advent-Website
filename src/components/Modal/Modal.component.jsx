@@ -4,11 +4,34 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import CancelIcon from '@material-ui/icons/Cancel';
-
-import useStyles from './Modal.styles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 
 import Avatar from '../Avatar/Avatar.component';
 import SubmitForm from './SubmitForm';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    backgroundColor: theme.palette.background.paper,
+    textAlign: 'center',
+    position: 'relative',
+  },
+  title: {
+    ...theme.typography.h6,
+  },
+  content: {
+    padding: theme.spacing(2, 4),
+    ...theme.typography.body1,
+  },
+  closeIconContainer: {
+    position: 'absolute',
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+  },
+  closeIcon: {
+    color: theme.palette.error.main,
+    cursor: 'pointer',
+  },
+}));
 
 /*
   __MOVE THESE TO THE PARENT OF THE MODAL COMPONENT AND PASS THE VALUES__

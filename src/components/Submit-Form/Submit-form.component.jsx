@@ -4,7 +4,21 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import useStyles from './Submit-form.styles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+
+const useStyles = makeStyles(theme => ({
+  input: {
+    margin: theme.spacing(2, 0),
+  },
+  statusMessage: {
+    color: theme.palette.error.main,
+    height: theme.spacing(8),
+    marginTop: theme.spacing(2),
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+}));
 
 function SubmitForm({ userName, handleClose }) {
   const [date, setDate] = useState('2019-12-01');

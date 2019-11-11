@@ -2,7 +2,34 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import useStyles from './HeroSection.styles';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+
+const useStyles = makeStyles(theme => ({
+  root: props => {
+    if (props.isMobile) {
+      return {
+        backgroundImage: "url('images/advent-mobile.png')",
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        height: '650px',
+      };
+    } else {
+      return {
+        backgroundImage: "url('images/advent.png')",
+        backgroundPosition: 'center center',
+        backgroundSize: 'cover',
+        height: '99vh',
+      };
+    }
+  },
+  content: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
+  },
+}));
 
 function HeroSection({ children, ...props }) {
   const theme = useTheme();
