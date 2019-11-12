@@ -1,36 +1,37 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import CancelIcon from '@material-ui/icons/Cancel';
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import React from "react";
+import PropTypes from "prop-types";
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import CancelIcon from "@material-ui/icons/Cancel";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import useTheme from "@material-ui/core/styles/useTheme";
 
-import Avatar from '../Avatar/Avatar.component';
-import SubmitForm from './SubmitForm';
+import Avatar from "../Avatar/Avatar.component";
+import SubmitForm from "../Submit-Form/Submit-form.component";
 
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    textAlign: 'center',
-    position: 'relative',
+    textAlign: "center",
+    position: "relative"
   },
   title: {
-    ...theme.typography.h6,
+    ...theme.typography.h6
   },
   content: {
     padding: theme.spacing(2, 4),
-    ...theme.typography.body1,
+    ...theme.typography.body1
   },
   closeIconContainer: {
-    position: 'absolute',
+    position: "absolute",
     right: theme.spacing(1),
-    top: theme.spacing(1),
+    top: theme.spacing(1)
   },
   closeIcon: {
     color: theme.palette.error.main,
-    cursor: 'pointer',
-  },
+    cursor: "pointer"
+  }
 }));
 
 /*
@@ -43,7 +44,7 @@ const useStyles = makeStyles(theme => ({
 function Modal(props) {
   const classes = useStyles({ classes: props.classes });
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const { isOpen, handleClose, userInfo } = props;
 
@@ -58,7 +59,7 @@ function Modal(props) {
       open={isOpen}
       fullScreen={fullScreen}
     >
-      <DialogTitle id='submit-modal-title' className={classes.title}>
+      <DialogTitle id="submit-modal-title" className={classes.title}>
         Submit Solution
       </DialogTitle>
 
@@ -77,7 +78,7 @@ function Modal(props) {
 Modal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
-  userInfo: PropTypes.object.isRequired,
+  userInfo: PropTypes.object.isRequired
 };
 
 export default React.memo(Modal);

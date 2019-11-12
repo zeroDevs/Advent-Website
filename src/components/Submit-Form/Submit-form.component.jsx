@@ -1,29 +1,29 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles(theme => ({
   input: {
-    margin: theme.spacing(2, 0),
+    margin: theme.spacing(2, 0)
   },
   statusMessage: {
     color: theme.palette.error.main,
     height: theme.spacing(8),
     marginTop: theme.spacing(2),
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
+  }
 }));
 
 function SubmitForm({ userName, handleClose }) {
-  const [date, setDate] = useState('2019-12-01');
-  const [url, setUrl] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [date, setDate] = useState("2019-12-01");
+  const [url, setUrl] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const classes = useStyles();
@@ -31,21 +31,27 @@ function SubmitForm({ userName, handleClose }) {
   const handleSubmit = async event => {
     event.preventDefault();
     setIsLoading(true);
-    setErrorMessage('');
+    setErrorMessage("");
+
+    if (!validateURL(url)) {
+      return setErrorMessage(
+        "Invalid URL. Please use GitHub or GitHub Gist or repl.it to submit code."
+      );
+    }
 
     let body;
     try {
       body = JSON.stringify({ userName, url, date }); // TODO: update property names to match expected body on backend
     } catch (error) {
-      setErrorMessage('Invalid input');
+      setErrorMessage("Invalid input");
       return setIsLoading(false);
     }
 
-    const submissionEndpoint = '/submit';
+    const submissionEndpoint = "/submit";
     const { isSuccessful, error } = await fetch(submissionEndpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' }, // TODO: add JWT here
-      body,
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: "Bearer " }, // TODO: add JWT here
+      body
     });
 
     if (isSuccessful) {
@@ -66,8 +72,8 @@ function SubmitForm({ userName, handleClose }) {
 
         <TextField
           className={classes.input}
-          label='Username'
-          type='text'
+          label="Username"
+          type="text"
           value={userName}
           disabled
           fullWidth
@@ -75,36 +81,36 @@ function SubmitForm({ userName, handleClose }) {
 
         <TextField
           className={classes.input}
-          label='Advent Challenge Date'
-          type='date'
+          label="Advent Challenge Date"
+          type="date"
           value={date}
           onChange={handleDateChange}
           className={classes.textField}
           InputLabelProps={{
-            shrink: true,
+            shrink: true
           }}
           fullWidth
         />
 
         <TextField
           className={classes.input}
-          label='Solution Url'
-          type='text'
+          label="Solution Url"
+          type="text"
           value={url}
           onChange={handleUrlInputChange}
           fullWidth
         />
       </form>
       <Button
-        variant='contained'
-        color='secondary'
+        variant="contained"
+        color="secondary"
         onClick={handleSubmit}
         fullWidth
       >
         {isLoading ? (
-          <CircularProgress color='secondary' size={25} />
+          <CircularProgress color="secondary" size={25} />
         ) : (
-          'Submit'
+          "Submit"
         )}
       </Button>
     </>
@@ -112,9 +118,53 @@ function SubmitForm({ userName, handleClose }) {
 }
 
 SubmitForm.propTypes = {
-  userName: PropTypes.string,
-  isRequired,
-  handleClose: PropTypes.func.isRequired,
+  userName: PropTypes.string.isRequired,
+  handleClose: PropTypes.func.isRequired
 };
 
 export default SubmitForm;
+
+/**
+ * Validate URL. Allow form tobe submitted if the URL is from
+ * github repository or github gist or repl.it
+ */
+
+function validateURL(url = "") {
+  if (
+    !url.match(
+      /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/
+    )
+  ) {
+    return false;
+  }
+
+  const { hostname, pathname } = new URL(url);
+  let flag = false;
+
+  // eslint-disable-next-line
+  switch (hostname) {
+    case "www.github.com":
+      flag = true;
+      break;
+
+    case "github.com":
+      flag = true;
+      break;
+
+    case "gist.github.com":
+      flag = true;
+      break;
+
+    case "repl.it":
+      flag = true;
+      break;
+
+    case "www.repl.it":
+      flag = true;
+      break;
+  }
+
+  if (!pathname || pathname === "/") flag = false;
+
+  return flag;
+}
