@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from "react";
+import { withRouter } from "react-router-dom";
 
 import {
   useTheme,
@@ -8,8 +8,8 @@ import {
   Grow,
   Paper,
   ClickAwayListener,
-  MenuList,
-} from '@material-ui/core';
+  MenuList
+} from "@material-ui/core";
 
 import {
   NavigationContainer,
@@ -20,10 +20,10 @@ import {
   NavUserName,
   NavUserIcon,
   MenuButton,
-  MenuLink,
-} from './Navigation.styles';
+  MenuLink
+} from "./Navigation.styles";
 
-import Treeburger from './Treeburger.component';
+import Treeburger from "./Treeburger.component";
 
 const Nav = ({ user = {}, location }) => {
   const theme = useTheme();
@@ -49,40 +49,40 @@ const Nav = ({ user = {}, location }) => {
       if (window.scrollY > 0) setFloat(true);
       else if (window.scrollY === 0) setFloat(false);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <NavigationContainer theme={theme} float={float} role='navigation'>
-      <NavLogo theme={theme} to='/about'>
+    <NavigationContainer theme={theme} float={float} role="navigation">
+      <NavLogo theme={theme} to="/">
         <h1>Advent of Code</h1>
       </NavLogo>
       <NavItemContainer>
         <NavItem
           theme={theme}
-          to='/about'
-          current={location.pathname === '/about' ? 1 : 0}
+          to="/about"
+          current={location.pathname === "/about" ? 1 : 0}
         >
           About
         </NavItem>
         <NavItem
           theme={theme}
-          to='/submissions'
-          current={location.pathname === '/submissions' ? 1 : 0}
+          to="/solutions"
+          current={location.pathname === "/solutions" ? 1 : 0}
         >
-          Submissions
+          Solutions
         </NavItem>
       </NavItemContainer>
       <NavUserContainer>
-        <NavUserName theme={theme}>{user.username || 'User Name'}</NavUserName>
+        <NavUserName theme={theme}>{user.username || "User Name"}</NavUserName>
         <NavUserIcon
           src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`}
         />
       </NavUserContainer>
       <MenuButton theme={theme} onClick={handleClick} ref={anchorRef}>
-        <Treeburger className={open ? 'isopen' : ''} />
+        <Treeburger className={open ? "isopen" : ""} />
       </MenuButton>
       <Popper
         open={open}
@@ -96,17 +96,17 @@ const Nav = ({ user = {}, location }) => {
             {...TransitionProps}
             style={{
               transformOrigin:
-                placement === 'bottom' ? 'center top' : 'center bottom',
+                placement === "bottom" ? "center top" : "center bottom"
             }}
           >
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
-                <MenuList autoFocusItem={open} id='menu-list-grow'>
-                  <MenuLink theme={theme} to='/about'>
+                <MenuList autoFocusItem={open} id="menu-list-grow">
+                  <MenuLink theme={theme} to="/about">
                     <MenuItem onClick={handleClose}>About</MenuItem>
                   </MenuLink>
 
-                  <MenuLink theme={theme} to='/submissions'>
+                  <MenuLink theme={theme} to="/submissions">
                     <MenuItem onClick={handleClose}>Sumbissions</MenuItem>
                   </MenuLink>
                 </MenuList>
