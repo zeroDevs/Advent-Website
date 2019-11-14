@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -9,6 +9,7 @@ import useTheme from "@material-ui/core/styles/useTheme";
 
 import Avatar from "../Avatar/Avatar.component";
 import SubmitForm from "../Submit-Form/Submit-form.component";
+import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -82,3 +83,37 @@ Modal.propTypes = {
 };
 
 export default React.memo(Modal);
+
+export const ModalButton = ({
+  children,
+  opened = false,
+  handleOpen = () => {},
+  handleClose = () => {},
+  ...props
+}) => {
+  const [isOpen, setIsOpen] = useState(opened);
+  useEffect(() => {
+    isOpen ? handleOpen() : handleClose();
+  }, [isOpen, handleClose, handleOpen]);
+
+  const open = useCallback(() => {
+    setIsOpen(true);
+    handleOpen();
+  }, [handleOpen]);
+
+  const close = useCallback(() => {
+    setIsOpen(false);
+    handleClose();
+  }, [handleClose]);
+
+  const doOpen = useCallback(() => {
+    if (!isOpen) setIsOpen(true);
+  }, [isOpen]);
+
+  return (
+    <Button onClick={doOpen} {...props}>
+      <Modal isOpen={isOpen} handleOpen={open} handleClose={close}></Modal>
+      {children}
+    </Button>
+  );
+};

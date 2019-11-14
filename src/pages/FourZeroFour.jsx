@@ -9,7 +9,6 @@ import HeroSection from "../components/HeroSection/HeroSection.component";
 
 const useStyles = makeStyles(theme => ({
   root: props => {
-    console.log(props.isMobile);
     if (props.isMobile) {
       return {
         backgroundImage: "url('images/adventlightsout-mobile.png')",
