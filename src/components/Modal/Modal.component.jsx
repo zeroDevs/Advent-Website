@@ -101,7 +101,7 @@ export const ModalWrapper = ({
   const classes = useWrapperStyles();
   useEffect(() => {
     isOpen ? handleOpen() : handleClose();
-  }, [isOpen, handleClose, isOpen]);
+  }, [isOpen, handleClose, handleOpen]);
 
   const open = useCallback(() => {
     console.log("open");
