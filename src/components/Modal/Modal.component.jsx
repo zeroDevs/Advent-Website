@@ -104,7 +104,6 @@ export const ModalWrapper = ({
   }, [isOpen, handleClose, handleOpen]);
 
   const open = useCallback(() => {
-    console.log("open");
     setIsOpen(true);
     handleOpen();
   }, [handleOpen]);
@@ -112,7 +111,6 @@ export const ModalWrapper = ({
   const close = useCallback(() => {
     setIsOpen(false);
     handleClose();
-    console.log("close");
   }, [handleClose]);
 
   const doOpenFromWrapper = useCallback(() => {
