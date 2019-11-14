@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
 import HeroSection from "../components/HeroSection/HeroSection.component";
-import { ModalWrapper } from "../components/Modal/Modal.component";
+import { ModalButton } from "../components/Modal/Modal.component";
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -47,11 +47,9 @@ function Home(props) {
             >
               About
             </Button>
-            <ModalWrapper>
-              <Button variant="contained" color="secondary">
-                Submit
-              </Button>
-            </ModalWrapper>
+            <ModalButton variant="contained" color="secondary">
+              Submit
+            </ModalButton>
           </div>
         </div>
       </HeroSection>

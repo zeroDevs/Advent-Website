@@ -9,6 +9,7 @@ import useTheme from "@material-ui/core/styles/useTheme";
 
 import Avatar from "../Avatar/Avatar.component";
 import SubmitForm from "../Submit-Form/Submit-form.component";
+import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -83,13 +84,7 @@ Modal.propTypes = {
 
 export default React.memo(Modal);
 
-const useWrapperStyles = makeStyles(theme => ({
-  wrapper: {
-    lineHeight: 0
-  }
-}));
-
-export const ModalWrapper = ({
+export const ModalButton = ({
   children,
   opened = false,
   handleOpen = () => {},
@@ -97,8 +92,6 @@ export const ModalWrapper = ({
   ...props
 }) => {
   const [isOpen, setIsOpen] = useState(opened);
-
-  const classes = useWrapperStyles();
   useEffect(() => {
     isOpen ? handleOpen() : handleClose();
   }, [isOpen, handleClose, handleOpen]);
@@ -113,14 +106,14 @@ export const ModalWrapper = ({
     handleClose();
   }, [handleClose]);
 
-  const doOpenFromWrapper = useCallback(() => {
+  const doOpen = useCallback(() => {
     if (!isOpen) setIsOpen(true);
   }, [isOpen]);
 
   return (
-    <div onClick={doOpenFromWrapper} className={classes.wrapper}>
+    <Button onClick={doOpen} {...props}>
       <Modal isOpen={isOpen} handleOpen={open} handleClose={close}></Modal>
       {children}
-    </div>
+    </Button>
   );
 };
