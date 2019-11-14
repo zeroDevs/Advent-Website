@@ -1,9 +1,6 @@
-import React from 'react';
+import React from "react";
+import Modal from "../components/Modal/Modal.component";
 
 export default function About(props) {
-  return (
-    <>
-      <h1>About Page</h1>
-    </>
-  );
+  return <></>;
 }

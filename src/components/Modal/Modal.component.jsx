@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import PropTypes from "prop-types";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -82,3 +82,47 @@ Modal.propTypes = {
 };
 
 export default React.memo(Modal);
+
+const useWrapperStyles = makeStyles(theme => ({
+  wrapper: {
+    lineHeight: 0
+  }
+}));
+
+export const ModalWrapper = ({
+  children,
+  opened = false,
+  handleOpen = () => {},
+  handleClose = () => {},
+  ...props
+}) => {
+  const [isOpen, setIsOpen] = useState(opened);
+
+  const classes = useWrapperStyles();
+  useEffect(() => {
+    isOpen ? handleOpen() : handleClose();
+  }, [isOpen, handleClose, isOpen]);
+
+  const open = useCallback(() => {
+    console.log("open");
+    setIsOpen(true);
+    handleOpen();
+  }, [handleOpen]);
+
+  const close = useCallback(() => {
+    setIsOpen(false);
+    handleClose();
+    console.log("close");
+  }, [handleClose]);
+
+  const doOpenFromWrapper = useCallback(() => {
+    if (!isOpen) setIsOpen(true);
+  }, [isOpen]);
+
+  return (
+    <div onClick={doOpenFromWrapper} className={classes.wrapper}>
+      <Modal isOpen={isOpen} handleOpen={open} handleClose={close}></Modal>
+      {children}
+    </div>
+  );
+};
