@@ -87,9 +87,9 @@ function Solutions(props) {
 					{hasSolutionsToShow &&
 						solutions.map(user => (
 							<Card
-								key={user.userName + user.Time}
+								key={user.username + user._id}
 								avatar_url={user.avatarUrl}
-								username={user.userName}
+								username={user.username}
 								date={user.Time.split("T")[0]}
 								day={user.dayNumber}
 								solution_url={user.url}

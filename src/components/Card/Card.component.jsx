@@ -106,7 +106,7 @@ export default function Card(props) {
 Card.propTypes = {
 	username: PropTypes.string.isRequired,
 	date: PropTypes.string.isRequired,
-	day: PropTypes.string.isRequired,
+	day: PropTypes.number.isRequired,
 	avatar_url: PropTypes.string,
 	solution_url: PropTypes.string.isRequired
 };
