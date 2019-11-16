@@ -17,5 +17,24 @@
 				"url": "https://www.linkedin.com/in/erik-herbranson/"
 			}
 		]
+	}, 
+	{
+		"tag": "Matt",
+		"name": "Matt Smith",
+		"avatarImage": "https://avatars3.githubusercontent.com/u/6190356?s=460&v=4",
+		"links": [
+			{
+				"label": "twitter",
+				"url": "https://twitter.com/MattCSmith_"
+			},
+			{
+				"label": "github",
+				"url": "https://github.com/mattcsmith"
+			},
+			{
+				"label": "linkedin",
+				"url": "https://www.linkedin.com/in/matthew-c-smith/"
+			}
+		]
 	}
 ]
