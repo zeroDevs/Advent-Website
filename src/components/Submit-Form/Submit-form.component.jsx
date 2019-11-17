@@ -72,8 +72,8 @@ function SubmitForm({ userName, handleClose }) {
 
         <TextField
           className={classes.input}
-          label="Username"
-          type="text"
+          label='Username'
+          type='text'
           value={userName}
           disabled
           fullWidth
@@ -81,8 +81,8 @@ function SubmitForm({ userName, handleClose }) {
 
         <TextField
           className={classes.input}
-          label="Advent Challenge Date"
-          type="date"
+          label='Advent Challenge Date'
+          type='date'
           value={date}
           onChange={handleDateChange}
           className={classes.textField}
@@ -94,21 +94,21 @@ function SubmitForm({ userName, handleClose }) {
 
         <TextField
           className={classes.input}
-          label="Solution Url"
-          type="text"
+          label='Solution Url'
+          type='text'
           value={url}
           onChange={handleUrlInputChange}
           fullWidth
         />
       </form>
       <Button
-        variant="contained"
-        color="secondary"
+        variant='contained'
+        color='secondary'
         onClick={handleSubmit}
         fullWidth
       >
         {isLoading ? (
-          <CircularProgress color="secondary" size={25} />
+          <CircularProgress color='secondary' size={25} />
         ) : (
           "Submit"
         )}
