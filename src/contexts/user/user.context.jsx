@@ -7,13 +7,6 @@ export const USER_ACTION_TYPES = {
 };
 
 const initialState = {
-  // user: {
-  //   avatar: "84d3e67fc886f4dd1f27cb80ce056f2d",
-  //   discriminator: "8741",
-  //   id: "85792881612185600",
-  //   mfa_enabled: false,
-  //   username: "E."
-  // },
   user: null,
   token: null
 };
@@ -50,5 +43,3 @@ export const UserProvider = ({ children }) => (
     {children}
   </UserContext.Provider>
 );
-
-export const loginLink = "https://aocbot.zerobot.xyz/api/login";
