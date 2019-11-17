@@ -28,8 +28,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Home(props) {
+function Home({ location: { search } }) {
   const classes = useStyles();
+
   return (
     <>
       <HeroSection classes={{ content: classes.heroContentStyleOverride }}>
@@ -40,14 +41,14 @@ function Home(props) {
           </div>
           <div className={classes.buttonRow}>
             <Button
-              variant="contained"
-              color="secondary"
-              to="/about"
+              variant='contained'
+              color='secondary'
+              to='/about'
               component={Link}
             >
               About
             </Button>
-            <ModalButton variant="contained" color="secondary">
+            <ModalButton variant='contained' color='secondary'>
               Submit
             </ModalButton>
           </div>

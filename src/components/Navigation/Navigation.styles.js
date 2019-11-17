@@ -77,20 +77,30 @@ export const NavItem = styled(Link)`
   }
 `;
 
+export const NavUserName = styled.div`
+  margin-right: 0.5rem;
+`;
+
+export const NavUserIcon = styled.img`
+  border-radius: 999px;
+  height: 2.25rem;
+`;
+
 export const NavUserContainer = styled.div`
   margin-left: auto;
   display: flex;
   align-items: center;
-`;
-
-export const NavUserName = styled.div`
-  margin-right: 0.5rem;
-  @media (max-width: 600px) {
-    display: none;
+  ${NavUserName} {
+    @media (max-width: 600px) {
+      display: none;
+    }
+  }
+  ${NavItem} {
+    @media (max-width: 600px) {
+      display: none;
+    }
   }
 `;
-
-export const NavUserIcon = styled.img``;
 
 export const MenuButton = styled.div`
   margin-left: 1rem;

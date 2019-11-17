@@ -11,6 +11,11 @@ import Avatar from "../Avatar/Avatar.component";
 import SubmitForm from "../Submit-Form/Submit-form.component";
 import { Button } from "@material-ui/core";
 
+import {
+  useUserContext,
+  USER_ACTION_TYPES
+} from "../../contexts/user/user.context";
+
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
@@ -47,7 +52,9 @@ function Modal(props) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const { isOpen, handleClose, userInfo } = props;
+  const { isOpen, handleClose } = props;
+
+  const [{ user: userInfo }, userDispatch] = useUserContext();
 
   const userId = userInfo && userInfo.id;
   const userAvatarHash = userInfo && userInfo.avatar;
@@ -60,7 +67,7 @@ function Modal(props) {
       open={isOpen}
       fullScreen={fullScreen}
     >
-      <DialogTitle id="submit-modal-title" className={classes.title}>
+      <DialogTitle id='submit-modal-title' className={classes.title}>
         Submit Solution
       </DialogTitle>
 
@@ -78,8 +85,8 @@ function Modal(props) {
 
 Modal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  handleClose: PropTypes.func.isRequired,
-  userInfo: PropTypes.object.isRequired
+  handleClose: PropTypes.func.isRequired
+  // userInfo: PropTypes.object.isRequired
 };
 
 export default React.memo(Modal);
@@ -92,14 +99,21 @@ export const ModalButton = ({
   ...props
 }) => {
   const [isOpen, setIsOpen] = useState(opened);
+  const [{ user }, userDispatch] = useUserContext();
+
   useEffect(() => {
     isOpen ? handleOpen() : handleClose();
   }, [isOpen, handleClose, handleOpen]);
 
   const open = useCallback(() => {
+    if (!user) {
+      userDispatch({
+        type: USER_ACTION_TYPES.LOGIN
+      });
+    }
     setIsOpen(true);
     handleOpen();
-  }, [handleOpen]);
+  }, [handleOpen, user, userDispatch]);
 
   const close = useCallback(() => {
     setIsOpen(false);
