@@ -36,5 +36,24 @@
 				"url": "https://www.linkedin.com/in/matthew-c-smith/"
 			}
 		]
+	},
+	{
+		"tag": "notAnkur",
+		"name": "Ankur Anant",
+		"avatarImage": "https://avatars3.githubusercontent.com/u/38914008?s=460&v=4",
+		"links": [
+			{
+				"label": "twitter",
+				"url": "https://twitter.com/notAnkur"
+			},
+			{
+				"label": "github",
+				"url": "https://github.com/anantankur"
+			},
+			{
+				"label": "linkedin",
+				"url": "https://www.linkedin.com/in/ankuranant"
+			}
+		]
 	}
 ]
