@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { withRouter } from "react-router-dom";
+import React, { useCallback } from "react";
+import { withRouter, Link } from "react-router-dom";
 
 import {
   useUserContext,
@@ -8,32 +8,90 @@ import {
 
 import {
   useTheme,
-  MenuItem,
-  Popper,
-  Grow,
-  Paper,
-  ClickAwayListener,
-  MenuList
+  useMediaQuery,
+  AppBar,
+  Toolbar,
+  Typography,
+  Avatar,
+  Drawer,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Divider,
+  Fab
 } from "@material-ui/core";
 
 import {
-  NavigationContainer,
-  NavItemContainer,
-  NavLogo,
-  NavItem,
-  NavUserContainer,
-  NavUserName,
-  NavUserIcon,
-  MenuButton,
-  MenuLink
-} from "./Navigation.styles";
+  AccountRemoveOutline,
+  AccountOutline,
+  HomeOutline,
+  InformationOutline,
+  LightbulbOnOutline
+} from "mdi-material-ui";
 
 import Treeburger from "./Treeburger.component";
+import { makeStyles } from "@material-ui/styles";
 
-const Nav = ({ location }) => {
-  console.log({ location });
+import { ModalButton } from "../Modal/Modal.component";
+
+const convertHex3To6 = hex =>
+  hex.length === 4
+    ? hex
+        .split("")
+        .reduce((acc, item, index) => acc + (index > 0 ? item : "") + item, "")
+    : hex;
+
+const useStyles = makeStyles(theme => ({
+  root: {},
+  navToolBar: {
+    justifyContent: "center",
+    paddingRight: "0px"
+  },
+  clearLink: {
+    textDecoration: "none",
+    color: theme.palette.text.primary
+  },
+  logo: {
+    marginRight: "auto",
+    fontFamily: "Kaushan Script"
+  },
+  linkContainer: {
+    position: "absolute"
+  },
+  userContainer: {
+    marginLeft: "auto",
+    "&> :not(:last-child)": {
+      marginRight: ".75rem"
+    }
+  },
+  avatar: {
+    cursor: "pointer"
+  },
+  link: {
+    padding: ".1rem",
+    margin: "0px .4rem",
+
+    "&:hover": {
+      borderBottom: `1.5px solid ${convertHex3To6(
+        theme.palette.text.primary
+      )}66`
+    },
+    "&.current": {
+      borderBottom: `1.5px solid ${convertHex3To6(theme.palette.text.primary)}`
+    }
+  },
+  fab: {
+    position: "absolute",
+    top: "125%",
+    right: "1rem"
+  }
+}));
+
+const Nav = ({ location, history }) => {
   const theme = useTheme();
-  const [float, setFloat] = useState(false);
+  const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
+  const classes = useStyles({ isMobile });
 
   const [{ user, token }, userDispatch] = useUserContext();
   const anchorRef = React.useRef(null);
@@ -44,7 +102,7 @@ const Nav = ({ location }) => {
     setOpen(prevOpen => !prevOpen);
   }, []);
 
-  const handleClose = useCallback(event => {
+  const toggleDrawer = useCallback(event => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
@@ -55,109 +113,136 @@ const Nav = ({ location }) => {
   const handleLogout = useCallback(
     evt => {
       userDispatch({ type: USER_ACTION_TYPES.LOGOUT });
-      handleClose(evt);
+      toggleDrawer(evt);
     },
-    [userDispatch, handleClose]
+    [userDispatch, toggleDrawer]
   );
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 0) setFloat(true);
-      else if (window.scrollY === 0) setFloat(false);
-    };
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const handleLogin = useCallback(() => {
+    history.push("/login");
+  }, [history]);
 
   return (
-    <NavigationContainer theme={theme} float={float} role='navigation'>
-      <NavLogo theme={theme} to='/'>
-        <h1>Advent of Code</h1>
-      </NavLogo>
-      <NavItemContainer>
-        <NavItem
-          theme={theme}
-          to='/about'
-          current={location.pathname === "/about" ? 1 : 0}
-        >
-          About
-        </NavItem>
-        <NavItem
-          theme={theme}
-          to='/solutions'
-          current={location.pathname === "/solutions" ? 1 : 0}
-        >
-          Solutions
-        </NavItem>
-      </NavItemContainer>
-      <NavUserContainer>
+    <>
+      <AppBar position='fixed' className={`${classes.root} not-scrolled`}>
+        <Toolbar className={classes.navToolBar}>
+          <Link to='/' className={classes.clearLink}>
+            <Typography className={classes.logo} variant='h5'>
+              Advent of Code
+            </Typography>
+          </Link>
+          <div className={classes.linkContainer}>
+            <Link to='/about' className={classes.clearLink}>
+              <Typography
+                variant='button'
+                className={`${classes.link} ${
+                  location.pathname === "/about" ? "current" : ""
+                }`}
+              >
+                About
+              </Typography>
+            </Link>
+            <Link to='/solutions' className={classes.clearLink}>
+              <Typography
+                variant='button'
+                className={`${classes.link} ${
+                  location.pathname === "/solutions" ? "current" : ""
+                }`}
+              >
+                Solutions
+              </Typography>
+            </Link>
+          </div>
+          <Toolbar className={classes.userContainer}>
+            {token ? (
+              <>
+                <Typography variant='button'>{user.username}</Typography>
+                <Avatar
+                  alt='Avatar'
+                  src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`}
+                  onClick={handleClick}
+                  className={classes.avatar}
+                />
+              </>
+            ) : (
+              <>
+                <Link to='/login' className={classes.clearLink}>
+                  <Typography variant='button' className={classes.link}>
+                    Login
+                  </Typography>
+                </Link>
+                <Treeburger onClick={handleClick} />
+              </>
+            )}
+          </Toolbar>
+        </Toolbar>
+
+        <Fab color='primary' className={classes.fab}>
+          <ModalButton />
+        </Fab>
+      </AppBar>
+
+      <Drawer open={open} onClose={toggleDrawer} anchor='right'>
         {token ? (
           <>
-            <NavUserName theme={theme}>
-              {user.username || "User Name"}
-            </NavUserName>
-            <NavUserIcon
-              src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`}
-            />
+            <Toolbar className={classes.userContainer}>
+              <Typography variant='button'>{user.username}</Typography>
+              <Avatar
+                alt='Avatar'
+                src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`}
+                className={classes.avatar}
+              />{" "}
+            </Toolbar>
+            <Divider />
           </>
         ) : (
-          <NavItem
-            theme={theme}
-            to={{ pathname: "/login", state: { from: location.pathname } }}
-          >
-            Login
-          </NavItem>
+          <></>
         )}
-      </NavUserContainer>
-      <MenuButton theme={theme} onClick={handleClick} ref={anchorRef}>
-        <Treeburger className={open ? "isopen" : ""} />
-      </MenuButton>
-      <Popper
-        open={open}
-        anchorEl={anchorRef.current}
-        role={undefined}
-        transition
-        disablePortal
-      >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin:
-                placement === "bottom" ? "center top" : "center bottom"
-            }}
-          >
-            <Paper>
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList autoFocusItem={open} id='menu-list-grow'>
-                  <MenuLink theme={theme} to='/about'>
-                    <MenuItem onClick={handleClose}>About</MenuItem>
-                  </MenuLink>
 
-                  <MenuLink theme={theme} to='/submissions'>
-                    <MenuItem onClick={handleClose}>Sumbissions</MenuItem>
-                  </MenuLink>
-                  {token ? (
-                    <MenuItem onClick={handleLogout}>Logout</MenuItem>
-                  ) : (
-                    <MenuLink
-                      theme={theme}
-                      to={{
-                        pathname: "/login",
-                        state: { from: location.pathname }
-                      }}
-                    >
-                      <MenuItem onClick={handleClose}>Login</MenuItem>
-                    </MenuLink>
-                  )}
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
-    </NavigationContainer>
+        <List>
+          <ListItem button onClick={handleLogout}>
+            <ListItemIcon>
+              <HomeOutline />
+            </ListItemIcon>
+            <Link to='/' className={classes.clearLink}>
+              <ListItemText>Home</ListItemText>
+            </Link>
+          </ListItem>
+          <ListItem button onClick={handleLogout}>
+            <ListItemIcon>
+              <InformationOutline />
+            </ListItemIcon>
+            <Link to='/about' className={classes.clearLink}>
+              <ListItemText>About</ListItemText>
+            </Link>
+          </ListItem>
+          <ListItem button onClick={handleLogout}>
+            <ListItemIcon>
+              <LightbulbOnOutline />
+            </ListItemIcon>
+            <Link to='/submissions' className={classes.clearLink}>
+              <ListItemText>Submissions</ListItemText>
+            </Link>
+          </ListItem>
+          <Divider />
+          {token ? (
+            <ListItem button onClick={handleLogout}>
+              <ListItemIcon>
+                <AccountRemoveOutline />
+              </ListItemIcon>
+              <ListItemText>Logout</ListItemText>
+            </ListItem>
+          ) : (
+            <ListItem button onClick={handleLogin}>
+              <ListItemIcon>
+                <AccountOutline />
+              </ListItemIcon>
+              <ListItemText>Login</ListItemText>
+            </ListItem>
+          )}
+        </List>
+      </Drawer>
+    </>
   );
 };
 

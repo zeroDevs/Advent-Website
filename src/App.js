@@ -57,7 +57,7 @@ function App({ location, location: { search }, history }) {
               from='/login'
               component={({ location }) => {
                 window.location.replace(
-                  `${endPoints.backend}${endPoints.login}`
+                  `${endPoints.backend}${endPoints.login}?location=${location.pathname}`
                 );
                 return null;
               }}
