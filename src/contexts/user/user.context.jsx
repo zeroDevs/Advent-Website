@@ -20,6 +20,7 @@ const reducer = (state, action) => {
       const token = action.payload || window.localStorage.getItem("token");
       try {
         const user = jwtDecode(token);
+        if (user.code === 0) throw new Error(user.message);
         window.localStorage.setItem("token", token);
         return {
           ...state,
