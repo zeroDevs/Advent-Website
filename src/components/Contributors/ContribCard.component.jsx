@@ -29,6 +29,7 @@ const useStyles = makeStyles(theme => ({
 
 function ContribCard({ person }) {
 	const classes = useStyles();
+	const hasLinks = person && person.links && person.links.length > 0;
 
 	return (
 		<Card className={classes.card}>
@@ -40,7 +41,7 @@ function ContribCard({ person }) {
 			<Avatar className={classes.avatar} src={person.avatarImage} />
 			<CardActions disableSpacing>
 				<div className={classes.linksContainer}>
-					<SocialLinks links={person.links} />
+					<SocialLinks links={hasLinks && person.links} />
 				</div>
 			</CardActions>
 		</Card>

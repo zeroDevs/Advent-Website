@@ -1,17 +1,12 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Slider from "@material-ui/core/Slider";
-import Typography from "@material-ui/core/Typography";
-import CancelIcon from "@material-ui/icons/Cancel";
-import FormLabel from "@material-ui/core/FormLabel";
-import FormControl from "@material-ui/core/FormControl";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Divider from "@material-ui/core/Divider";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
 import Button from "@material-ui/core/Button";
+
+import DateSort from "./DateSort.component";
+import NameSort from "./NameSort.component";
+import DaySelector from "./DaySelector.component";
+import LanguageSelector from "./LanguageSelector.component";
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -21,27 +16,6 @@ const useStyles = makeStyles(theme => ({
 		position: "sticky",
 		top: 80
 	},
-	rangeNumbersContainer: {
-		display: "flex",
-		justifyContent: "space-between"
-	},
-	rangeNumbers: {
-		color: "yellow"
-	},
-	container: {
-		position: "relative",
-		margin: theme.spacing(2, 0)
-	},
-	clear: {
-		position: "absolute",
-		top: 0,
-		right: 0
-	},
-	clearIcon: {
-		color: theme.palette.text.secondary,
-		cursor: "pointer",
-		zIndex: 2000
-	},
 	flexContainer: {
 		display: "flex"
 	},
@@ -50,30 +24,22 @@ const useStyles = makeStyles(theme => ({
 	},
 	applyButton: {
 		marginTop: theme.spacing(1)
-	},
-	label: {
-		marginBottom: theme.spacing(1)
-	},
-	formControlOverride: {
-		position: "initial"
 	}
 }));
 
 const defaultConfig = {
 	dateRange: [1, 25],
 	languages: {
-		// JavaScript: true,
 		javascript: true,
 		python: true,
 		ruby: true,
-		// Python: true,
-		Java: true,
+		java: true,
 		C: true,
 		"C#": true,
 		"C++": true,
-		Elixir: true,
-		Go: true,
-		Rust: true
+		elixir: true,
+		go: true,
+		rust: true
 	}
 };
 
@@ -126,7 +92,9 @@ function Filters({ applyFilters }) {
 				dateRange={dateRange}
 				handleChange={handleChangeDaysSelect}
 			/>
+
 			<Divider />
+
 			<div className={classes.flexContainer}>
 				<div className={classes.leftColumn}>
 					<DateSort
@@ -134,21 +102,21 @@ function Filters({ applyFilters }) {
 						handleChange={handleChangeDateSort}
 						handleClear={handleClear("date")}
 					/>
-					<Divider />
-					<NameSort
-						nameSort={nameSort}
-						handleChange={handleChangeNameSort}
-						handleClear={handleClear("name")}
-					/>
 				</div>
-				<div className={classes.rightColumn}>
-					<LanguageSelector
-						selectedLangs={selectedLangs}
-						handleChange={handleChangeLangSelect}
-						handleClear={handleClear("lang")}
-					/>
-				</div>
+				<NameSort
+					nameSort={nameSort}
+					handleChange={handleChangeNameSort}
+					handleClear={handleClear("name")}
+				/>
 			</div>
+
+			<Divider />
+
+			<LanguageSelector
+				selectedLangs={selectedLangs}
+				handleChange={handleChangeLangSelect}
+				handleClear={handleClear("lang")}
+			/>
 
 			<Button
 				variant="contained"
@@ -158,6 +126,7 @@ function Filters({ applyFilters }) {
 			>
 				Reset
 			</Button>
+
 			<Button
 				className={classes.applyButton}
 				variant="contained"
@@ -167,135 +136,6 @@ function Filters({ applyFilters }) {
 			>
 				Apply
 			</Button>
-		</div>
-	);
-}
-
-function DaySelector({ dateRange, handleChange }) {
-	const classes = useStyles();
-
-	return (
-		<div className={classes.dateSlider}>
-			<div className={classes.rangeNumbersContainer}>
-				<Typography variant="body1" color="textSecondary">
-					Day range
-				</Typography>
-				<Typography variant="body1" className={classes.rangeNumbers}>
-					{`${dateRange[0]} - ${dateRange[1]}`}
-				</Typography>
-			</div>
-			<Slider
-				name="daySlider"
-				color="secondary"
-				value={dateRange}
-				onChange={handleChange}
-				valueLabelDisplay="auto"
-				max={25}
-				min={1}
-				marks
-			/>
-		</div>
-	);
-}
-
-function LanguageSelector({ selectedLangs, handleChange, handleClear }) {
-	const classes = useStyles();
-
-	return (
-		<div className={classes.container}>
-			<div className={classes.clear}>
-				<CancelIcon
-					className={classes.clearIcon}
-					onClick={handleClear}
-					fontSize="small"
-				/>
-			</div>
-			<FormControl
-				component="fieldset"
-				color="secondary"
-				className={classes.formControl}
-				classes={{ root: classes.formControlOverride }}
-			>
-				<FormLabel className={classes.label} component="legend">
-					Languages
-				</FormLabel>
-				<FormGroup>
-					{Object.keys(selectedLangs).map(language => (
-						<FormControlLabel
-							key={language}
-							control={
-								<Checkbox
-									checked={selectedLangs[language]}
-									onChange={handleChange(language)}
-									value={language}
-								/>
-							}
-							label={language}
-						/>
-					))}
-				</FormGroup>
-			</FormControl>
-		</div>
-	);
-}
-
-function DateSort({ dateSort, handleChange, handleClear }) {
-	const classes = useStyles();
-
-	return (
-		<div className={classes.container}>
-			<div className={classes.clear}>
-				<CancelIcon
-					className={classes.clearIcon}
-					onClick={handleClear}
-					fontSize="small"
-				/>
-			</div>
-
-			<FormControl
-				component="fieldset"
-				color="secondary"
-				className={classes.DateSort}
-				classes={{ root: classes.formControlOverride }}
-			>
-				<FormLabel className={classes.label} component="legend">
-					Date
-				</FormLabel>
-				<RadioGroup name="dateAge" value={dateSort} onChange={handleChange}>
-					<FormControlLabel value="asc" control={<Radio />} label="Oldest" />
-					<FormControlLabel value="desc" control={<Radio />} label="Newest" />
-				</RadioGroup>
-			</FormControl>
-		</div>
-	);
-}
-
-function NameSort({ nameSort, handleChange, handleClear }) {
-	const classes = useStyles();
-
-	return (
-		<div className={classes.container}>
-			<div className={classes.clear}>
-				<CancelIcon
-					className={classes.clearIcon}
-					onClick={handleClear}
-					fontSize="small"
-				/>
-			</div>
-			<FormControl
-				component="fieldset"
-				color="secondary"
-				className={classes.DateSort}
-				classes={{ root: classes.formControlOverride }}
-			>
-				<FormLabel className={classes.label} component="legend">
-					Name
-				</FormLabel>
-				<RadioGroup name="nameSort" value={nameSort} onChange={handleChange}>
-					<FormControlLabel value="asc" control={<Radio />} label="A-Z" />
-					<FormControlLabel value="desc" control={<Radio />} label="Z-A" />
-				</RadioGroup>
-			</FormControl>
 		</div>
 	);
 }
