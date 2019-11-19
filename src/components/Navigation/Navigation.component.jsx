@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useRef } from "react";
 import { withRouter, Link } from "react-router-dom";
 
 import {
@@ -18,8 +18,7 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  Divider,
-  Fab
+  Divider
 } from "@material-ui/core";
 
 import {
@@ -33,7 +32,7 @@ import {
 import Treeburger from "./Treeburger.component";
 import { makeStyles } from "@material-ui/styles";
 
-import { ModalButton } from "../Modal/Modal.component";
+import { ModalButton } from "../Modal/ModalButton.component";
 
 const convertHex3To6 = hex =>
   hex.length === 4
@@ -52,13 +51,12 @@ const useStyles = makeStyles(theme => ({
     textDecoration: "none",
     color: theme.palette.text.primary
   },
-  logo: {
-    marginRight: "auto",
+  logo: ({ isMobile }) => ({
+    marginRight: `${isMobile ? "0px" : "auto"}`,
     fontFamily: "Kaushan Script"
-  },
-  linkContainer: {
-    position: "absolute"
-  },
+  }),
+  linkContainer: ({ isMobile }) =>
+    isMobile ? { display: "none" } : { position: "absolute" },
   userContainer: {
     marginLeft: "auto",
     "&> :not(:last-child)": {
@@ -84,7 +82,7 @@ const useStyles = makeStyles(theme => ({
   fab: {
     position: "absolute",
     top: "125%",
-    right: "1rem"
+    right: "1.25rem"
   }
 }));
 
@@ -94,7 +92,8 @@ const Nav = ({ location, history }) => {
   const classes = useStyles({ isMobile });
 
   const [{ user, token }, userDispatch] = useUserContext();
-  const anchorRef = React.useRef(null);
+
+  const anchorRef = useRef(null);
 
   const [open, setOpen] = React.useState(false);
 
@@ -159,7 +158,11 @@ const Nav = ({ location, history }) => {
                 <Typography variant='button'>{user.username}</Typography>
                 <Avatar
                   alt='Avatar'
-                  src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`}
+                  src={
+                    user.avatar
+                      ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`
+                      : "images/user.png"
+                  }
                   onClick={handleClick}
                   className={classes.avatar}
                 />
@@ -176,10 +179,7 @@ const Nav = ({ location, history }) => {
             )}
           </Toolbar>
         </Toolbar>
-
-        <Fab color='primary' className={classes.fab}>
-          <ModalButton />
-        </Fab>
+        <ModalButton className={classes.fab} />
       </AppBar>
 
       <Drawer open={open} onClose={toggleDrawer} anchor='right'>
@@ -189,9 +189,14 @@ const Nav = ({ location, history }) => {
               <Typography variant='button'>{user.username}</Typography>
               <Avatar
                 alt='Avatar'
-                src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`}
+                src={
+                  user.avatar
+                    ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`
+                    : "images/user.png"
+                }
                 className={classes.avatar}
-              />{" "}
+                onClick={toggleDrawer}
+              />
             </Toolbar>
             <Divider />
           </>

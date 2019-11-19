@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -9,12 +9,8 @@ import useTheme from "@material-ui/core/styles/useTheme";
 
 import Avatar from "../Avatar/Avatar.component";
 import SubmitForm from "../Submit-Form/Submit-form.component";
-import { Button } from "@material-ui/core";
 
-import {
-  useUserContext,
-  USER_ACTION_TYPES
-} from "../../contexts/user/user.context";
+import { useUserContext } from "../../contexts/user/user.context";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -90,44 +86,3 @@ Modal.propTypes = {
 };
 
 export default React.memo(Modal);
-
-export const ModalButton = ({
-  children,
-  opened = false,
-  handleOpen = () => {},
-  handleClose = () => {},
-  ...props
-}) => {
-  const [isOpen, setIsOpen] = useState(opened);
-  const [{ user }, userDispatch] = useUserContext();
-
-  useEffect(() => {
-    isOpen ? handleOpen() : handleClose();
-  }, [isOpen, handleClose, handleOpen]);
-
-  const open = useCallback(() => {
-    if (!user) {
-      userDispatch({
-        type: USER_ACTION_TYPES.LOGIN
-      });
-    }
-    setIsOpen(true);
-    handleOpen();
-  }, [handleOpen, user, userDispatch]);
-
-  const close = useCallback(() => {
-    setIsOpen(false);
-    handleClose();
-  }, [handleClose]);
-
-  const doOpen = useCallback(() => {
-    if (!isOpen) setIsOpen(true);
-  }, [isOpen]);
-
-  return (
-    <Button onClick={doOpen} {...props}>
-      <Modal isOpen={isOpen} handleOpen={open} handleClose={close}></Modal>
-      {children}
-    </Button>
-  );
-};
