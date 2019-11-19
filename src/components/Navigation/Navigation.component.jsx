@@ -169,7 +169,10 @@ const Nav = ({ location, history }) => {
               </>
             ) : (
               <>
-                <Link to='/login' className={classes.clearLink}>
+                <Link to={{
+                        pathname: "/login",
+                        state: { from: location.pathname }
+                      }} className={classes.clearLink}>
                   <Typography variant='button' className={classes.link}>
                     Login
                   </Typography>
