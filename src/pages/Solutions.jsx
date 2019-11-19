@@ -9,7 +9,7 @@ import {
 	sortByName,
 	filterByDates,
 	filterByLanguage
-} from "../util/sorts";
+} from "../utils/sorts";
 
 import useSolutions from "../hooks/useSolutions";
 
