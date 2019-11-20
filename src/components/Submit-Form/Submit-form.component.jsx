@@ -23,6 +23,7 @@ const useStyles = makeStyles(theme => ({
 function SubmitForm({ userName, handleClose }) {
   const [date, setDate] = useState("2019-12-01");
   const [url, setUrl] = useState("");
+  const [langName, setLangName] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -41,7 +42,7 @@ function SubmitForm({ userName, handleClose }) {
 
     let body;
     try {
-      body = JSON.stringify({ userName, url, date }); // TODO: update property names to match expected body on backend
+      body = JSON.stringify({ userName, url, date, langName }); // TODO: update property names to match expected body on backend
     } catch (error) {
       setErrorMessage("Invalid input");
       return setIsLoading(false);
@@ -63,6 +64,7 @@ function SubmitForm({ userName, handleClose }) {
   };
 
   const handleUrlInputChange = event => setUrl(event.target.value);
+  const handleLangNameInputChange = event => setLangName(event.target.value);
   const handleDateChange = event => setDate(event.target.value);
 
   return (
@@ -98,6 +100,15 @@ function SubmitForm({ userName, handleClose }) {
           type='text'
           value={url}
           onChange={handleUrlInputChange}
+          fullWidth
+        />
+
+        <TextField
+          className={classes.input}
+          label='Solution language'
+          type='text'
+          value={langName}
+          onChange={handleLangNameInputChange}
           fullWidth
         />
       </form>
