@@ -6,20 +6,37 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles(theme => ({
   root: props => {
-    if (props.isMobile) {
+    if (props.isMobile && !props.isCompatible) {
       return {
         backgroundImage: "url('images/advent-mobile.png')",
-        backgroundPosition: "center",
+        backgroundPosition: "bottom",
         backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        height: "650px"
+        backgroundAttachment: "fixed",
+        height: "100%"
       };
-    } else {
+    } else if (!props.isCompatible){
       return {
         backgroundImage: "url('images/advent.png')",
-        backgroundPosition: "center center",
+        backgroundPosition: "bottom center",
         backgroundSize: "cover",
-        height: "99vh"
+        backgroundAttachment: "fixed",
+        height: "100%"
+      };
+    } else if (props.isCompatible) {
+      return {
+        backgroundImage: "url('images/advent.webp')",
+        backgroundPosition: "bottom center",
+        backgroundSize: "cover",
+        backgroundAttachment: "fixed",
+        height: "100%"
+      }
+    } else if (props.isMobile && !props.isCompatible) {
+      return {
+        backgroundImage: "url('images/advent-mobile.webp')",
+        backgroundPosition: "bottom",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+        height: "100%"
       };
     }
   },
@@ -34,7 +51,9 @@ const useStyles = makeStyles(theme => ({
 function HeroSection({ children, ...props }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
-  const classes = useStyles({ isMobile, classes: props.classes });
+  const checkBrowser = () => navigator.userAgent.indexOf("MSIE") !== -1 || navigator.userAgent.indexOf("Safari") !== -1 ? false : true
+  const isCompatible = checkBrowser()
+  const classes = useStyles({ isMobile, isCompatible, classes: props.classes });
   return (
     <div className={classes.root}>
       <div className={classes.content}>{children}</div>
