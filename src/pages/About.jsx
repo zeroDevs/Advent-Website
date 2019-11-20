@@ -1,24 +1,13 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 
 import Contributors from "../components/Contributors/Contributors.component";
 import TextSection from "../components/TextSection/TextSection.component";
 
-const useStyles = makeStyles(theme => ({
-  subtitle: {
-    marginBottom: "-10px"
-  },
-  hr: {
-    width: "50%"
-  }
-}));
-
 export default function About(props) {
-  const classes = useStyles();
   return (
     <>
       <TextSection title={"About AoC"}>
-        <h3 className={classes.subtitle}>What is AoC?</h3>
+        <h3>What is AoC?</h3>
         <p>
           Advent of Code (AoC) is an advent calendar for programmers, where each
           day of December you are provided with a new problem to solve with a
