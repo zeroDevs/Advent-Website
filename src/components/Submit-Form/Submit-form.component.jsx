@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
+import Select from '@material-ui/core/Select';
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
@@ -103,14 +104,21 @@ function SubmitForm({ userName, handleClose }) {
           fullWidth
         />
 
-        <TextField
-          className={classes.input}
-          label='Solution language'
-          type='text'
+        <Select
+          native
+          label='Language'
           value={langName}
+          className={classes.input}
           onChange={handleLangNameInputChange}
           fullWidth
-        />
+        >
+        	{/*placeholder*/}
+          <option value="lang1">PHP</option>
+          <option value="lang2">COW</option>
+          <option value="lang3">L33T</option>
+          <option value="lang4">LolCode</option>
+          <option value="lang5">Others</option>
+        </Select>
       </form>
       <Button
         variant='contained'
