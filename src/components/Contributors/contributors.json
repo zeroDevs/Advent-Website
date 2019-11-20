@@ -55,5 +55,24 @@
 				"url": "https://www.linkedin.com/in/ankuranant"
 			}
 		]
+	},
+	{
+		"tag": "sballgirl11",
+		"name": "Brittney Postma",
+		"avatarImage": "https://avatars1.githubusercontent.com/u/45889730?s=460&v=4",
+		"links": [
+			{
+				"label": "twitter",
+				"url": "https://twitter.com/BrittneyPostma"
+			},
+			{
+				"label": "github",
+				"url": "https://github.com/sballgirl11"
+			},
+			{
+				"label": "linkedin",
+				"url": "https://www.linkedin.com/in/brittney-postma-868928178/"
+			}
+		]
 	}
 ]

@@ -12,17 +12,18 @@ const useStyles = makeStyles(theme => ({
     if (props.isMobile) {
       return {
         backgroundImage: "url('images/adventlightsout-mobile.png')",
-        backgroundPosition: "center",
+        backgroundPosition: "bottom",
         backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        height: "650px"
+        backgroundAttachment: "fixed",
+        height: "100%"
       };
     } else {
       return {
         backgroundImage: "url('images/adventlightsout.png')",
-        backgroundPosition: "center center",
+        backgroundPosition: "bottom center",
         backgroundSize: "cover",
-        height: "99vh"
+        backgroundAttachment: "fixed",
+        height: "100%"
       };
     }
   },
