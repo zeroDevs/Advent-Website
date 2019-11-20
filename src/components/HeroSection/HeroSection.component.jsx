@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
 function HeroSection({ children, ...props }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
-  const checkBrowser = () => navigator.userAgent.indexOf("MSIE") !== -1 || navigator.userAgent.indexOf("Safari") !== -1 ? false : true
+  const checkBrowser = () => !navigator.userAgent.includes("MSIE") && !navigator.userAgent.includes("Safari")
   const isCompatible = checkBrowser()
   const classes = useStyles({ isMobile, isCompatible, classes: props.classes });
   return (
