@@ -1,112 +1,144 @@
 import React from "react";
 import PropTypes from "prop-types";
-
-import {
-	Card as MUICard,
-	CardMedia,
-	Typography,
-	CardContent,
-	Link,
-	Icon
-} from "@material-ui/core";
+import moment from "moment";
 import makeStyles from "@material-ui/core/styles/makeStyles";
+import {
+  red,
+  blue,
+  purple,
+  yellow,
+  pink,
+  brown
+} from "@material-ui/core/colors";
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  Button,
+  CardHeader,
+  Avatar,
+  Typography
+} from "@material-ui/core";
+
+import UserRating from "../UserRating/UserRating.component";
 
 const useStyles = makeStyles(theme => ({
-	card: {
-		maxWidth: 300,
-		minHeight: 300,
-		textAlign: "center",
-		position: "relative"
-	},
-	cardMedia: {
-		minHeight: 300
-	},
-	linkToSolution: {
-		border: "1px solid orange",
-		display: "inline-block",
-		padding: "1rem",
-		borderRadius: "0.3em"
-	},
-	cardBottom: {
-		background: theme.palette.common.white,
-		color: theme.palette.common.black
-	}
+  root: {
+    width: theme.spacing(30),
+    height: theme.spacing(52),
+    margin: theme.spacing(1),
+    position: "relative"
+  },
+  cardMedia: {
+    minHeight: 200
+  },
+  relativeContainer: {
+    position: "relative"
+  },
+  badgeContainer: {
+    position: "absolute",
+    top: theme.spacing(2),
+    left: theme.spacing(1)
+  },
+  langBackgroundColor: props => ({
+    backgroundColor: props.langColor,
+    color: theme.palette.getContrastText(props.langColor)
+  }),
+  dayContainer: {
+    border: `1px solid ${theme.palette.common.white}`,
+    marginBottom: theme.spacing(1),
+    borderRadius: theme.shape.borderRadius,
+    padding: theme.spacing(0.5)
+  }
 }));
 
-/**
- * Card component. Accepts a few params:
- * - `avatar_url`(optional)
- * - `username`(required)
- * - `date`:(required) date of submission. provide it as date string compitable for parsing using `new Date()`
- * - `day`:(required) day number(for example: 20 if the date is 20th nov)
- * - `solution_url`:(required) url to the solution
- */
-export default function Card(props) {
-	const { avatar_url, username, date, day, solution_url } = props;
-	const classes = useStyles({ classes: props.classes });
+const languageMap = {
+  javascript: {
+    shortName: "JS",
+    background: yellow[500]
+  },
+  python: {
+    shortName: "PY",
+    background: blue[500]
+  },
+  ruby: {
+    shortName: "RU",
+    background: purple[500]
+  },
+  csharp: {
+    shortName: "C#",
+    background: pink[500]
+  },
+  java: {
+    shortName: "JA",
+    background: brown[500]
+  }
+};
 
-	return (
-		<>
-			<MUICard className={classes.card}>
-				<CardMedia
-					style={{
-						position: "absolute",
-						display: "inline",
-						background: "#fff",
-						top: 15,
-						left: 10,
-						borderRadius: "0.3em"
-					}}
-					image=""
-				>
-					<Typography
-						style={{
-							fontWeight: "bold",
-							color: "#424242",
-							height: "50px",
-							width: "50px",
-							lineHeight: "50px" // keep it same as `height`
-						}}
-					>
-						{day || 1}
-					</Typography>
-				</CardMedia>
-				<CardMedia
-					className={classes.cardMedia}
-					image={avatar_url || "https://www.ark-ir.org/images/img_avatar5.png"}
-					title="Contemplative Reptile"
-				/>
+function SolutionCard({
+  avatarUrl,
+  username,
+  date,
+  day,
+  solutionUrl,
+  langName,
+  ...props
+}) {
+  const languageShortName =
+    (languageMap[langName] && languageMap[langName].shortName) || "?";
+  const languageColor =
+    (languageMap[langName] && languageMap[langName].background) || red[500];
 
-				<CardContent>
-					<Typography style={{ fontSize: "1.9em" }}>
-						{username || "notAnkur"}
-					</Typography>
-				</CardContent>
+  const classes = useStyles({
+    classes: props.classes,
+    langColor: languageColor
+  });
 
-				<CardContent>
-					<Typography className={classes.linkToSolution}>
-						<Link
-							href={solution_url}
-							style={{ color: "inherit", textDecoration: "none" }}
-							target="_blank"
-						>
-							Solution
-						</Link>
-					</Typography>
-				</CardContent>
+  const imageUrl = avatarUrl || `https://robohash.org/${username}`;
 
-				<CardContent className={classes.cardBottom}>
-					<Typography>Submitted 11 Months Ago</Typography>
-				</CardContent>
-			</MUICard>
-		</>
-	);
+  return (
+    <Card className={classes.root}>
+      <CardHeader
+        title={username}
+        subheader={moment(date).format("MM/DD, hh:mm a")}
+        avatar={
+          <Avatar className={classes.langBackgroundColor} title={langName}>
+            {languageShortName}
+          </Avatar>
+        }
+      />
+
+      <CardMedia className={classes.cardMedia} image={imageUrl} />
+
+      <CardContent>
+        <div className={classes.dayContainer}>
+          <Typography align="center" variant="body1">
+            Day {day}
+          </Typography>
+        </div>
+
+        <Button
+          component="a"
+          href={solutionUrl}
+          variant="contained"
+          color="secondary"
+          fullWidth
+        >
+          Solution
+        </Button>
+        {/* TODO: implement ratings */}
+        <UserRating value={0} onChange={() => {}} />
+      </CardContent>
+    </Card>
+  );
 }
 
-Card.propTypes = {
-	username: PropTypes.string.isRequired,
-	date: PropTypes.string.isRequired,
-	day: PropTypes.number.isRequired,
-	avatar_url: PropTypes.string,
-	solution_url: PropTypes.string.isRequired
+SolutionCard.propTypes = {
+  username: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  day: PropTypes.string.isRequired,
+  avatarUrl: PropTypes.string,
+  solutionUrl: PropTypes.string.isRequired
 };
+
+export default React.memo(SolutionCard);
