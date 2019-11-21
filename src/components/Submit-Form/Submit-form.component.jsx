@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-function SubmitForm({ userName, handleClose }) {
+function SubmitForm({ userName, avatar, handleClose }) {
 	const [date, setDate] = useState("2019-12-01");
 	const [url, setUrl] = useState("");
 	const [langName, setLangName] = useState("");
@@ -45,7 +45,7 @@ function SubmitForm({ userName, handleClose }) {
 
 		let body;
 		try {
-			body = JSON.stringify({ userName, url, date, langName });
+			body = JSON.stringify({ userName, url, date, langName, avatar });
 		} catch (error) {
 			setErrorMessage("Invalid input");
 			return setIsLoading(false);
