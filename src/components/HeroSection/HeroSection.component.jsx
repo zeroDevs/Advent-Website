@@ -14,7 +14,25 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: "rgb(16, 15, 36)",
         height: "100vh"
       };
-    } else {
+    } 
+    // else if (props.isMobile && props.webP) {
+    //   return {
+    //     backgroundImage: "url('images/advent-mobile.webp')",
+    //     backgroundPosition: "center center",
+    //     backgroundRepeat: "no-repeat",
+    //     backgroundColor: "rgb(16, 15, 36)",
+    //     height: "100vh"
+    //   }
+    // } else if (props.webP) {
+    //   return {
+    //     backgroundImage: "url('images/advent.webp')",
+    //     backgroundPosition: "bottom center",
+    //     backgroundSize: "cover",
+    //     backgroundAttachment: "fixed",
+    //     height: "100%"
+    //   };
+    // } 
+    else {
       return {
         backgroundImage: "url('images/advent.png')",
         backgroundPosition: "bottom center",
