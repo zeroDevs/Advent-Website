@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
-import Select from '@material-ui/core/Select';
+import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 import makeStyles from "@material-ui/core/styles/makeStyles";
+
+const listOfLangs = require("../../configs/languages.json");
 
 const useStyles = makeStyles(theme => ({
   input: {
@@ -75,8 +77,8 @@ function SubmitForm({ userName, handleClose }) {
 
         <TextField
           className={classes.input}
-          label='Username'
-          type='text'
+          label="Username"
+          type="text"
           value={userName}
           disabled
           fullWidth
@@ -84,8 +86,8 @@ function SubmitForm({ userName, handleClose }) {
 
         <TextField
           className={classes.input}
-          label='Advent Challenge Date'
-          type='date'
+          label="Advent Challenge Date"
+          type="date"
           value={date}
           onChange={handleDateChange}
           className={classes.textField}
@@ -97,8 +99,8 @@ function SubmitForm({ userName, handleClose }) {
 
         <TextField
           className={classes.input}
-          label='Solution Url'
-          type='text'
+          label="Solution Url"
+          type="text"
           value={url}
           onChange={handleUrlInputChange}
           fullWidth
@@ -106,28 +108,27 @@ function SubmitForm({ userName, handleClose }) {
 
         <Select
           native
-          label='Language'
+          label="Language"
           value={langName}
           className={classes.input}
           onChange={handleLangNameInputChange}
           fullWidth
         >
-        	{/*placeholder*/}
-          <option value="lang1">PHP</option>
-          <option value="lang2">COW</option>
-          <option value="lang3">L33T</option>
-          <option value="lang4">LolCode</option>
-          <option value="lang5">Others</option>
+          {listOfLangs.map(lang => (
+            <option key={lang} value={lang}>
+              {lang}
+            </option>
+          ))}
         </Select>
       </form>
       <Button
-        variant='contained'
-        color='secondary'
+        variant="contained"
+        color="secondary"
         onClick={handleSubmit}
         fullWidth
       >
         {isLoading ? (
-          <CircularProgress color='secondary' size={25} />
+          <CircularProgress color="secondary" size={25} />
         ) : (
           "Submit"
         )}
