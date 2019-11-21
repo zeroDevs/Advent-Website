@@ -76,7 +76,7 @@ function Modal(props) {
 				<SubmitForm
 					userId={userId}
 					userName={userName}
-					avatarUrl={`https://cdn.discordapp.com/avatars/${userId}/${userAvatarHash}.jpg`}
+					avatarHash={userAvatarHash}
 					handleClose={handleClose}
 				/>
 			</div>
