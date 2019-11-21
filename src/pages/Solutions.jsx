@@ -1,112 +1,185 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import {
+	Search as SearchIcon,
+	FilterList as FiltersIcon,
+	Add as AddIcon
+} from "@material-ui/icons";
 
 import Filters from "../components/Filters/Filters.component";
 import Card from "../components/Card/Card.component";
+import SolutionDrawer from "../components/SolutionDrawer";
 import {
-  sortByDate,
-  sortByName,
-  filterByDates,
-  filterByLanguage
+	sortByDate,
+	sortByName,
+	filterByDates,
+	filterByLanguage
 } from "../utils/sorts";
-
 import useSolutions from "../hooks/useSolutions";
+import useDrawer from "../hooks/useDrawer";
 
 const useStyles = makeStyles(theme => ({
-  root: {},
-  spacer: {
-    padding: theme.spacing(4, 0)
-  },
-  container: {
-    display: "flex",
-    margin: theme.spacing(0, 2)
-  },
-  filtersBox: {
-    margin: theme.spacing(1)
-  },
-  solutionsContainer: {
-    flex: 1,
-    display: "flex",
-    flexWrap: "wrap"
-  },
-  emptyMessage: {
-    flex: 1,
-    textAlign: "center"
-  }
+	container: {
+		display: "flex",
+		margin: theme.spacing(0, 2)
+	},
+	filtersBox: {
+		margin: theme.spacing(1)
+	},
+	solutionsContainer: {
+		flex: 1,
+		display: "flex",
+		flexWrap: "wrap"
+	},
+	emptyMessage: {
+		flex: 1,
+		textAlign: "center"
+	},
+	optionsContianer: {
+		display: "flex",
+		justifyContent: "center",
+		marginBottom: theme.spacing(4)
+	},
+	option: {
+		margin: theme.spacing(1)
+	},
+	searchFieldContainer: {
+		display: "flex",
+		justifyContent: "center",
+		margin: theme.spacing(1)
+	},
+	controlls: {
+		margin: theme.spacing(4, 0),
+		width: "250px",
+		marginLeft: "auto",
+		marginRight: "auto"
+	}
 }));
 
 function Solutions(props) {
-  const dataFromApi = useSolutions();
-  const [solutions, setSolutions] = useState(null);
-  const classes = useStyles();
+	const dataFromApi = useSolutions();
+	const { isOpen, handleClose, toggle: toggleFiltersDrawer } = useDrawer();
+	const [solutions, setSolutions] = useState([]);
 
-  useEffect(() => {
-    setSolutions(dataFromApi);
-  }, [dataFromApi]);
+	const [showSearch, setShowSearch] = useState(false);
+	const [searchText, setSearchText] = useState("");
 
-  const applyFilters = (dateRange, selectedLangs, dateSort, nameSort) => {
-    let copyOfMainData = [...dataFromApi];
+	const handleShowSearch = () => setShowSearch(!showSearch);
+	const handleTextInput = event => setSearchText(event.target.value);
 
-    if (dateRange) {
-      copyOfMainData = filterByDates(
-        dateRange[0],
-        dateRange[1],
-        copyOfMainData
-      );
-    }
+	const classes = useStyles();
 
-    if (selectedLangs) {
-      copyOfMainData = filterByLanguage(selectedLangs, copyOfMainData);
-    }
+	useEffect(() => {
+		setSolutions(dataFromApi);
+	}, [dataFromApi]);
 
-    if (dateSort) {
-      copyOfMainData = sortByDate(copyOfMainData, dateSort);
-    }
+	const applyFilters = (dateRange, selectedLangs, dateSort, nameSort) => {
+		let copyOfMainData = [...dataFromApi];
 
-    if (nameSort) {
-      copyOfMainData = sortByName(copyOfMainData, nameSort);
-    }
+		if (dateRange) {
+			copyOfMainData = filterByDates(
+				dateRange[0],
+				dateRange[1],
+				copyOfMainData
+			);
+		}
 
-    setSolutions(copyOfMainData);
-  };
+		if (selectedLangs) {
+			copyOfMainData = filterByLanguage(selectedLangs, copyOfMainData);
+		}
 
-  const hasSolutionsToShow = solutions && solutions.length > 0;
+		if (dateSort) {
+			copyOfMainData = sortByDate(copyOfMainData, dateSort);
+		}
 
-  return (
-    <>
-      <div className={classes.spacer} />
-      <div className={classes.container}>
-        <div className={classes.filtersBox}>
-          <Filters applyFilters={applyFilters} />
-        </div>
-        <div className={classes.solutionsContainer}>
-          {hasSolutionsToShow &&
-            solutions.map(user => (
-              <Card
-                key={user.username + user._id}
-                avatarUrl={user.avatarUrl}
-                username={user.userName}
-                date={user.Time}
-                day={user.dayNumber}
-                solutionUrl={user.url}
-                langName={user.langName}
-              />
-            ))}
+		if (nameSort) {
+			copyOfMainData = sortByName(copyOfMainData, nameSort);
+		}
 
-          {!hasSolutionsToShow && (
-            <Typography
-              className={classes.emptyMessage}
-              variant="h6"
-              color="textSecondary"
-            >
-              Nothing to show
-            </Typography>
-          )}
-        </div>
-      </div>
-    </>
-  );
+		setSolutions(copyOfMainData);
+	};
+
+	const filteredSolutions = solutions.filter(
+		solution =>
+			solution.userName &&
+			solution.userName.toLowerCase().includes(searchText.toLowerCase())
+	);
+
+	const hasSolutionsToShow = filteredSolutions && filteredSolutions.length > 0;
+
+	return (
+		<>
+			<SolutionDrawer isOpen={isOpen} handleDrawerClose={handleClose}>
+				<Filters applyFilters={applyFilters} />
+			</SolutionDrawer>
+
+			<div className={classes.controlls}>
+				{showSearch && (
+					<div className={classes.searchFieldContainer}>
+						<TextField
+							id="nameSearch"
+							label="Username"
+							margin="normal"
+							color="secondary"
+							value={searchText}
+							onChange={handleTextInput}
+							className={classes.textField}
+							fullWidth
+						/>
+					</div>
+				)}
+				<div className={classes.optionsContianer}>
+					<Button
+						variant="outlined"
+						className={classes.option}
+						onClick={handleShowSearch}
+					>
+						<SearchIcon fontSize="large" />
+					</Button>
+					<Button
+						variant="outlined"
+						className={classes.option}
+						onClick={toggleFiltersDrawer}
+					>
+						<FiltersIcon fontSize="large" />
+					</Button>
+					<Button variant="outlined" className={classes.option}>
+						<AddIcon fontSize="large" />
+					</Button>
+				</div>
+			</div>
+
+			<div className={classes.container}>
+				<div className={classes.solutionsContainer}>
+					{hasSolutionsToShow &&
+						filteredSolutions.map(user => (
+							<Card
+								key={user.username + user._id}
+								avatarUrl={user.avatarUrl}
+								username={user.userName}
+								date={user.Time}
+								day={user.dayNumber}
+								solutionUrl={user.url}
+								langName={user.langName}
+							/>
+						))}
+
+					{!hasSolutionsToShow && (
+						<Typography
+							className={classes.emptyMessage}
+							variant="h6"
+							color="textSecondary"
+						>
+							Nothing to show
+						</Typography>
+					)}
+				</div>
+			</div>
+		</>
+	);
 }
 
 export default React.memo(Solutions);

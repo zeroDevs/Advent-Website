@@ -10,11 +10,8 @@ import LanguageSelector from "./LanguageSelector.component";
 
 const useStyles = makeStyles(theme => ({
 	root: {
-		width: "300px",
 		padding: theme.spacing(2),
-		backgroundColor: theme.palette.background.paper,
-		position: "sticky",
-		top: 80
+		backgroundColor: theme.palette.background.paper
 	},
 	flexContainer: {
 		display: "flex"
