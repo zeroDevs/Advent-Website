@@ -30,7 +30,7 @@ function SubmitForm({ userName, avatarHash, userId, handleClose }) {
 	const [errorMessage, setErrorMessage] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
 
-	const avatarUrl = `https://cdn.discordapp.com/avatars/${userId}/${avatarHash}.png?size=1028`;
+	const avatarUrl = `https://cdn.discordapp.com/avatars/${userId}/${avatarHash}.png?size=1024`;
 
 	const classes = useStyles();
 
