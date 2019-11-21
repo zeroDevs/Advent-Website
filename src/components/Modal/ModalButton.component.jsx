@@ -63,11 +63,15 @@ export const ModalButton = ({
       timeout={theme.transitions.duration.enteringScreen}
       style={{ transitionDelay: "1s" }}
     >
-      <Tooltip title='Submit Your Solution'>
-        <IconButton onClick={doOpen} className={`${classes.root} ${className}`}>
-          <Modal isOpen={isOpen} handleOpen={open} handleClose={close} />
-        </IconButton>
-      </Tooltip>
+      <>
+        <Tooltip title='Submit Your Solution'>
+          <IconButton
+            onClick={doOpen}
+            className={`${classes.root} ${className}`}
+          ></IconButton>
+        </Tooltip>
+        <Modal isOpen={isOpen} handleOpen={open} handleClose={close} />
+      </>
     </Zoom>
   );
 };
