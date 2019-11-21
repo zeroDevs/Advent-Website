@@ -71,8 +71,10 @@ function SubmitForm({ userName, avatarHash, userId, handleClose }) {
 		});
 
 		if (isSuccessful) {
+			console.log("isSuccessful", isSuccessful);
 			handleClose();
 		} else {
+			console.log("isNotSuccessful", error);
 			setErrorMessage(error);
 			setIsLoading(false);
 		}
