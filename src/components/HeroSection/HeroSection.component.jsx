@@ -6,35 +6,19 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles(theme => ({
   root: props => {
-    if (props.isMobile && !props.isCompatible) {
+    if (props.isMobile) {
       return {
         backgroundImage: "url('images/advent-mobile.png')",
-        backgroundPosition: "bottom",
+        backgroundPosition: "center center",
         backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
-        height: "100%"
+        backgroundColor: "rgb(16, 15, 36)",
+        height: "100vh"
       };
-    } else if (!props.isCompatible){
+    } else {
       return {
         backgroundImage: "url('images/advent.png')",
         backgroundPosition: "bottom center",
         backgroundSize: "cover",
-        backgroundAttachment: "fixed",
-        height: "100%"
-      };
-    } else if (props.isCompatible) {
-      return {
-        backgroundImage: "url('images/advent.webp')",
-        backgroundPosition: "bottom center",
-        backgroundSize: "cover",
-        backgroundAttachment: "fixed",
-        height: "100%"
-      }
-    } else if (props.isMobile && !props.isCompatible) {
-      return {
-        backgroundImage: "url('images/advent-mobile.webp')",
-        backgroundPosition: "bottom",
-        backgroundRepeat: "no-repeat",
         backgroundAttachment: "fixed",
         height: "100%"
       };
@@ -51,9 +35,7 @@ const useStyles = makeStyles(theme => ({
 function HeroSection({ children, ...props }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
-  const checkBrowser = () => !navigator.userAgent.includes("MSIE") || !navigator.userAgent.includes("Safari")
-  const isCompatible = checkBrowser()
-  const classes = useStyles({ isMobile, isCompatible, classes: props.classes });
+  const classes = useStyles({ isMobile, classes: props.classes });
   return (
     <div className={classes.root}>
       <div className={classes.content}>{children}</div>

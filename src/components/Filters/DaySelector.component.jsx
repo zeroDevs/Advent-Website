@@ -4,6 +4,9 @@ import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles(theme => ({
+	root: {
+		padding: theme.spacing(0, 2)
+	},
 	rangeNumbersContainer: {
 		display: "flex",
 		justifyContent: "space-between"
@@ -17,7 +20,7 @@ function DaySelector({ dateRange, handleChange }) {
 	const classes = useStyles();
 
 	return (
-		<div className={classes.dateSlider}>
+		<div className={classes.root}>
 			<div className={classes.rangeNumbersContainer}>
 				<Typography variant="body1" color="textSecondary">
 					Day range

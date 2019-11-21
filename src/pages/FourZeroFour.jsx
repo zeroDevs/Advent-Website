@@ -12,10 +12,10 @@ const useStyles = makeStyles(theme => ({
     if (props.isMobile) {
       return {
         backgroundImage: "url('images/adventlightsout-mobile.png')",
-        backgroundPosition: "bottom",
+        backgroundPosition: "center center",
         backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
-        height: "100%"
+        backgroundColor: "rgb(16, 15, 36)",
+        height: "100vh"
       };
     } else {
       return {
