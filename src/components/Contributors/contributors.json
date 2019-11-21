@@ -2,7 +2,7 @@
 	{
 		"tag": "Dichotomyy",
 		"name": "Erik Herbranson",
-		"avatarImage": "https://www.dropbox.com/s/ke5y6tmg2x76ttf/123.jpg?raw=1",
+		"avatarImage": "images/dichotomyy.jpg",
 		"links": [
 			{
 				"label": "twitter",
@@ -21,7 +21,7 @@
 	{
 		"tag": "Matt",
 		"name": "Matt Smith",
-		"avatarImage": "https://avatars3.githubusercontent.com/u/6190356?s=460&v=4",
+		"avatarImage": "images/matt.jpg",
 		"links": [
 			{
 				"label": "twitter",
@@ -40,7 +40,7 @@
 	{
 		"tag": "notAnkur",
 		"name": "Ankur Anant",
-		"avatarImage": "https://avatars3.githubusercontent.com/u/38914008?s=460&v=4",
+		"avatarImage": "images/notAnkur.png",
 		"links": [
 			{
 				"label": "twitter",
@@ -59,7 +59,7 @@
 	{
 		"tag": "sballgirl11",
 		"name": "Brittney Postma",
-		"avatarImage": "https://avatars1.githubusercontent.com/u/45889730?s=460&v=4",
+		"avatarImage": "images/brittney.png",
 		"links": [
 			{
 				"label": "twitter",
