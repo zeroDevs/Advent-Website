@@ -5,49 +5,32 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles(theme => ({
-	root: {
-		backgroundColor: "rgb(16, 15, 36)",
-		height: "100%",
-		display: "grid",
-		gridTemplateColumns: "33% 1fr"
-
-		// if (props.isMobile) {
-		// 	return {
-		// 		backgroundImage: "url('images/advent-mobile.png')",
-		// 		backgroundPosition: "center center",
-		// 		backgroundRepeat: "no-repeat",
-		// 		backgroundColor: "rgb(16, 15, 36)",
-		// 		height: "100%"
-		// 	};
-		// } else {
-		// 	return {
-		// 		backgroundImage: "url('images/advent.png')",
-		// 		backgroundPosition: "center center",
-		// 		backgroundSize: "cover",
-		// 		backgroundAttachment: "fixed",
-		// 		backgroundColor: "rgb(16, 15, 36)",
-		// 		height: "100%"
-		// 	};
-		// }
+	root: props => {
+		if (props.isMobile) {
+			return {
+				height: "100%"
+			};
+		} else {
+			return {
+				backgroundColor: "rgb(16, 15, 36)",
+				height: "100%",
+				display: "grid",
+				gridTemplateColumns: "33% 1fr"
+			};
+		}
 	},
 	content: {
 		display: "flex",
 		justifyContent: "center",
-		justifySelf: "flex-start",
 		alignItems: "center",
 		height: "100%",
 		position: "relative"
 	},
 	bg: {
 		objectFit: "cover",
-		height: "96vh",
-		position: "fixed"
-	},
-	bgMobile: {
-		backgroundPosition: "center center",
-		backgroundRepeat: "no-repeat",
-		backgroundColor: "rgb(16, 15, 36)",
-		height: "100%"
+		height: "90vh",
+		position: "fixed",
+		width: "100vw"
 	}
 }));
 
@@ -59,30 +42,18 @@ function HeroSection({ children, ...props }) {
 		<div className={classes.root}>
 			<picture>
 				<source
-					srcSet="images/advent.webp 1170w,
-                images/advent.webp 970w,
-                images/advent.webp 750w,
-                images/advent.webp 320w"
-					sizes="100vw"
+					srcSet="images/advent.webp"
 					type="image/webp"
+					media="(min-width: 601px)"
 				/>
+				<source srcSet="images/advent.png" media="(min-width: 601px)" />
 				<source
-					srcSet="images/advent.png 1170w,
-                images/advent.png 970w,
-                images/advent.png 750w,
-                images/advent.png 320w"
-					sizes="100vw"
+					srcSet="images/advent.webp"
+					type="image/webp"
+					media="(min-width: 1000px)"
 				/>
-				<source
-					srcSet="images/advent-mobile.webp"
-					media="(max-width: 600px)"
-					className={classes.bgMobile}
-				/>
-				<source
-					srcSet="images/advent-mobile.png"
-					media="(max-width: 600px)"
-					className={classes.bgMobile}
-				/>
+				<source srcSet="images/advent.png" media="(min-width: 1000px)" />
+				<source srcSet="images/advent-mobile.png" media="(max-width: 600px)" />
 				<img
 					src="images/advent.png"
 					alt="Ascii Christmas Tree"
