@@ -8,13 +8,12 @@ import NameSort from "./NameSort.component";
 import DaySelector from "./DaySelector.component";
 import LanguageSelector from "./LanguageSelector.component";
 
+const listOfLangs = require("../../configs/languages.json");
+
 const useStyles = makeStyles(theme => ({
 	root: {
-		width: "300px",
 		padding: theme.spacing(2),
-		backgroundColor: theme.palette.background.paper,
-		position: "sticky",
-		top: 80
+		backgroundColor: theme.palette.background.paper
 	},
 	flexContainer: {
 		display: "flex"
@@ -29,19 +28,10 @@ const useStyles = makeStyles(theme => ({
 
 const defaultConfig = {
 	dateRange: [1, 25],
-	languages: {
-		javascript: true,
-		python: true,
-		ruby: true,
-		java: true,
-		C: true,
-		"C#": true,
-		"C++": true,
-		elixir: true,
-		go: true,
-		rust: true
-	}
+	languages: {}
 };
+
+listOfLangs.map(lang => (defaultConfig.languages[lang] = true));
 
 function Filters({ applyFilters }) {
 	const [dateRange, setDateRange] = useState(defaultConfig.dateRange);

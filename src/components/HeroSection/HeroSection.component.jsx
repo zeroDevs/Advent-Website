@@ -9,17 +9,18 @@ const useStyles = makeStyles(theme => ({
     if (props.isMobile) {
       return {
         backgroundImage: "url('images/advent-mobile.png')",
-        backgroundPosition: "center",
+        backgroundPosition: "center center",
         backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        height: "650px"
+        backgroundColor: "rgb(16, 15, 36)",
+        height: "100vh"
       };
     } else {
       return {
         backgroundImage: "url('images/advent.png')",
-        backgroundPosition: "center center",
+        backgroundPosition: "bottom center",
         backgroundSize: "cover",
-        height: "99vh"
+        backgroundAttachment: "fixed",
+        height: "100%"
       };
     }
   },
