@@ -5,6 +5,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles(theme => ({
+<<<<<<< HEAD
 	root: {
 		backgroundColor: "rgb(16, 15, 36)",
 		height: "100%",
@@ -49,6 +50,51 @@ const useStyles = makeStyles(theme => ({
 		backgroundColor: "rgb(16, 15, 36)",
 		height: "100%"
 	}
+=======
+  root: props => {
+    if (props.isMobile) {
+      return {
+        backgroundImage: "url('images/advent-mobile.png')",
+        backgroundPosition: "center center",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: "rgb(16, 15, 36)",
+        height: "100vh"
+      };
+    } 
+    // else if (props.isMobile && props.webP) {
+    //   return {
+    //     backgroundImage: "url('images/advent-mobile.webp')",
+    //     backgroundPosition: "center center",
+    //     backgroundRepeat: "no-repeat",
+    //     backgroundColor: "rgb(16, 15, 36)",
+    //     height: "100vh"
+    //   }
+    // } else if (props.webP) {
+    //   return {
+    //     backgroundImage: "url('images/advent.webp')",
+    //     backgroundPosition: "bottom center",
+    //     backgroundSize: "cover",
+    //     backgroundAttachment: "fixed",
+    //     height: "100%"
+    //   };
+    // } 
+    else {
+      return {
+        backgroundImage: "url('images/advent.png')",
+        backgroundPosition: "bottom center",
+        backgroundSize: "cover",
+        backgroundAttachment: "fixed",
+        height: "100%"
+      };
+    }
+  },
+  content: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100%"
+  }
+>>>>>>> 90caad45e31c9690eb17336e1f71703cc09daea7
 }));
 
 function HeroSection({ children, ...props }) {
