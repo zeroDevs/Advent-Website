@@ -33,22 +33,22 @@ function Home({ location: { search } }) {
   return (
     <>
       <HeroSection classes={{ content: classes.heroContentStyleOverride }}>
-        <div className={classes.welcomeMessage}>
-          <div>Zero-to-Mastery</div>
-          <div>
-            Advent of Code <span className={classes.year}>2019</span>
+          <div className={classes.welcomeMessage}>
+            <div>Zero-to-Mastery</div>
+            <div>
+              Advent of Code <span className={classes.year}>2019</span>
+            </div>
+            <div className={classes.buttonRow}>
+              <Button
+                variant='contained'
+                color='secondary'
+                to='/about'
+                component={Link}
+              >
+                About
+              </Button>
+            </div>
           </div>
-          <div className={classes.buttonRow}>
-            <Button
-              variant='contained'
-              color='secondary'
-              to='/about'
-              component={Link}
-            >
-              About
-            </Button>
-          </div>
-        </div>
       </HeroSection>
     </>
   );
