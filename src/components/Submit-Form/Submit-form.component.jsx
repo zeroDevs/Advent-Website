@@ -23,12 +23,14 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-function SubmitForm({ userName, avatarUrl, userId, handleClose }) {
+function SubmitForm({ userName, avatarHash, userId, handleClose }) {
 	const [date, setDate] = useState("2019-12-01");
 	const [url, setUrl] = useState("");
 	const [langName, setLangName] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
+
+	const avatarUrl = `https://cdn.discordapp.com/avatars/${userId}/${avatarHash}.png?size=1028`;
 
 	const classes = useStyles();
 
