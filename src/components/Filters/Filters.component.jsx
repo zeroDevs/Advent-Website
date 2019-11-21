@@ -31,7 +31,7 @@ const defaultConfig = {
 	languages: {}
 };
 
-listOfLangs.map(lang => (defaultConfig.languages[lang] = true));
+Object.keys(listOfLangs).map(lang => (defaultConfig.languages[lang] = true));
 
 function Filters({ applyFilters }) {
 	const [dateRange, setDateRange] = useState(defaultConfig.dateRange);
