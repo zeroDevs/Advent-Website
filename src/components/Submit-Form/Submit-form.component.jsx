@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
+import Select from '@material-ui/core/Select';
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
@@ -23,6 +24,7 @@ const useStyles = makeStyles(theme => ({
 function SubmitForm({ userName, handleClose }) {
   const [date, setDate] = useState("2019-12-01");
   const [url, setUrl] = useState("");
+  const [langName, setLangName] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -41,7 +43,7 @@ function SubmitForm({ userName, handleClose }) {
 
     let body;
     try {
-      body = JSON.stringify({ userName, url, date }); // TODO: update property names to match expected body on backend
+      body = JSON.stringify({ userName, url, date, langName }); // TODO: update property names to match expected body on backend
     } catch (error) {
       setErrorMessage("Invalid input");
       return setIsLoading(false);
@@ -63,6 +65,7 @@ function SubmitForm({ userName, handleClose }) {
   };
 
   const handleUrlInputChange = event => setUrl(event.target.value);
+  const handleLangNameInputChange = event => setLangName(event.target.value);
   const handleDateChange = event => setDate(event.target.value);
 
   return (
@@ -100,6 +103,22 @@ function SubmitForm({ userName, handleClose }) {
           onChange={handleUrlInputChange}
           fullWidth
         />
+
+        <Select
+          native
+          label='Language'
+          value={langName}
+          className={classes.input}
+          onChange={handleLangNameInputChange}
+          fullWidth
+        >
+        	{/*placeholder*/}
+          <option value="lang1">PHP</option>
+          <option value="lang2">COW</option>
+          <option value="lang3">L33T</option>
+          <option value="lang4">LolCode</option>
+          <option value="lang5">Others</option>
+        </Select>
       </form>
       <Button
         variant='contained'
