@@ -1,1 +1,52 @@
-["Javascript", "Java", "Python", "Ruby", "PHP", "C++", "C", "C#", "Go", "Other"]
+{
+	"Javascript": {
+		"name": "Javascript",
+		"shortName": "JS",
+		"background": "#F0DB4F"
+	},
+	"Java": {
+		"name": "Java",
+		"shortName": "JA",
+		"background": "#339999"
+	},
+	"Python": {
+		"name": "Python",
+		"shortName": "PY",
+		"background": "#4B8BBE"
+	},
+	"Ruby": {
+		"name": "Ruby",
+		"shortName": "RU",
+		"background": "#9B111E"
+	},
+	"PHP": {
+		"name": "PHP",
+		"shortName": "PHP",
+		"background": "#474A8A"
+	},
+	"C++": {
+		"name": "C++",
+		"shortName": "C++",
+		"background": "#659BD3"
+	},
+	"C": {
+		"name": "C",
+		"shortName": "C",
+		"background": "#7F8B99"
+	},
+	"C#": {
+		"name": "C#",
+		"shortName": "C#",
+		"background": "#9467CF"
+	},
+	"Go": {
+		"name": "Go",
+		"shortName": "Go",
+		"background": "#00A7D1"
+	},
+	"Other": {
+		"name": "Other",
+		"shortName": "O",
+		"background": "#ce00c0"
+	}
+}
