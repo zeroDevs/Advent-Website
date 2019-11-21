@@ -45,7 +45,7 @@ function SubmitForm({ userName, handleClose }) {
 
 		let body;
 		try {
-			body = JSON.stringify({ userName, url, date, langName }); // TODO: update property names to match expected body on backend
+			body = JSON.stringify({ userName, url, date, langName });
 		} catch (error) {
 			setErrorMessage("Invalid input");
 			return setIsLoading(false);
@@ -54,7 +54,10 @@ function SubmitForm({ userName, handleClose }) {
 		const submissionEndpoint = "/submit";
 		const { isSuccessful, error } = await fetch(submissionEndpoint, {
 			method: "POST",
-			headers: { "Content-Type": "application/json", Authorization: "Bearer " }, // TODO: add JWT here
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${localStorage.getItem("key")} `
+			},
 			body
 		});
 
