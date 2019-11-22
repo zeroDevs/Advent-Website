@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback } from "react";
 import { withRouter, Link } from "react-router-dom";
 
 import {
@@ -19,7 +19,10 @@ import {
 	ListItemIcon,
 	ListItemText,
 	Divider,
-	Collapse
+	Collapse,
+	Tooltip,
+	IconButton,
+	Zoom
 } from "@material-ui/core";
 
 import {
@@ -31,7 +34,7 @@ import {
 	EyeOutline
 } from "mdi-material-ui";
 
-import { ExpandMore, ExpandLess, Send, Eye } from "@material-ui/icons";
+import { ExpandMore, ExpandLess, Send } from "@material-ui/icons";
 
 import Treeburger from "./Treeburger.component";
 import { makeStyles } from "@material-ui/styles";
@@ -86,12 +89,23 @@ const useStyles = makeStyles(theme => ({
 	fab: {
 		position: "absolute",
 		top: "125%",
-		right: "1.25rem"
+		right: "1.25rem",
+		background: "url('images/submitIconsmall.png')",
+		backgroundSize: "contain",
+		width: "3rem",
+		height: "3rem"
+	},
+	drawer: {
+		"& .menuUserContainer": {
+			flexGrow: 0
+		},
+		"& .menu": {
+			flexGrow: 1
+		}
 	},
 	menu: {
 		display: "flex",
-		flexDirection: "column",
-		minHeight: "100%"
+		flexDirection: "column"
 	},
 	spacer: {
 		marginTop: "auto"
@@ -137,10 +151,10 @@ const Nav = ({ location, history }) => {
 
 	return (
 		<>
-			<AppBar position='fixed' className={`${classes.root} not-scrolled`}>
+			<AppBar position="fixed" className={`${classes.root} not-scrolled`}>
 				<Toolbar className={classes.navToolBar}>
-					<Link to='/' className={classes.clearLink}>
-						<Typography className={classes.logo} variant='h5'>
+					<Link to="/" className={classes.clearLink}>
+						<Typography className={classes.logo} variant="h5">
 							Advent of Code
 						</Typography>
 					</Link>
@@ -169,9 +183,9 @@ const Nav = ({ location, history }) => {
 					<Toolbar className={classes.userContainer}>
 						{token ? (
 							<>
-								<Typography variant='button'>{user.username}</Typography>
+								<Typography variant="button">{user.username}</Typography>
 								<Avatar
-									alt='Avatar'
+									alt="Avatar"
 									src={
 										user.avatar
 											? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`
@@ -199,16 +213,34 @@ const Nav = ({ location, history }) => {
 						)}
 					</Toolbar>
 				</Toolbar>
-				<ModalButton className={classes.fab} />
+				<ModalButton>
+					<Zoom
+						in
+						timeout={theme.transitions.duration.enteringScreen}
+						style={{ transitionDelay: "1s" }}
+					>
+						<>
+							<Tooltip title="Submit Your Solution">
+								<IconButton className={classes.fab}></IconButton>
+							</Tooltip>
+						</>
+					</Zoom>
+					<div></div>
+				</ModalButton>
 			</AppBar>
 
-			<Drawer open={open} onClose={toggleDrawer} anchor='right'>
+			<Drawer
+				open={open}
+				onClose={toggleDrawer}
+				anchor="right"
+				className={classes.drawer}
+			>
 				{token ? (
 					<>
-						<Toolbar className={classes.userContainer}>
-							<Typography variant='button'>{user.username}</Typography>
+						<Toolbar className={`menuUserContainer ${classes.userContainer}`}>
+							<Typography variant="button">{user.username}</Typography>
 							<Avatar
-								alt='Avatar'
+								alt="Avatar"
 								src={
 									user.avatar
 										? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`
@@ -224,8 +256,8 @@ const Nav = ({ location, history }) => {
 					<></>
 				)}
 
-				<List className={classes.menu}>
-					<Link to='/' className={classes.clearLink}>
+				<List className={`menu ${classes.menu}`}>
+					<Link to="/" className={classes.clearLink}>
 						<ListItem button onClick={toggleDrawer}>
 							<ListItemIcon>
 								<HomeOutline />
@@ -234,7 +266,7 @@ const Nav = ({ location, history }) => {
 						</ListItem>
 					</Link>
 
-					<Link to='/about' className={classes.clearLink}>
+					<Link to="/about" className={classes.clearLink}>
 						<ListItem button onClick={toggleDrawer}>
 							<ListItemIcon>
 								<InformationOutline />
@@ -251,27 +283,28 @@ const Nav = ({ location, history }) => {
 						{openSubmissions ? <ExpandLess /> : <ExpandMore />}
 					</ListItem>
 
-					<Collapse
-						in={openSubmissions}
-						timeout='auto'
-						unmountOnExit
-						onClick={toggleDrawer}
-					>
+					<Collapse in={openSubmissions} timeout="auto" unmountOnExit>
 						<List disablePadding>
-							<Link to='/solutions' className={classes.clearLink}>
-								<ListItem button className={classes.nested}>
+							<Link to="/solutions" className={classes.clearLink}>
+								<ListItem
+									button
+									className={classes.nested}
+									onClick={toggleDrawer}
+								>
 									<ListItemIcon>
 										<EyeOutline />
 									</ListItemIcon>
 									<ListItemText>View</ListItemText>
 								</ListItem>
 							</Link>
-							<ListItem button className={classes.nested}>
-								<ListItemIcon>
-									<Send />
-								</ListItemIcon>
-								<ListItemText>Submit</ListItemText>
-							</ListItem>
+							<ModalButton handleClose={toggleDrawer}>
+								<ListItem button className={classes.nested}>
+									<ListItemIcon>
+										<Send />
+									</ListItemIcon>
+									<ListItemText>Submit</ListItemText>
+								</ListItem>
+							</ModalButton>
 						</List>
 					</Collapse>
 
