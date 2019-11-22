@@ -5,14 +5,14 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles(theme => ({
-	root: props => {
-		if (props.isMobile) {
+	root: () => { 
+		if (window.matchMedia('(max-width: 600px)').matches) {
 			return {
+				backgroundPosition: "center center",
 				height: "100%"
 			};
 		} else {
 			return {
-				backgroundColor: "rgb(16, 15, 36)",
 				height: "100%",
 				display: "grid",
 				gridTemplateColumns: "33% 1fr"
@@ -27,17 +27,19 @@ const useStyles = makeStyles(theme => ({
 		position: "relative"
 	},
 	bg: {
+		backgroundColor: "rgb(16, 15, 36)",
 		objectFit: "cover",
-		height: "90vh",
+		height: "100%",
 		position: "fixed",
 		width: "100vw"
 	}
 }));
 
 function HeroSection({ children, ...props }) {
-	const theme = useTheme();
-	const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
-	const classes = useStyles({ isMobile, classes: props.classes });
+	// const theme = useTheme();
+	// const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
+	// console.log(isMobile)
+	const classes = useStyles({ classes: props.classes });
 	return (
 		<div className={classes.root}>
 			<picture>
@@ -47,12 +49,7 @@ function HeroSection({ children, ...props }) {
 					media="(min-width: 601px)"
 				/>
 				<source srcSet="images/advent.png" media="(min-width: 601px)" />
-				<source
-					srcSet="images/advent.webp"
-					type="image/webp"
-					media="(min-width: 1000px)"
-				/>
-				<source srcSet="images/advent.png" media="(min-width: 1000px)" />
+				<source srcSet="images/advent-mobile.webp" media="(max-width: 600px)" />
 				<source srcSet="images/advent-mobile.png" media="(max-width: 600px)" />
 				<img
 					src="images/advent.png"
