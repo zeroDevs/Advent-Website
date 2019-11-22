@@ -1,8 +1,7 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Avatar, Card, CardActions, CardHeader } from "@material-ui/core";
-
 import SocialLinks from "./SocialLinks.component";
+import { Avatar, Card, CardActions, CardHeader } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
 	card: {
