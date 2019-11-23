@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { Route, Switch, withRouter } from "react-router-dom";
-import { Helmet } from 'react-helmet'
+// import MetaTags from './components/MetaTags/MetaTags.component'
 
 import {
 	useUserContext,
@@ -47,22 +47,7 @@ function App({ location, location: { search }, history }) {
 	return (
 		<React.Fragment>
 			<CssBaseline />
-			<Helmet>
-				<title>Advent of Code | Zero To Mastery</title>
-				<meta charSet="utf-8" />
-      			<meta name="description" content="Zero to Mastery site for Advent of Code" />
-				<meta name="msapplication-TileImage" content="https://aoc.zerotomastery.io" /> 
-				<meta property="og:title" content="Advent of Code | Zero To Mastery" />
-				<meta property="og:description" content="Zero to Mastery site for Advent of Code." />
-				<meta property="og:image" content="images/advent.png" />
-				<meta property="og:url" content="https://aoc.zerotomastery.io" />
-				<meta property="og:site_name" content="Advent of Code | Zero To Mastery" />
-				<meta name="twitter:card" content="summary_large_image" />
-				<meta name="twitter:url" content="https://aoc.zerotomastery.io" />
-				<meta name="twitter:image" content="images/advent.png" />
-				<meta name="twitter:description" content="Zero to Mastery site for Advent of Code." />
-				<meta name="twitter:image:alt" content="Ascii Christmas Tree" />
-			</Helmet>
+			{/* <MetaTags /> */}
 			<main className={classes.root}>
 				<Nav className='navbar' />
 				<section className='main-section'>

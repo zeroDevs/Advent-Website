@@ -2,6 +2,7 @@ import React from "react";
 
 import Contributors from "../components/Contributors/Contributors.component";
 import TextSection from "../components/TextSection/TextSection.component";
+import MetaTags from '../components/MetaTags/MetaTags.component'
 
 export default function About(props) {
   return (

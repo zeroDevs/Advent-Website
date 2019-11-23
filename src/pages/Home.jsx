@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
 import HeroSection from "../components/HeroSection/HeroSection.component";
+import MetaTags from '../components/MetaTags/MetaTags.component'
 
 const useStyles = makeStyles(theme => ({
 	root: {},
@@ -32,6 +33,7 @@ function Home({ location: { search } }) {
 
 	return (
 		<>
+		<MetaTags />
 			<HeroSection classes={{ content: classes.heroContentStyleOverride }}>
 				<div className={classes.welcomeMessage}>
 					<div>Zero-to-Mastery</div>

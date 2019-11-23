@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import { useMediaQuery } from "@material-ui/core";
 
 import HeroSection from "../components/HeroSection/HeroSection.component";
+import MetaTags from '../components/MetaTags/MetaTags.component'
 
 const useStyles = makeStyles(theme => ({
   root: props => {
