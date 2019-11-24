@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
@@ -33,17 +32,26 @@ const useStyles = makeStyles(theme => ({
 	statusMessage: {
 		color: theme.palette.error.main
 	},
-	row: ({ isMobile }) => ({
-		display: "flex",
-		flexDirection: `${isMobile ? "column" : "row"}`,
-		"& *": {
-			flexBasis: 0,
-			flexGrow: 1
-		},
-		"& :not(:last-child)": {
-			marginRight: theme.spacing(2)
-		}
-	}),
+	row: ({ isMobile }) =>
+		isMobile
+			? {
+					display: "flex",
+					flexDirection: "column",
+					"&> *": {
+						width: "100%"
+					}
+			  }
+			: {
+					display: "flex",
+
+					"&> *": {
+						flexBasis: 0,
+						flexGrow: 1
+					},
+					"&> :not(:last-child)": {
+						marginRight: theme.spacing(2)
+					}
+			  },
 	name: {
 		...theme.typography.h5,
 		textAlign: "center"
