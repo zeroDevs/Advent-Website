@@ -40,9 +40,26 @@ function HeroSection({ children, ...props }) {
 	// const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
 	// console.log(isMobile)
 	const classes = useStyles({ classes: props.classes });
+	const getUrl = () => 
+		window.location.href === 'https://aoc.zerotomastery.io/404' || 
+		window.location.href === 'http://localhost:3000/404' ? 
+		true : false
+	console.log(getUrl())
 	return (
 		<div className={classes.root}>
+			{getUrl() ? (
 			<picture>
+				<source srcSet="images/adventlightsout.png" media="(min-width: 601px)" />
+				<source srcSet="images/adventlightsout-mobile.png" media="(max-width: 600px)" />
+				<img
+					src="images/adventlightsout.png"
+					alt="Ascii Christmas Tree"
+					className={classes.bg}
+					loading="lazy"
+				/>
+			</picture>
+			) : (
+				<picture>
 				<source
 					srcSet="images/advent.webp"
 					type="image/webp"
@@ -58,6 +75,8 @@ function HeroSection({ children, ...props }) {
 					loading="lazy"
 				/>
 			</picture>
+			)}
+			
 
 			<div className={classes.content}>{children}</div>
 		</div>

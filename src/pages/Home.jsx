@@ -33,7 +33,7 @@ function Home({ location: { search } }) {
 
 	return (
 		<>
-		<MetaTags />
+			<MetaTags />
 			<HeroSection classes={{ content: classes.heroContentStyleOverride }}>
 				<div className={classes.welcomeMessage}>
 					<div>Zero-to-Mastery</div>
