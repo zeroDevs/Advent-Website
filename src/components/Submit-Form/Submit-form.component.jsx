@@ -64,7 +64,7 @@ const useStyles = makeStyles(theme => ({
 function SubmitForm({ user }) {
 	const [date, setDate] = useState(Date.now());
 	const [url, setUrl] = useState("");
-	const [langName, setLangName] = useState("");
+	const [langName, setLangName] = useState(Object.keys(listOfLangs)[0]);
 	const [errorMessage, setErrorMessage] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
 	const theme = useTheme();
