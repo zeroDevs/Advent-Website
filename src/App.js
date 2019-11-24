@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { Route, Switch, withRouter } from "react-router-dom";
+// import MetaTags from './components/MetaTags/MetaTags.component'
 
 import {
 	useUserContext,
@@ -47,6 +48,7 @@ function App({ location, location: { search }, history }) {
 	return (
 		<React.Fragment>
 			<CssBaseline />
+			{/* <MetaTags /> */}
 			<main className={classes.root}>
 				<Nav className="navbar" />
 				<section className="main-section">

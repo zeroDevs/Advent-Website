@@ -22,6 +22,8 @@ import {
 import useSolutions from "../hooks/useSolutions";
 import useDrawer from "../hooks/useDrawer";
 
+import MetaTags from '../components/MetaTags/MetaTags.component'
+
 const useStyles = makeStyles(theme => ({
 	container: {
 		display: "flex",
@@ -110,9 +112,15 @@ function Solutions(props) {
 	);
 
 	const hasSolutionsToShow = filteredSolutions && filteredSolutions.length > 0;
+	
+	let { title, description, pageUrl } = props
+	title = "Advent of Code Solutions"
+	description = "Solutions to Advent of Code from the Zero to Mastery Community."
+	pageUrl = "https://aoc.zerotomastery.io/solutions"
 
 	return (
 		<>
+			<MetaTags title={title} description={description} pageUrl={pageUrl} />
 			<SolutionDrawer isOpen={isOpen} handleDrawerClose={handleClose}>
 				<Filters applyFilters={applyFilters} />
 			</SolutionDrawer>
