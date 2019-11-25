@@ -14,6 +14,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Solutions from "./pages/Solutions";
 import FourZeroFour from "./pages/FourZeroFour";
+import Submit from "./pages/Submit";
 
 import Nav from "./components/Navigation/Navigation.component";
 
@@ -49,14 +50,15 @@ function App({ location, location: { search }, history }) {
 			<CssBaseline />
 			{/* <MetaTags /> */}
 			<main className={classes.root}>
-				<Nav className='navbar' />
-				<section className='main-section'>
+				<Nav className="navbar" />
+				<section className="main-section">
 					<Switch>
-						<Route exact path='/' component={Home} />
-						<Route exact path='/about' component={About} />
-						<Route exact path='/solutions' component={Solutions} />
+						<Route exact path="/" component={Home} />
+						<Route exact path="/about" component={About} />
+						<Route exact path="/solutions" component={Solutions} />
+						<Route exact path="/submit" component={Submit} />
 						<Route
-							from='/login'
+							from="/login"
 							component={({ location }) => {
 								window.location.replace(
 									`${endPoints.backend}${endPoints.login}${
@@ -66,7 +68,7 @@ function App({ location, location: { search }, history }) {
 								return null;
 							}}
 						/>
-						<Route path='*' component={FourZeroFour} />
+						<Route path="*" component={FourZeroFour} />
 					</Switch>
 				</section>
 			</main>

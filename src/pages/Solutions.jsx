@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import { Link } from "react-router-dom";
 import {
 	Search as SearchIcon,
 	FilterList as FiltersIcon,
@@ -154,7 +155,12 @@ function Solutions(props) {
 					>
 						<FiltersIcon fontSize="large" />
 					</Button>
-					<Button variant="outlined" className={classes.option}>
+					<Button
+						variant="outlined"
+						className={classes.option}
+						to="/submit"
+						component={Link}
+					>
 						<AddIcon fontSize="large" />
 					</Button>
 				</div>
