@@ -49,8 +49,8 @@ function HeroSection({ children, ...props }) {
 		<div className={classes.root}>
 			{getUrl() ? (
 			<picture>
-				<source srcSet="images/adventlightsout.png" media="(min-width: 601px)" />
-				<source srcSet="images/adventlightsout-mobile.png" media="(max-width: 600px)" />
+				<source srcset="images/adventlightsout.png" media="(min-width: 601px)" />
+				<source srcset="images/adventlightsout-mobile.png" media="(max-width: 600px)" />
 				<img
 					src="images/adventlightsout.png"
 					alt="Ascii Christmas Tree"
@@ -61,13 +61,13 @@ function HeroSection({ children, ...props }) {
 			) : (
 				<picture>
 				<source
-					srcSet="images/advent.webp"
+					srcset="images/advent.webp"
 					type="image/webp"
 					media="(min-width: 601px)"
 				/>
-				<source srcSet="images/advent.png" media="(min-width: 601px)" />
-				<source srcSet="images/advent-mobile.webp" media="(max-width: 600px)" />
-				<source srcSet="images/advent-mobile.png" media="(max-width: 600px)" />
+				<source srcset="images/advent.png" media="(min-width: 601px)" />
+				<source srcset="images/advent-mobile.webp" media="(max-width: 600px)" />
+				<source srcset="images/advent-mobile.png" media="(max-width: 600px)" />
 				<img
 					src="images/advent.png"
 					alt="Ascii Christmas Tree"
