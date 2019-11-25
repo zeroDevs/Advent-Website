@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import { useMediaQuery } from "@material-ui/core";
 
 import HeroSection from "../components/HeroSection/HeroSection.component";
+import MetaTags from '../components/MetaTags/MetaTags.component'
 
 const useStyles = makeStyles(theme => ({
   root: props => {
@@ -43,8 +44,13 @@ function FourZeroFour({ ...props }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const classes = useStyles({ isMobile, classes: props.classes });
+  let { title, description, pageUrl } = props
+  title = "Oops, page not found, 404"
+  description = "Sorry, something went wrong or this page could not be found. Status code 404."
+  pageUrl = "https://aoc.zerotomastery.io/404"
   return (
     <>
+      <MetaTags title={title} description={description} pageUrl={pageUrl} />
       <HeroSection
         classes={{
           root: classes.root,

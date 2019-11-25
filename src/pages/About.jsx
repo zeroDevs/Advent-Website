@@ -2,10 +2,16 @@ import React from "react";
 
 import Contributors from "../components/Contributors/Contributors.component";
 import TextSection from "../components/TextSection/TextSection.component";
+import MetaTags from '../components/MetaTags/MetaTags.component'
 
 export default function About(props) {
+  let { title, description, pageUrl } = props
+  title = "About and Contributors for Advent of Code | Zero to Mastery"
+  description = "About Page for Advent of Code and the Zero to Mastery contributors who worked to build this site."
+  pageUrl = "https://aoc.zerotomastery.io/about"
   return (
     <>
+      <MetaTags title={title} description={description} pageUrl={pageUrl} />
       <TextSection title={"About AoC"}>
         <h3>What is AoC?</h3>
         <p>

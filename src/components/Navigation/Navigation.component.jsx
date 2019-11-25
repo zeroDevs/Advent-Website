@@ -39,8 +39,6 @@ import { ExpandMore, ExpandLess, Send } from "@material-ui/icons";
 import Treeburger from "./Treeburger.component";
 import { makeStyles } from "@material-ui/styles";
 
-import { ModalButton } from "../Modal/ModalButton.component";
-
 const convertHex3To6 = hex =>
 	hex.length === 4
 		? hex
@@ -186,6 +184,7 @@ const Nav = ({ location, history }) => {
 								<Typography variant="button">{user.username}</Typography>
 								<Avatar
 									alt="Avatar"
+									variant={user.avatar ? "circle" : "square"}
 									src={
 										user.avatar
 											? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`
@@ -213,7 +212,7 @@ const Nav = ({ location, history }) => {
 						)}
 					</Toolbar>
 				</Toolbar>
-				<ModalButton>
+				{/* <ModalButton>
 					<Zoom
 						in
 						timeout={theme.transitions.duration.enteringScreen}
@@ -226,7 +225,7 @@ const Nav = ({ location, history }) => {
 						</>
 					</Zoom>
 					<div></div>
-				</ModalButton>
+				</ModalButton> */}
 			</AppBar>
 
 			<Drawer
@@ -240,6 +239,7 @@ const Nav = ({ location, history }) => {
 						<Toolbar className={`menuUserContainer ${classes.userContainer}`}>
 							<Typography variant="button">{user.username}</Typography>
 							<Avatar
+								variant={`${user.avatar ? "circle" : "square"}`}
 								alt="Avatar"
 								src={
 									user.avatar
@@ -297,14 +297,18 @@ const Nav = ({ location, history }) => {
 									<ListItemText>View</ListItemText>
 								</ListItem>
 							</Link>
-							<ModalButton handleClose={toggleDrawer}>
-								<ListItem button className={classes.nested}>
+							<Link to="/submit" className={classes.clearLink}>
+								<ListItem
+									button
+									className={classes.nested}
+									onClick={toggleDrawer}
+								>
 									<ListItemIcon>
 										<Send />
 									</ListItemIcon>
 									<ListItemText>Submit</ListItemText>
 								</ListItem>
-							</ModalButton>
+							</Link>
 						</List>
 					</Collapse>
 

@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import { Link } from "react-router-dom";
 import {
 	Search as SearchIcon,
 	FilterList as FiltersIcon,
@@ -20,6 +21,8 @@ import {
 } from "../utils/sorts";
 import useSolutions from "../hooks/useSolutions";
 import useDrawer from "../hooks/useDrawer";
+
+import MetaTags from '../components/MetaTags/MetaTags.component'
 
 const useStyles = makeStyles(theme => ({
 	container: {
@@ -109,9 +112,15 @@ function Solutions(props) {
 	);
 
 	const hasSolutionsToShow = filteredSolutions && filteredSolutions.length > 0;
+	
+	let { title, description, pageUrl } = props
+	title = "Advent of Code Solutions"
+	description = "Solutions to Advent of Code from the Zero to Mastery Community."
+	pageUrl = "https://aoc.zerotomastery.io/solutions"
 
 	return (
 		<>
+			<MetaTags title={title} description={description} pageUrl={pageUrl} />
 			<SolutionDrawer isOpen={isOpen} handleDrawerClose={handleClose}>
 				<Filters applyFilters={applyFilters} />
 			</SolutionDrawer>
@@ -146,7 +155,12 @@ function Solutions(props) {
 					>
 						<FiltersIcon fontSize="large" />
 					</Button>
-					<Button variant="outlined" className={classes.option}>
+					<Button
+						variant="outlined"
+						className={classes.option}
+						to="/submit"
+						component={Link}
+					>
 						<AddIcon fontSize="large" />
 					</Button>
 				</div>
