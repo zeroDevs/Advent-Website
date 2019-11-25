@@ -4,6 +4,8 @@ import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
+import './HeroSection.styles.css'
+
 const useStyles = makeStyles(theme => ({
 	root: props => { 
 		if (props.isMobile) {
@@ -17,6 +19,7 @@ const useStyles = makeStyles(theme => ({
 				height: "100%"
 			};
 		}
+		
 	},
 	content: {
 		display: "flex",

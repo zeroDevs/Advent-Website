@@ -1,0 +1,22 @@
+/* IOS SPECIFIC CSS */
+@supports (-webkit-overflow-scrolling: touch) {
+  .root {
+    background-image: "url('images/advent.png')";
+    background-position: "center center";
+    background-repeat: "no-repeat";
+    background-size: "cover";
+    background-attachment: "fixed";
+    height: "100%"
+  }
+
+  @media only screen and (max-width: 600px) {
+    .root {
+        background-image: "url('images/advent-mobile.png')";
+        background-position: "center center";
+        background-repeat: "no-repeat";
+        background-size: "cover";
+        background-attachment: "fixed";
+        height: "100%"
+      }
+  }
+}
