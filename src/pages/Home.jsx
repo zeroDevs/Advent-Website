@@ -12,7 +12,8 @@ const useStyles = makeStyles(theme => ({
 		...theme.typography.h3
 	},
 	welcomeMessage: {
-		textAlign: "center"
+		textAlign: "center",
+		fontSize: "2em"
 	},
 	year: {
 		color: "yellow"
