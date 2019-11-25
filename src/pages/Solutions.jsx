@@ -35,7 +35,8 @@ const useStyles = makeStyles(theme => ({
 	solutionsContainer: {
 		flex: 1,
 		display: "flex",
-		flexWrap: "wrap"
+		flexWrap: "wrap",
+		justifyContent: "center"
 	},
 	emptyMessage: {
 		flex: 1,
