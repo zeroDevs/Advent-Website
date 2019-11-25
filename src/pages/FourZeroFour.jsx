@@ -3,42 +3,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 
-import HeroSection from "../components/HeroSection/HeroSection.component";
 import MetaTags from '../components/MetaTags/MetaTags.component'
 
-import '../components/HeroSection/HeroSection404.styles.css'
-
-// const useStyles = makeStyles(theme => ({
-//   root: props => {
-//     if (props.isMobile) {
-//       return {
-//         backgroundImage: "url('images/adventlightsout-mobile.png')",
-//         backgroundPosition: "center center",
-//         backgroundRepeat: "no-repeat",
-//         backgroundColor: "rgb(16, 15, 36)",
-//         height: "100vh"
-//       };
-//     } else {
-//       return {
-//         backgroundImage: "url('images/adventlightsout.png')",
-//         backgroundPosition: "bottom center",
-//         backgroundSize: "cover",
-//         backgroundAttachment: "fixed",
-//         height: "100%"
-//       };
-//     }
-//   },
-//   heroContentStyleOverride: {
-//     ...theme.typography.h3
-//   },
-//   welcomeMessage: {
-//     textAlign: "center"
-//   },
-//   joke: {
-//     ...theme.typography.h6,
-//     marginTop: "3rem"
-//   }
-// }));
+import './FourZeroFour.styles.css'
 
 function FourZeroFour({ ...props }) {
   let { title, description, pageUrl } = props
@@ -48,11 +15,11 @@ function FourZeroFour({ ...props }) {
   return (
     <>
       <MetaTags title={title} description={description} pageUrl={pageUrl} />
-      <HeroSection className="hero">
+      <div className="hero">
         <div className="welcomeMessage">
           <div>OH NOOOO!!!!</div>
           <div>The lights went out</div>
-          <Button variant="contained" color="secondary" to="/" component={Link}>
+          <Button className="homeBtn" variant="contained" color="secondary" to="/" component={Link}>
             Head Home
           </Button>
           <div className="joke">
@@ -63,7 +30,7 @@ function FourZeroFour({ ...props }) {
             )}
           </div>
         </div>
-      </HeroSection>
+       </div>
     </>
   );
 }

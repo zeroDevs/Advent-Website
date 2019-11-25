@@ -1,6 +1,6 @@
 /* IOS SPECIFIC CSS */
 @supports (-webkit-overflow-scrolling: touch) {
-    .root {
+    .hero {
         background-image: url('/images/adventlightsout.png');
         background-position: center center;
         background-repeat: no-repeat;
@@ -10,7 +10,7 @@
     }
 
   @media only screen and (max-width: 600px) {
-    .root {
+    .hero {
         background-image: url('/images/adventlightsout-mobile.png');
         background-position: center center;
         background-repeat: no-repeat;
@@ -22,7 +22,7 @@
 }
 
 /* OTHER CSS */
-.root {
+.hero {
     background-image: url('/images/adventlightsout.png');
     background-position: center center;
     background-repeat: no-repeat;
@@ -31,26 +31,29 @@
     height: 100%
 }
 
-.content {
-    display: flex;
+.welcomeMessage {
+    text-align: center;
+    font-size: 2em;
+    display: grid;
+    grid-gap: 10px;
     justify-content: center;
+    justify-items: center;
     align-items: center;
+    align-content: center;
     height: 100%;
     position: relative;
 }
 
-.welcomeMessage {
-    text-align: center;
-    font-size: 2em;
+.homeBtn {
+    display: inline-block;
 }
 
 .joke {
-    margin-top: 3rem;
     font-size: .8em;
 }
 
 @media only screen and (max-width: 600px) {
-    .root {
+    .hero {
         background-image: url('/images/adventlightsout-mobile.png');
         background-position: center center;
         background-repeat: no-repeat;
