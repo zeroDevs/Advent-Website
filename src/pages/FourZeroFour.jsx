@@ -1,49 +1,46 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import { useMediaQuery } from "@material-ui/core";
 
 import HeroSection from "../components/HeroSection/HeroSection.component";
 import MetaTags from '../components/MetaTags/MetaTags.component'
 
-const useStyles = makeStyles(theme => ({
-  root: props => {
-    if (props.isMobile) {
-      return {
-        backgroundImage: "url('images/adventlightsout-mobile.png')",
-        backgroundPosition: "center center",
-        backgroundRepeat: "no-repeat",
-        backgroundColor: "rgb(16, 15, 36)",
-        height: "100vh"
-      };
-    } else {
-      return {
-        backgroundImage: "url('images/adventlightsout.png')",
-        backgroundPosition: "bottom center",
-        backgroundSize: "cover",
-        backgroundAttachment: "fixed",
-        height: "100%"
-      };
-    }
-  },
-  heroContentStyleOverride: {
-    ...theme.typography.h3
-  },
-  welcomeMessage: {
-    textAlign: "center"
-  },
-  joke: {
-    ...theme.typography.h6,
-    marginTop: "3rem"
-  }
-}));
+import '../components/HeroSection/HeroSection404.styles.css'
+
+// const useStyles = makeStyles(theme => ({
+//   root: props => {
+//     if (props.isMobile) {
+//       return {
+//         backgroundImage: "url('images/adventlightsout-mobile.png')",
+//         backgroundPosition: "center center",
+//         backgroundRepeat: "no-repeat",
+//         backgroundColor: "rgb(16, 15, 36)",
+//         height: "100vh"
+//       };
+//     } else {
+//       return {
+//         backgroundImage: "url('images/adventlightsout.png')",
+//         backgroundPosition: "bottom center",
+//         backgroundSize: "cover",
+//         backgroundAttachment: "fixed",
+//         height: "100%"
+//       };
+//     }
+//   },
+//   heroContentStyleOverride: {
+//     ...theme.typography.h3
+//   },
+//   welcomeMessage: {
+//     textAlign: "center"
+//   },
+//   joke: {
+//     ...theme.typography.h6,
+//     marginTop: "3rem"
+//   }
+// }));
 
 function FourZeroFour({ ...props }) {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
-  const classes = useStyles({ isMobile, classes: props.classes });
   let { title, description, pageUrl } = props
   title = "Oops, page not found, 404"
   description = "Sorry, something went wrong or this page could not be found. Status code 404."
@@ -51,19 +48,14 @@ function FourZeroFour({ ...props }) {
   return (
     <>
       <MetaTags title={title} description={description} pageUrl={pageUrl} />
-      <HeroSection
-        classes={{
-          root: classes.root,
-          content: classes.heroContentStyleOverride
-        }}
-      >
-        <div className={classes.welcomeMessage}>
+      <HeroSection className="hero">
+        <div className="welcomeMessage">
           <div>OH NOOOO!!!!</div>
           <div>The lights went out</div>
           <Button variant="contained" color="secondary" to="/" component={Link}>
             Head Home
           </Button>
-          <div className={classes.joke}>
+          <div className="joke">
             {Object.values(jokes[Math.floor(Math.random() * jokes.length)]).map(
               item => (
                 <div>{item}</div>
