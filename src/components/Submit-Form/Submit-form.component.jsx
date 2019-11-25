@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import TextField from "@material-ui/core/TextField";
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
@@ -16,10 +16,10 @@ const listOfLangs = require("../../configs/languages.json");
 
 const useStyles = makeStyles(theme => ({
 	input: {
-		margin: theme.spacing(2, 0)
+		marginTop: theme.spacing(2)
 	},
 	infoContainer: {
-		height: theme.spacing(12),
+		minHeight: theme.spacing(12),
 		marginTop: theme.spacing(2),
 		display: "flex",
 		justifyContent: "center",
@@ -29,8 +29,13 @@ const useStyles = makeStyles(theme => ({
 			marginTop: theme.spacing(2)
 		}
 	},
-	statusMessage: {
-		color: theme.palette.error.main
+	error: {
+		color: theme.palette.error.main,
+		textAlign: "center"
+	},
+	success: {
+		color: "#2ed92e",
+		textAlign: "center"
 	},
 	row: ({ isMobile }) =>
 		isMobile
@@ -38,7 +43,8 @@ const useStyles = makeStyles(theme => ({
 					display: "flex",
 					flexDirection: "column",
 					"&> *": {
-						width: "100%"
+						width: "100%",
+						marginRight: "0px"
 					}
 			  }
 			: {
@@ -55,9 +61,6 @@ const useStyles = makeStyles(theme => ({
 	name: {
 		...theme.typography.h5,
 		textAlign: "center"
-	},
-	selectEmpty: {
-		marginTop: theme.spacing(2)
 	}
 }));
 
@@ -65,7 +68,8 @@ function SubmitForm({ user }) {
 	const [date, setDate] = useState(Date.now());
 	const [url, setUrl] = useState("");
 	const [langName, setLangName] = useState(Object.keys(listOfLangs)[0]);
-	const [errorMessage, setErrorMessage] = useState("");
+	const [message, setMessage] = useState("");
+	const [isError, setIsError] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
@@ -76,6 +80,16 @@ function SubmitForm({ user }) {
 		: "images/user-unknown.png";
 
 	const classes = useStyles({ isMobile });
+
+	const setErrorMessage = useCallback(msg => {
+		setMessage(msg);
+		setIsError(true);
+	}, []);
+
+	const setSuccessMessage = useCallback(msg => {
+		setMessage(msg);
+		setIsError(false);
+	}, []);
 
 	const handleSubmit = async event => {
 		event.preventDefault();
@@ -114,15 +128,18 @@ function SubmitForm({ user }) {
 				Authorization: `Bearer ${window.localStorage.getItem("token")} `
 			},
 			body
-		});
+		}).then(res => res.json());
 
 		if (isSuccessful) {
 			console.log("isSuccessful", isSuccessful);
+			setSuccessMessage(
+				`Submission Success!\n${langName} - ${date.toLocaleDateString()}`
+			);
 		} else {
 			console.log("isNotSuccessful", error);
 			setErrorMessage(error);
-			setIsLoading(false);
 		}
+		setIsLoading(false);
 	};
 
 	const handleUrlInputChange = event => {
@@ -142,8 +159,14 @@ function SubmitForm({ user }) {
 					{user ? (
 						<>
 							<div className={classes.name}>{userName}</div>
-							{errorMessage ? (
-								<div className={classes.statusMessage}>{errorMessage}</div>
+							{message ? (
+								<div className={`${isError ? classes.error : classes.success}`}>
+									{message.split("\n").reduce((acc, item, index, arr) => {
+										acc.push(item);
+										if (index !== arr.length - 1) acc.push(<br></br>);
+										return acc;
+									}, [])}
+								</div>
 							) : null}
 						</>
 					) : (
@@ -176,6 +199,7 @@ function SubmitForm({ user }) {
 							label="Advent Challenge Date"
 							value={date}
 							onChange={handleDateChange}
+							className={classes.input}
 						/>
 					</MuiPickersUtilsProvider>
 					{/* <TextField
@@ -189,7 +213,7 @@ function SubmitForm({ user }) {
 						}}
 						fullWidth
 					/> */}
-					<FormControl className={classes.formControl}>
+					<FormControl className={classes.input}>
 						<InputLabel id="demo-simple-select-placeholder-label-label">
 							Language
 						</InputLabel>
@@ -198,8 +222,6 @@ function SubmitForm({ user }) {
 							id="demo-simple-select-placeholder-label"
 							value={langName}
 							onChange={handleLangNameInputChange}
-							// displayEmpty
-							className={classes.selectEmpty}
 						>
 							{Object.keys(listOfLangs).map(lang => (
 								<MenuItem key={lang} value={lang}>
@@ -231,6 +253,12 @@ function SubmitForm({ user }) {
 					onChange={handleUrlInputChange}
 					fullWidth
 				/>
+				{/* <FormControl fullWidth>
+					<InputLabel id="demo-simple-select-placeholder-label-label">
+						Solution Url
+					</InputLabel>
+					<TextField type="text" value={url} onChange={handleUrlInputChange} />
+				</FormControl> */}
 			</form>
 			<Button
 				variant="contained"
@@ -238,6 +266,7 @@ function SubmitForm({ user }) {
 				onClick={handleSubmit}
 				fullWidth
 				disabled={!user}
+				className={classes.input}
 			>
 				{isLoading ? (
 					<CircularProgress color="secondary" size={25} />
