@@ -189,63 +189,61 @@ function SubmitForm({ user }) {
 					</Button>
 				)}
 			</div>
-			{!!user && (
-				<div className={classes.form}>
-					<div className={classes.row}>
-						<MuiPickersUtilsProvider utils={DateFnsUtils}>
-							<DatePicker
-								format="MM/dd/yyyy"
-								id="date-picker-inline"
-								label="Advent Challenge Date"
-								value={date}
-								onChange={handleDateChange}
-								className={classes.input}
-							/>
-						</MuiPickersUtilsProvider>
+			<div className={classes.form}>
+				<div className={classes.row}>
+					<MuiPickersUtilsProvider utils={DateFnsUtils}>
+						<DatePicker
+							format="MM/dd/yyyy"
+							id="date-picker-inline"
+							label="Advent Challenge Date"
+							value={date}
+							onChange={handleDateChange}
+							className={classes.input}
+						/>
+					</MuiPickersUtilsProvider>
 
-						<FormControl className={classes.input}>
-							<InputLabel id="demo-simple-select-placeholder-label-label">
-								Language
-							</InputLabel>
-							<Select
-								labelId="demo-simple-select-placeholder-label-label"
-								id="demo-simple-select-placeholder-label"
-								value={langName}
-								onChange={handleLangNameInputChange}
-							>
-								{Object.keys(listOfLangs).map(lang => (
-									<MenuItem key={lang} value={lang}>
-										{lang}
-									</MenuItem>
-								))}
-							</Select>
-						</FormControl>
-					</div>
-					<TextField
-						className={classes.input}
-						label="Solution Url"
-						type="text"
-						value={url}
-						onChange={handleUrlInputChange}
-						fullWidth
-					/>
-
-					<Button
-						variant="contained"
-						color="secondary"
-						onClick={handleSubmit}
-						fullWidth
-						disabled={!user}
-						className={classes.input}
-					>
-						{isLoading ? (
-							<CircularProgress color="secondary" size={25} />
-						) : (
-							"Submit"
-						)}
-					</Button>
+					<FormControl className={classes.input}>
+						<InputLabel id="demo-simple-select-placeholder-label-label">
+							Language
+						</InputLabel>
+						<Select
+							labelId="demo-simple-select-placeholder-label-label"
+							id="demo-simple-select-placeholder-label"
+							value={langName}
+							onChange={handleLangNameInputChange}
+						>
+							{Object.keys(listOfLangs).map(lang => (
+								<MenuItem key={lang} value={lang}>
+									{lang}
+								</MenuItem>
+							))}
+						</Select>
+					</FormControl>
 				</div>
-			)}
+				<TextField
+					className={classes.input}
+					label="Solution Url"
+					type="text"
+					value={url}
+					onChange={handleUrlInputChange}
+					fullWidth
+				/>
+
+				<Button
+					variant="contained"
+					color="secondary"
+					onClick={handleSubmit}
+					fullWidth
+					disabled={!user}
+					className={classes.input}
+				>
+					{isLoading ? (
+						<CircularProgress color="secondary" size={25} />
+					) : (
+						"Submit"
+					)}
+				</Button>
+			</div>
 		</>
 	);
 }
