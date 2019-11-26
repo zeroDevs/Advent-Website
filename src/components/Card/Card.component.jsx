@@ -99,6 +99,7 @@ function SolutionCard({
 				</div>
 
 				<Button
+					target="_blank"
 					component="a"
 					href={solutionUrl}
 					variant="contained"
