@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
 import HeroSection from "../components/HeroSection/HeroSection.component";
-import MetaTags from '../components/MetaTags/MetaTags.component'
+import MetaTags from "../components/MetaTags/MetaTags.component";
 
 const useStyles = makeStyles(theme => ({
 	root: {},
@@ -50,15 +50,13 @@ function Home({ location: { search } }) {
 						>
 							About
 						</Button>
-					</div>
-					<div className={classes.buttonRow}>
 						<Button
 							variant="contained"
 							color="secondary"
 							to="/solutions"
 							component={Link}
 						>
-							Solution
+							Solutions
 						</Button>
 					</div>
 				</div>
