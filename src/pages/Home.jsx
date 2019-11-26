@@ -51,6 +51,16 @@ function Home({ location: { search } }) {
 							About
 						</Button>
 					</div>
+					<div className={classes.buttonRow}>
+						<Button
+							variant="contained"
+							color="secondary"
+							to="/solutions"
+							component={Link}
+						>
+							Solution
+						</Button>
+					</div>
 				</div>
 			</HeroSection>
 		</>
