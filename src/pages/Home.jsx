@@ -56,7 +56,7 @@ function Home({ location: { search } }) {
 							to="/solutions"
 							component={Link}
 						>
-							Solution
+							Solutions
 						</Button>
 					</div>
 				</div>
