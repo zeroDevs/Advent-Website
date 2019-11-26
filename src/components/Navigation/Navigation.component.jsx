@@ -113,7 +113,7 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-const Nav = ({ location, history }) => {
+const Nav = ({ location, history, className }) => {
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
 	const classes = useStyles({ isMobile });
@@ -149,7 +149,10 @@ const Nav = ({ location, history }) => {
 
 	return (
 		<>
-			<AppBar position="fixed" className={`${classes.root} not-scrolled`}>
+			<AppBar
+				position="fixed"
+				className={`${classes.root} not-scrolled ${className}`}
+			>
 				<Toolbar className={classes.navToolBar}>
 					<Link to="/" className={classes.clearLink}>
 						<Typography className={classes.logo} variant="h5">
