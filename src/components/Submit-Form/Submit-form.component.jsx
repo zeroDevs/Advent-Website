@@ -37,6 +37,10 @@ const useStyles = makeStyles(theme => ({
 		color: "#2ed92e",
 		textAlign: "center"
 	},
+	form: {
+		display: "flex",
+		flexDirection: "column"
+	},
 	row: ({ isMobile }) =>
 		isMobile
 			? {
@@ -183,7 +187,7 @@ function SubmitForm({ user }) {
 				)}
 			</div>
 			{user ? (
-				<form onSubmit={handleSubmit}>
+				<div className={classes.form}>
 					<div className={classes.row}>
 						<MuiPickersUtilsProvider utils={DateFnsUtils}>
 							<DatePicker
@@ -237,7 +241,7 @@ function SubmitForm({ user }) {
 							"Submit"
 						)}
 					</Button>
-				</form>
+				</div>
 			) : null}
 		</>
 	);
