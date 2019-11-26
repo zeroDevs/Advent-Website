@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { CometSpinLoader } from 'react-css-loaders'
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
@@ -182,13 +183,7 @@ function Solutions(props) {
 						))}
 
 					{!hasSolutionsToShow && (
-						<Typography
-							className={classes.emptyMessage}
-							variant="h6"
-							color="textSecondary"
-						>
-							Nothing to show
-						</Typography>
+						<CometSpinLoader />
 					)}
 				</div>
 			</div>
