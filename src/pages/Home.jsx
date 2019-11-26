@@ -19,8 +19,8 @@ const useStyles = makeStyles(theme => ({
 		color: "yellow"
 	},
 	buttonRow: {
-		display: "flex",
-		alignItems: "center",
+		display: "grid",
+		gridTemplateColumns: "1fr 1fr",
 		justifyContent: "center",
 		marginTop: ".5rem",
 		"& > *": {
