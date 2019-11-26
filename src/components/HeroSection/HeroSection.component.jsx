@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import './HeroSection.styles.css'
+import "./HeroSection.styles.css";
 
-function HeroSection({ children }) {
+function HeroSection({ children, className }) {
 	return (
-		<div className="root">
+		<div className={`root ${className}`}>
 			<div className="content">{children}</div>
 		</div>
 	);

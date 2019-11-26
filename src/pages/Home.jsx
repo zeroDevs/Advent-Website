@@ -6,6 +6,8 @@ import Button from "@material-ui/core/Button";
 import HeroSection from "../components/HeroSection/HeroSection.component";
 import MetaTags from "../components/MetaTags/MetaTags.component";
 
+import GlobalStats from "../components/GlobalStats/global-stats.component";
+
 const useStyles = makeStyles(theme => ({
 	root: {},
 	heroContentStyleOverride: {
@@ -19,9 +21,10 @@ const useStyles = makeStyles(theme => ({
 		color: "yellow"
 	},
 	buttonRow: {
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "center",
+		display: "grid",
+		gridTemplateColumns: "1fr 1fr",
+		// alignItems: "center",
+		// justifyContent: "center",
 		marginTop: ".5rem",
 		"& > *": {
 			margin: "0 .25rem"
@@ -60,6 +63,7 @@ function Home({ location: { search } }) {
 						</Button>
 					</div>
 				</div>
+				<GlobalStats></GlobalStats>
 			</HeroSection>
 		</>
 	);
