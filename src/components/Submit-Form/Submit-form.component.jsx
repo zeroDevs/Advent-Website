@@ -189,7 +189,7 @@ function SubmitForm({ user }) {
 					</Button>
 				)}
 			</div>
-			<div className={`${classes.form} ${!user ? classes.hide : ""}`}>
+			<div className={classes.form}>
 				<div className={classes.row}>
 					<MuiPickersUtilsProvider utils={DateFnsUtils}>
 						<DatePicker
