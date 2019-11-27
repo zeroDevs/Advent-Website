@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import * as qs from "query-string";
 import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import { Link } from "react-router-dom";
 import {
-	Search as SearchIcon,
-	FilterList as FiltersIcon,
-	Add as AddIcon
-} from "@material-ui/icons";
+	Button,
+	TextField,
+	Typography,
+	LinearProgress,
+	CircularProgress
+} from "@material-ui/core";
+
+import { Search as SearchIcon } from "@material-ui/icons";
 
 import UserCard from "../components/Card/UserCard.component";
 import useUsers from "../hooks/useUsers";
 
-import MetaTags from '../components/MetaTags/MetaTags.component'
+import MetaTags from "../components/MetaTags/MetaTags.component";
+import LoadingCard from "../components/LoadingCard/LoadingCard.component";
+import NothingToSee from "../components/NothingToSee/NothingToSee.component";
 
 const useStyles = makeStyles(theme => ({
 	container: {
@@ -60,8 +62,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function Leaderboard(props) {
-	const dataFromApi = useUsers();
+	const queryParams = qs.parse(props.location.search);
+	const dataFromApi = useUsers(queryParams.year);
 	const [users, setUsers] = useState([]);
+	const [isLoadingData, setIsLoadingData] = useState(false);
 
 	const [showSearch, setShowSearch] = useState(false);
 	const [searchText, setSearchText] = useState("");
@@ -73,6 +77,7 @@ function Leaderboard(props) {
 
 	useEffect(() => {
 		setUsers(dataFromApi);
+		setIsLoadingData(!isLoadingData);
 	}, [dataFromApi]);
 
 	const filteredUsers = users.filter(
@@ -85,50 +90,50 @@ function Leaderboard(props) {
 	filteredUsers.sort((a, b) => b.point - a.point);
 
 	const hasUsersToShow = filteredUsers && filteredUsers.length > 0;
-	
-	let { title, description, pageUrl } = props
-	title = "Advent of Code Leaderboard"
-	description = "Event Leaderboard."
-	pageUrl = "https://aoc.zerotomastery.io/leaderboard"
 
+	let { title, description, pageUrl } = props;
+	title = "Advent of Code Leaderboard";
+	description = "Event Leaderboard.";
+	pageUrl = "https://aoc.zerotomastery.io/leaderboard";
+	console.log("1111", isLoadingData);
 	return (
 		<>
 			<MetaTags title={title} description={description} pageUrl={pageUrl} />
 
-			<div className={classes.controlls}>
-				{showSearch && (
-					<div className={classes.searchFieldContainer}>
-						<TextField
-							id="nameSearch"
-							label="Username"
-							margin="normal"
-							color="secondary"
-							value={searchText}
-							onChange={handleTextInput}
-							className={classes.textField}
-							fullWidth
-						/>
-					</div>
-				)}
-				<div className={classes.optionsContianer}>
-					<Button
-						variant="outlined"
-						className={classes.option}
-						onClick={handleShowSearch}
-					>
-						<SearchIcon fontSize="large" />
-					</Button>
-				</div>
-			</div>
-			
-			{!hasUsersToShow && (
-						<div className={classes.loading}><CircularProgress color="secondary" thickness={5} size={75} /></div>
-					)}
+			{isLoadingData && <LoadingCard>Loading Leaders...</LoadingCard>}
 
-			<div className={classes.container}>
-				<div className={classes.usersContainer}>
-					{hasUsersToShow &&
-						filteredUsers.map(user => (
+			{!isLoadingData && (
+				<div className={classes.controlls}>
+					{showSearch && (
+						<div className={classes.searchFieldContainer}>
+							<TextField
+								id="nameSearch"
+								label="Username"
+								margin="normal"
+								color="secondary"
+								value={searchText}
+								onChange={handleTextInput}
+								className={classes.textField}
+								fullWidth
+							/>
+						</div>
+					)}
+					<div className={classes.optionsContianer}>
+						<Button
+							variant="outlined"
+							className={classes.option}
+							onClick={handleShowSearch}
+						>
+							<SearchIcon fontSize="large" />
+						</Button>
+					</div>
+				</div>
+			)}
+
+			{hasUsersToShow && !isLoadingData && (
+				<div className={classes.container}>
+					<div className={classes.usersContainer}>
+						{filteredUsers.map(user => (
 							<UserCard
 								key={user.username + user._id}
 								avatarUrl={user.avatarUrl}
@@ -138,8 +143,13 @@ function Leaderboard(props) {
 								index={filteredUsers.indexOf(user)}
 							/>
 						))}
+					</div>
 				</div>
-			</div>
+			)}
+
+			{!hasUsersToShow && !isLoadingData && (
+				<NothingToSee year={queryParams.year} />
+			)}
 		</>
 	);
 }

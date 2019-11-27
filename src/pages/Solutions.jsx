@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
 import { Link } from "react-router-dom";
+import * as qs from "query-string";
+import { makeStyles } from "@material-ui/core/styles";
+import { Button, TextField } from "@material-ui/core";
+
 import {
 	Search as SearchIcon,
 	FilterList as FiltersIcon,
@@ -22,8 +22,9 @@ import {
 import useSolutions from "../hooks/useSolutions";
 import useDrawer from "../hooks/useDrawer";
 
-import MetaTags from '../components/MetaTags/MetaTags.component'
-import { CircularProgress } from "@material-ui/core";
+import MetaTags from "../components/MetaTags/MetaTags.component";
+import NothingToSee from "../components/NothingToSee/NothingToSee.component";
+import LoadingCard from "../components/LoadingCard/LoadingCard.component";
 
 const useStyles = makeStyles(theme => ({
 	container: {
@@ -69,13 +70,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function Solutions(props) {
-	const dataFromApi = useSolutions();
+	const queryParams = qs.parse(props.location.search);
+	const dataFromApi = useSolutions(queryParams.year);
 	const { isOpen, handleClose, toggle: toggleFiltersDrawer } = useDrawer();
 	const [solutions, setSolutions] = useState([]);
 
 	const [showSearch, setShowSearch] = useState(false);
 	const [searchText, setSearchText] = useState("");
-	const [isLoadingData, setIsLoadingData] = useState(false)
+	const [isLoadingData, setIsLoadingData] = useState(false);
 
 	const handleShowSearch = () => setShowSearch(!showSearch);
 	const handleTextInput = event => setSearchText(event.target.value);
@@ -84,7 +86,7 @@ function Solutions(props) {
 
 	useEffect(() => {
 		setSolutions(dataFromApi);
-		setIsLoadingData(!isLoadingData)
+		setIsLoadingData(!isLoadingData);
 	}, [dataFromApi]);
 
 	const applyFilters = (dateRange, selectedLangs, dateSort, nameSort) => {
@@ -120,67 +122,72 @@ function Solutions(props) {
 	);
 
 	const hasSolutionsToShow = filteredSolutions && filteredSolutions.length > 0;
-	
-	let { title, description, pageUrl } = props
-	title = "Advent of Code Solutions"
-	description = "Solutions to Advent of Code from the Zero to Mastery Community."
-	pageUrl = "https://aoc.zerotomastery.io/solutions"
+
+	let { title, description, pageUrl } = props;
+	title = "Advent of Code Solutions";
+	description =
+		"Solutions to Advent of Code from the Zero to Mastery Community.";
+	pageUrl = "https://aoc.zerotomastery.io/solutions";
 
 	return (
 		<>
 			<MetaTags title={title} description={description} pageUrl={pageUrl} />
-			<SolutionDrawer isOpen={isOpen} handleDrawerClose={handleClose}>
-				<Filters applyFilters={applyFilters} />
-			</SolutionDrawer>
 
-			<div className={classes.controlls}>
-				{showSearch && (
-					<div className={classes.searchFieldContainer}>
-						<TextField
-							id="nameSearch"
-							label="Username"
-							margin="normal"
-							color="secondary"
-							value={searchText}
-							onChange={handleTextInput}
-							className={classes.textField}
-							fullWidth
-						/>
+			{isLoadingData && <LoadingCard>Loading Solutions...</LoadingCard>}
+
+			{!isLoadingData && (
+				<div>
+					<SolutionDrawer isOpen={isOpen} handleDrawerClose={handleClose}>
+						<Filters applyFilters={applyFilters} />
+					</SolutionDrawer>
+
+					<div className={classes.controlls}>
+						{showSearch && (
+							<div className={classes.searchFieldContainer}>
+								<TextField
+									id="nameSearch"
+									label="Username"
+									margin="normal"
+									color="secondary"
+									value={searchText}
+									onChange={handleTextInput}
+									className={classes.textField}
+									fullWidth
+								/>
+							</div>
+						)}
+						<div className={classes.optionsContianer}>
+							<Button
+								variant="outlined"
+								className={classes.option}
+								onClick={handleShowSearch}
+							>
+								<SearchIcon fontSize="large" />
+							</Button>
+							<Button
+								variant="outlined"
+								className={classes.option}
+								onClick={toggleFiltersDrawer}
+							>
+								<FiltersIcon fontSize="large" />
+							</Button>
+							<Button
+								variant="outlined"
+								className={classes.option}
+								to="/submit"
+								component={Link}
+							>
+								<AddIcon fontSize="large" />
+							</Button>
+						</div>
 					</div>
-				)}
-				<div className={classes.optionsContianer}>
-					<Button
-						variant="outlined"
-						className={classes.option}
-						onClick={handleShowSearch}
-					>
-						<SearchIcon fontSize="large" />
-					</Button>
-					<Button
-						variant="outlined"
-						className={classes.option}
-						onClick={toggleFiltersDrawer}
-					>
-						<FiltersIcon fontSize="large" />
-					</Button>
-					<Button
-						variant="outlined"
-						className={classes.option}
-						to="/submit"
-						component={Link}
-					>
-						<AddIcon fontSize="large" />
-					</Button>
 				</div>
-			</div>
-		
-			{isLoadingData && <div className={classes.loading}><CircularProgress color="secondary" thickness={5} size={75} /></div>}
-			
-			<div className={classes.container}>
-				<div className={classes.solutionsContainer}>
+			)}
 
-					{hasSolutionsToShow &&
-						filteredSolutions.map(user => (
+			{hasSolutionsToShow && !isLoadingData && (
+				<div className={classes.container}>
+					<div className={classes.solutionsContainer}>
+						{filteredSolutions.map(user => (
 							<Card
 								key={user.username + user._id}
 								avatarUrl={user.avatarUrl}
@@ -191,18 +198,13 @@ function Solutions(props) {
 								langName={user.langName}
 							/>
 						))}
-						
-					{!hasSolutionsToShow && !isLoadingData &&(
-						<Typography
-							className={classes.emptyMessage}
-							variant="h6"
-							color="textSecondary"
-						>
-							Nothing to show
-						</Typography>
-					)}
+					</div>
 				</div>
-			</div>
+			)}
+
+			{!hasSolutionsToShow && !isLoadingData && (
+				<NothingToSee year={queryParams.year} />
+			)}
 		</>
 	);
 }
