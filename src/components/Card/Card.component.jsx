@@ -2,21 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import {
-	red,
-	blue,
-	purple,
-	yellow,
-	pink,
-	brown
-} from "@material-ui/core/colors";
+import LangIcon from "../LangIcon/LangIcon.component";
+import { red } from "@material-ui/core/colors";
 import {
 	Card,
 	CardMedia,
 	CardContent,
 	Button,
 	CardHeader,
-	Avatar,
 	Typography
 } from "@material-ui/core";
 
@@ -40,10 +33,6 @@ const useStyles = makeStyles(theme => ({
 		top: theme.spacing(2),
 		left: theme.spacing(1)
 	},
-	langBackgroundColor: props => ({
-		backgroundColor: props.langColor,
-		color: theme.palette.getContrastText(props.langColor)
-	}),
 	dayContainer: {
 		border: `1px solid ${theme.palette.common.white}`,
 		marginBottom: theme.spacing(1),
@@ -51,8 +40,6 @@ const useStyles = makeStyles(theme => ({
 		padding: theme.spacing(0.5)
 	}
 }));
-
-const languageMap = require("../../configs/languages.json");
 
 function SolutionCard({
 	avatarUrl,
@@ -63,15 +50,7 @@ function SolutionCard({
 	langName,
 	...props
 }) {
-	const languageShortName =
-		(languageMap[langName] && languageMap[langName].shortName) || "?";
-	const languageColor =
-		(languageMap[langName] && languageMap[langName].background) || red[500];
-
-	const classes = useStyles({
-		classes: props.classes,
-		langColor: languageColor
-	});
+	const classes = useStyles();
 
 	const imageUrl = avatarUrl || `https://robohash.org/${username}`;
 
@@ -80,11 +59,7 @@ function SolutionCard({
 			<CardHeader
 				title={username}
 				subheader={moment(date).format("MM/DD, hh:mm a")}
-				avatar={
-					<Avatar className={classes.langBackgroundColor} title={langName}>
-						{languageShortName}
-					</Avatar>
-				}
+				avatar={<LangIcon langName={langName} />}
 			/>
 
 			<CardMedia
