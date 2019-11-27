@@ -80,6 +80,7 @@ function SolutionCard({
 
 				<Button
 					target="_blank"
+					rel="noopener noreferrer"
 					component="a"
 					href={solutionUrl}
 					variant="contained"

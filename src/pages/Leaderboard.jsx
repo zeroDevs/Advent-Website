@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import * as qs from "query-string";
-import { CometSpinLoader } from "react-css-loaders";
 import { makeStyles } from "@material-ui/core/styles";
 import {
 	Button,
@@ -54,6 +53,11 @@ const useStyles = makeStyles(theme => ({
 		width: "250px",
 		marginLeft: "auto",
 		marginRight: "auto"
+	},
+	loading: {
+		display: "flex",
+		justifyContent: "center",
+		margin: theme.spacing(0, 2)
 	}
 }));
 

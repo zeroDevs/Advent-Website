@@ -37,7 +37,6 @@ const useStyles = makeStyles(theme => ({
 	solutionsContainer: {
 		flex: 1,
 		display: "flex",
-		justifyContent: "center",
 		flexWrap: "wrap"
 	},
 	emptyMessage: {
@@ -62,6 +61,11 @@ const useStyles = makeStyles(theme => ({
 		width: "250px",
 		marginLeft: "auto",
 		marginRight: "auto"
+	},
+	loading: {
+		display: "flex",
+		justifyContent: "center",
+		margin: theme.spacing(0, 2)
 	}
 }));
 

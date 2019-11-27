@@ -29,7 +29,11 @@ function LoadingCard(props) {
 	return (
 		<div className={classes.Container}>
 			<div className={classes.Content}>
-				<CircularProgress className={classes.CircularProgress} />
+				<CircularProgress
+					className={classes.CircularProgress}
+					thickness={5}
+					size={75}
+				/>
 				<h2>{props.children}</h2>
 			</div>
 		</div>
