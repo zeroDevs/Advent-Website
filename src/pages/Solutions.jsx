@@ -36,6 +36,7 @@ const useStyles = makeStyles(theme => ({
 	solutionsContainer: {
 		flex: 1,
 		display: "flex",
+		justifyContent: "center",
 		flexWrap: "wrap"
 	},
 	emptyMessage: {
@@ -70,6 +71,7 @@ function Solutions(props) {
 
 	const [showSearch, setShowSearch] = useState(false);
 	const [searchText, setSearchText] = useState("");
+	const [isLoadingData, setIsLoadingData] = useState(false)
 
 	const handleShowSearch = () => setShowSearch(!showSearch);
 	const handleTextInput = event => setSearchText(event.target.value);
@@ -78,6 +80,7 @@ function Solutions(props) {
 
 	useEffect(() => {
 		setSolutions(dataFromApi);
+		setIsLoadingData(!isLoadingData)
 	}, [dataFromApi]);
 
 	const applyFilters = (dateRange, selectedLangs, dateSort, nameSort) => {
@@ -166,9 +169,12 @@ function Solutions(props) {
 					</Button>
 				</div>
 			</div>
-
+			<div className="spinnerContainer">
+			{isLoadingData && <CometSpinLoader />}
+			</div>
 			<div className={classes.container}>
 				<div className={classes.solutionsContainer}>
+					
 					{hasSolutionsToShow &&
 						filteredSolutions.map(user => (
 							<Card
@@ -183,7 +189,13 @@ function Solutions(props) {
 						))}
 
 					{!hasSolutionsToShow && (
-						<CometSpinLoader />
+						<Typography
+							className={classes.emptyMessage}
+							variant="h6"
+							color="textSecondary"
+						>
+							Nothing to show
+						</Typography>
 					)}
 				</div>
 			</div>
