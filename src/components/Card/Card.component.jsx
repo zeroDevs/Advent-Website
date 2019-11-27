@@ -75,8 +75,6 @@ function SolutionCard({
 
 	const imageUrl = avatarUrl || `https://robohash.org/${username}`;
 
-	console.log(langName);
-
 	return (
 		<Card className={classes.root}>
 			<CardHeader
@@ -89,7 +87,14 @@ function SolutionCard({
 				}
 			/>
 
-			<CardMedia className={classes.cardMedia} image={imageUrl} />
+			<CardMedia
+				className={classes.cardMedia}
+				onError={e => {
+					e.target.src = `https://robohash.org/${username}`;
+				}}
+				src={imageUrl}
+				component="img"
+			/>
 
 			<CardContent>
 				<div className={classes.dayContainer}>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { CometSpinLoader } from 'react-css-loaders'
+import * as qs from "query-string";
+import { CometSpinLoader } from "react-css-loaders";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
@@ -23,7 +24,7 @@ import {
 import useSolutions from "../hooks/useSolutions";
 import useDrawer from "../hooks/useDrawer";
 
-import MetaTags from '../components/MetaTags/MetaTags.component'
+import MetaTags from "../components/MetaTags/MetaTags.component";
 
 const useStyles = makeStyles(theme => ({
 	container: {
@@ -64,7 +65,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function Solutions(props) {
-	const dataFromApi = useSolutions();
+	const queryParams = qs.parse(props.location.search);
+	const dataFromApi = useSolutions(queryParams.year);
 	const { isOpen, handleClose, toggle: toggleFiltersDrawer } = useDrawer();
 	const [solutions, setSolutions] = useState([]);
 
@@ -113,11 +115,12 @@ function Solutions(props) {
 	);
 
 	const hasSolutionsToShow = filteredSolutions && filteredSolutions.length > 0;
-	
-	let { title, description, pageUrl } = props
-	title = "Advent of Code Solutions"
-	description = "Solutions to Advent of Code from the Zero to Mastery Community."
-	pageUrl = "https://aoc.zerotomastery.io/solutions"
+
+	let { title, description, pageUrl } = props;
+	title = "Advent of Code Solutions";
+	description =
+		"Solutions to Advent of Code from the Zero to Mastery Community.";
+	pageUrl = "https://aoc.zerotomastery.io/solutions";
 
 	return (
 		<>
@@ -182,9 +185,7 @@ function Solutions(props) {
 							/>
 						))}
 
-					{!hasSolutionsToShow && (
-						<CometSpinLoader />
-					)}
+					{!hasSolutionsToShow && <CometSpinLoader />}
 				</div>
 			</div>
 		</>
