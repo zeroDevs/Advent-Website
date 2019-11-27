@@ -15,6 +15,7 @@ import About from "./pages/About";
 import Solutions from "./pages/Solutions";
 import FourZeroFour from "./pages/FourZeroFour";
 import Submit from "./pages/Submit";
+import Leaderboard from "./pages/Leaderboard";
 
 import Nav from "./components/Navigation/Navigation.component";
 
@@ -57,6 +58,7 @@ function App({ location, location: { search }, history }) {
 						<Route exact path="/about" component={About} />
 						<Route exact path="/solutions" component={Solutions} />
 						<Route exact path="/submit" component={Submit} />
+						<Route exact path="/leaderboard" component={Leaderboard} />
 						<Route
 							from="/login"
 							component={({ location }) => {
