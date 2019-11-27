@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { CometSpinLoader } from 'react-css-loaders'
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
@@ -35,8 +36,7 @@ const useStyles = makeStyles(theme => ({
 	solutionsContainer: {
 		flex: 1,
 		display: "flex",
-		flexWrap: "wrap",
-		justifyContent: "center"
+		flexWrap: "wrap"
 	},
 	emptyMessage: {
 		flex: 1,
@@ -70,6 +70,7 @@ function Solutions(props) {
 
 	const [showSearch, setShowSearch] = useState(false);
 	const [searchText, setSearchText] = useState("");
+	const [isLoadingData, setIsLoadingData] = useState(false)
 
 	const handleShowSearch = () => setShowSearch(!showSearch);
 	const handleTextInput = event => setSearchText(event.target.value);
@@ -78,6 +79,7 @@ function Solutions(props) {
 
 	useEffect(() => {
 		setSolutions(dataFromApi);
+		setIsLoadingData(!isLoadingData)
 	}, [dataFromApi]);
 
 	const applyFilters = (dateRange, selectedLangs, dateSort, nameSort) => {
@@ -166,9 +168,12 @@ function Solutions(props) {
 					</Button>
 				</div>
 			</div>
-
+			<div className="spinnerContainer">
+			{isLoadingData && <CometSpinLoader />}
+			</div>
 			<div className={classes.container}>
 				<div className={classes.solutionsContainer}>
+					
 					{hasSolutionsToShow &&
 						filteredSolutions.map(user => (
 							<Card
