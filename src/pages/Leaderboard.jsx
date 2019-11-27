@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { CometSpinLoader } from 'react-css-loaders'
+import * as qs from "query-string";
+import { CometSpinLoader } from "react-css-loaders";
 import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import { Link } from "react-router-dom";
-import {
-	Search as SearchIcon,
-	FilterList as FiltersIcon,
-	Add as AddIcon
-} from "@material-ui/icons";
+
+import { Search as SearchIcon } from "@material-ui/icons";
 
 import UserCard from "../components/Card/UserCard.component";
 import useUsers from "../hooks/useUsers";
 
-import MetaTags from '../components/MetaTags/MetaTags.component'
+import MetaTags from "../components/MetaTags/MetaTags.component";
 
 const useStyles = makeStyles(theme => ({
 	container: {
@@ -55,7 +51,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function Leaderboard(props) {
-	const dataFromApi = useUsers();
+	const queryParams = qs.parse(props.location.search);
+	const dataFromApi = useUsers(queryParams.year);
 	const [users, setUsers] = useState([]);
 
 	const [showSearch, setShowSearch] = useState(false);
@@ -80,11 +77,11 @@ function Leaderboard(props) {
 	filteredUsers.sort((a, b) => b.point - a.point);
 
 	const hasUsersToShow = filteredUsers && filteredUsers.length > 0;
-	
-	let { title, description, pageUrl } = props
-	title = "Advent of Code Leaderboard"
-	description = "Event Leaderboard."
-	pageUrl = "https://aoc.zerotomastery.io/leaderboard"
+
+	let { title, description, pageUrl } = props;
+	title = "Advent of Code Leaderboard";
+	description = "Event Leaderboard.";
+	pageUrl = "https://aoc.zerotomastery.io/leaderboard";
 
 	return (
 		<>
@@ -130,9 +127,7 @@ function Leaderboard(props) {
 							/>
 						))}
 
-					{!hasUsersToShow && (
-						<CometSpinLoader />
-					)}
+					{!hasUsersToShow && <CometSpinLoader />}
 				</div>
 			</div>
 		</>
