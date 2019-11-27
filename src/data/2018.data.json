@@ -4060,7 +4060,8 @@
 			"avatarUrl": "https://robohash.org/whatapalaver441200508569649162",
 			"point": "6",
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c0242237c3c990018cad77e",
@@ -4069,7 +4070,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/473750884061282304/ed981a7aedcd8c160941989838a07f05.png?size=2048",
 			"point": 4,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c0242a87c3c990018cad780",
@@ -4078,7 +4080,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/482738935391453186/460f3758f2dead0864982987033a9be9.png?size=2048",
 			"point": 24,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c024bb17c3c990018cad782",
@@ -4087,7 +4090,8 @@
 			"avatarUrl": "https://robohash.org/.knsk147127088116269056",
 			"point": 2,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Python"]
 		},
 		{
 			"_id": "5c025a7e7c3c990018cad784",
@@ -4096,7 +4100,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/276511068359229443/911c5860380d903d68ee4d9d587668af.png?size=2048",
 			"point": 2,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c026acb7c3c990018cad786",
@@ -4105,7 +4110,8 @@
 			"avatarUrl": "https://robohash.org/nikoskef459955301467029516",
 			"point": 5,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Python"]
 		},
 		{
 			"_id": "5c026f9c7c3c990018cad789",
@@ -4114,7 +4120,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/471753906754420770/72324305930b6ce0f77e6309c74dbfa7.png?size=2048",
 			"point": 4,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c0286f67c3c990018cad78d",
@@ -4123,7 +4130,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/468854718672666644/81d82792b44496097183eb9011ddb653.png?size=2048",
 			"point": 45,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c0288217c3c990018cad78f",
@@ -4132,7 +4140,8 @@
 			"avatarUrl": "https://robohash.org/prince curie517529643256119317",
 			"point": 2,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c0288ab7c3c990018cad791",
@@ -4141,7 +4150,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/158091494748585984/dec2880814c1dd8a1f572e6c39323130.png?size=2048",
 			"point": 2,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c02908e7c3c990018cad793",
@@ -4150,7 +4160,8 @@
 			"avatarUrl": "https://robohash.org/shsv382497650355887276042",
 			"point": 9,
 			"__v": 0,
-			"badgePoint": 5
+			"badgePoint": 5,
+			"langArray": ["Javascript", "Ruby"]
 		},
 		{
 			"_id": "5c0294f77c3c990018cad795",
@@ -4159,7 +4170,8 @@
 			"avatarUrl": "https://robohash.org/Vnk196245833325215744",
 			"point": 3,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c02a1dc7c3c990018cad797",
@@ -4168,7 +4180,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/396035177161162754/41d456342a060833e8fe589dbfc277e8.png?size=2048",
 			"point": 2,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c02a748d8fa470018f0517f",
@@ -4177,7 +4190,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/515484178062639104/54075933eb62efeed999317f42f305e4.png?size=2048",
 			"point": 22,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["C#"]
 		},
 		{
 			"_id": "5c02adc87511ac00182f428e",
@@ -4186,7 +4200,8 @@
 			"avatarUrl": "https://robohash.org/robinvz471433724018425877",
 			"point": 7,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c02bbd17511ac00182f4290",
@@ -4195,7 +4210,8 @@
 			"avatarUrl": "https://robohash.org/pillinho_sk479184757247311873",
 			"point": 4,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c02c1eec188d6001851af86",
@@ -4204,7 +4220,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/508760522523541514/77d858fd5c52e64cd8a7d543f16a0985.png?size=2048",
 			"point": 6,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c02cd2c25a3780017f55f0f",
@@ -4213,7 +4230,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/179604866807627777/94db0d06f2984888569bb9416e246c71.png?size=2048",
 			"point": 7,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c02e2a4a78b070018eabda5",
@@ -4222,7 +4240,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/470654281738092556/780d4ab0b27bae54f4638125f5d310ed.png?size=2048",
 			"point": 9,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c02ec6293e6610018f4a567",
@@ -4231,7 +4250,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/324863448842371072/42c1aa5d37fc21d68d49ff7f79300ce0.png?size=2048",
 			"point": 6,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Java"]
 		},
 		{
 			"_id": "5c02ec6e93e6610018f4a569",
@@ -4240,7 +4260,8 @@
 			"avatarUrl": "https://robohash.org/kyrolos440906674878808064",
 			"point": 2,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c02f74093e6610018f4a56b",
@@ -4249,7 +4270,8 @@
 			"avatarUrl": "https://robohash.org/Martina493873354156277762",
 			"point": "10",
 			"__v": 0,
-			"badgePoint": 2
+			"badgePoint": 2,
+			"langArray": ["Javascript", "PHP"]
 		},
 		{
 			"_id": "5c02fb4c93e6610018f4a56d",
@@ -4258,7 +4280,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/466823189394096128/ddfdcb2da21fd8d432fb6c8809089267.png?size=2048",
 			"point": 6,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c02fcb293e6610018f4a56f",
@@ -4267,7 +4290,8 @@
 			"avatarUrl": "https://robohash.org/Perry482695842134753306",
 			"point": 6,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript", "Python"]
 		},
 		{
 			"_id": "5c0306be93e6610018f4a571",
@@ -4276,7 +4300,8 @@
 			"avatarUrl": "https://robohash.org/oghenebrume425397630558797854",
 			"point": 2,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c0319fd93e6610018f4a573",
@@ -4285,7 +4310,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/439038230759866370/d2e87f133827905c32f4166fdb8e9328.png?size=2048",
 			"point": 9,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c031a3093e6610018f4a575",
@@ -4294,7 +4320,8 @@
 			"avatarUrl": "https://robohash.org/masci4482221371158429706",
 			"point": 6,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c0320e293e6610018f4a577",
@@ -4303,7 +4330,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/390865184635355136/7f87ef563cc5e707b1ddd3ce0a6d5115.png?size=2048",
 			"point": 2,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c032a0693e6610018f4a579",
@@ -4312,7 +4340,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/371849330585370626/e8dc52b1c60eb6cabc0d93b88ea438f0.png?size=2048",
 			"point": 2,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c0771a5e43b690017d627df",
@@ -4321,7 +4350,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/447279233526661123/e167e37b2d822c23f03278421769d9dc.png?size=2048",
 			"point": 2,
 			"badgePoint": 0,
-			"__v": 0
+			"__v": 0,
+			"langArray": ["Python"]
 		},
 		{
 			"_id": "5c07ad88206276001add063d",
@@ -4330,7 +4360,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/159047587184246784/dbdc424791798b55294d282fa0e8ffcf.png?size=2048",
 			"point": 10,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c0331dd93e6610018f4a57b",
@@ -4339,7 +4370,8 @@
 			"avatarUrl": "https://robohash.org/trippea490316817609392145",
 			"point": 6,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c03351a93e6610018f4a57d",
@@ -4348,7 +4380,8 @@
 			"avatarUrl": "https://robohash.org/geno250089004626739201",
 			"point": 5,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c03409f93e6610018f4a57f",
@@ -4357,7 +4390,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/439894456448057361/6bc73d6c91ad9394a7ae5f46900c2845.png?size=2048",
 			"point": 4,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c035aa493e6610018f4a581",
@@ -4366,7 +4400,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/435160945485152256/5da46ef91954142d66c0c35a4ae8a4e2.png?size=2048",
 			"point": 2,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c035fc693e6610018f4a583",
@@ -4375,7 +4410,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/177863860466876416/aacc2b23392e933047886ac186a94955.png?size=2048",
 			"point": 3,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c03638893e6610018f4a585",
@@ -4384,7 +4420,8 @@
 			"avatarUrl": "https://robohash.org/des_tiny493455713213874196",
 			"point": 2,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c03688a93e6610018f4a587",
@@ -4393,7 +4430,8 @@
 			"avatarUrl": "https://robohash.org/AuxTaco310530938536722454",
 			"point": 11,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c036dc093e6610018f4a589",
@@ -4402,7 +4440,8 @@
 			"avatarUrl": "https://robohash.org/naz436684779203723274",
 			"point": 1,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Elixir"]
 		},
 		{
 			"_id": "5c03783793e6610018f4a58c",
@@ -4411,7 +4450,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/455029543372324864/19e274d21f8d7e26f5282483ebf7adc5.png?size=2048",
 			"point": 3,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c037c8893e6610018f4a58e",
@@ -4420,7 +4460,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/482566241748516865/0c1543418a9bc6098f1e8211f3eaa3cd.png?size=2048",
 			"point": 2,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c037d0e93e6610018f4a590",
@@ -4429,7 +4470,8 @@
 			"avatarUrl": "https://robohash.org/jacksparrow502854841752616985",
 			"point": 1,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Python"]
 		},
 		{
 			"_id": "5c038c9993e6610018f4a593",
@@ -4438,7 +4480,8 @@
 			"avatarUrl": "https://robohash.org/Matti453539471384903681",
 			"point": 15,
 			"__v": 0,
-			"badgePoint": 2
+			"badgePoint": 2,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c0399bf93e6610018f4a596",
@@ -4447,7 +4490,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/434389280484491295/dfecc749a768727ea0bb412566aa49ca.png?size=2048",
 			"point": 2,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c03b74d93e6610018f4a59c",
@@ -4456,7 +4500,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/455661943445782538/b1d154803f7b6862deecb0346560443c.png?size=2048",
 			"point": 1,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c03ba6f93e6610018f4a59e",
@@ -4465,7 +4510,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/440219544569643046/8b34d84d057d40b6dd7f01abf117f502.png?size=2048",
 			"point": 3,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c03bc4c93e6610018f4a5a0",
@@ -4474,7 +4520,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/462426237269311498/fb1b6e05ef757e63f96659569aceae6b.png?size=2048",
 			"point": 2,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c03c2ae93e6610018f4a5a3",
@@ -4483,7 +4530,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/439128539024064512/59cba3e71bfa5f7a22606566fe7abe0e.png?size=2048",
 			"point": 6,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c03cbd993e6610018f4a5a6",
@@ -4492,7 +4540,8 @@
 			"avatarUrl": "https://robohash.org/mzawilski478552210150522880",
 			"point": 38,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c03f8c493e6610018f4a5ad",
@@ -4501,7 +4550,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/515590611827687454/0e30e0f04f002e8f6ace994f805c15b0.png?size=2048",
 			"point": 4,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c041b2293e6610018f4a5b0",
@@ -4510,7 +4560,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/454756963075489792/9304984fb924dab398c27daf1fee414c.png?size=2048",
 			"point": 7,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c047152920565001d506483",
@@ -4519,7 +4570,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/400362119440236544/0c1a2183e6675335082bd018d86d8ee9.png?size=2048",
 			"point": 1,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c04b100920565001d506489",
@@ -4528,7 +4580,8 @@
 			"avatarUrl": "https://robohash.org/Carlos F.228726614463086592",
 			"point": 1,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c04ce2f920565001d50648c",
@@ -4537,7 +4590,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/440849992996093952/b6d240fb3bb1ab21335510db66a5ca4e.png?size=2048",
 			"point": 1,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c04fb72920565001d506491",
@@ -4546,7 +4600,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/501427650762506242/3c0811a5a731fd6de65d17e689f3e0f1.png?size=2048",
 			"point": 11,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c0515e5920565001d506494",
@@ -4555,7 +4610,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/516606062208483328/bf44eb771b7ce00ce78903d48decdef9.png?size=2048",
 			"point": 10,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c055750920565001d5064a0",
@@ -4564,7 +4620,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/471688571770896384/8ee5036afce16b794e0b6491169d4ee5.png?size=2048",
 			"point": 2,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c0578a5920565001d5064a4",
@@ -4573,7 +4630,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/495239419591131136/7475c8cb4e8f0633006eab5d56bcbcf1.png?size=2048",
 			"point": 22,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c059eef920565001d5064ab",
@@ -4582,7 +4640,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/451069522875645962/09a9092030380f1c94d2ceb3b1d5457c.png?size=2048",
 			"point": 11,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Python"]
 		},
 		{
 			"_id": "5c05ab5a920565001d5064b0",
@@ -4591,7 +4650,8 @@
 			"avatarUrl": "https://robohash.org/mkh363539782069911552",
 			"point": 40,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c05c423920565001d5064b4",
@@ -4600,7 +4660,8 @@
 			"avatarUrl": "https://robohash.org/Carol491446282230169604",
 			"point": 2,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c0615bc920565001d5064bb",
@@ -4609,7 +4670,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/452502881086472192/398da995e32320a88acf9c118e446f5e.png?size=2048",
 			"point": 2,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c066abb920565001d5064c1",
@@ -4618,7 +4680,8 @@
 			"avatarUrl": "https://robohash.org/tom_kn474309840035119117",
 			"point": 1,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Python"]
 		},
 		{
 			"_id": "5c069983920565001d5064c4",
@@ -4627,7 +4690,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/132665585325703168/a_4c577b4fcf6c979a304e54ac1d22ceac.gif",
 			"point": 3,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c06de01920565001d5064ce",
@@ -4636,7 +4700,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/450009910927949844/8fc2cfc04840d783dbd7eb4927198747.png?size=2048",
 			"point": 2,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c07195f920565001d5064d3",
@@ -4645,7 +4710,8 @@
 			"avatarUrl": "https://robohash.org/Julian440990425701023754",
 			"point": 1,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c027d137c3c990018cad78b",
@@ -4654,7 +4720,8 @@
 			"avatarUrl": "https://cdn.discordapp.com/avatars/233215494365249537/25c116b8627d19707092d9a0b27e3b24.png?size=2048",
 			"point": 2,
 			"__v": 0,
-			"badgePoint": 0
+			"badgePoint": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c088c7ec4aeeb001af50adb",
@@ -4663,7 +4730,8 @@
 			"badgePoint": 0,
 			"avatarUrl": "https://robohash.org/Carls379125997548863488",
 			"point": 4,
-			"__v": 0
+			"__v": 0,
+			"langArray": ["Python"]
 		},
 		{
 			"_id": "5c09216bc4aeeb001af50ae0",
@@ -4672,7 +4740,8 @@
 			"badgePoint": 0,
 			"avatarUrl": "https://robohash.org/Sniper73163725804621135872",
 			"point": 45,
-			"__v": 0
+			"__v": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c092c15c4aeeb001af50ae3",
@@ -4681,7 +4750,8 @@
 			"badgePoint": 0,
 			"avatarUrl": "https://cdn.discordapp.com/avatars/518693150747787275/199fa53d3ce08ef8628e3151d0c5bb28.png?size=2048",
 			"point": 3,
-			"__v": 0
+			"__v": 0,
+			"langArray": ["Swift"]
 		},
 		{
 			"_id": "5c093ff1c4aeeb001af50ae5",
@@ -4690,7 +4760,8 @@
 			"badgePoint": 0,
 			"avatarUrl": "https://robohash.org/agx502759906647212033",
 			"point": 7,
-			"__v": 0
+			"__v": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c09a334c4aeeb001af50af1",
@@ -4699,7 +4770,8 @@
 			"badgePoint": 0,
 			"avatarUrl": "https://cdn.discordapp.com/avatars/329069983810322433/75b27efa81a6248fd140854c863b0b4b.png?size=2048",
 			"point": 6,
-			"__v": 0
+			"__v": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c0a38523a3054001ae6260d",
@@ -4708,7 +4780,8 @@
 			"badgePoint": 0,
 			"avatarUrl": "https://robohash.org/Kwanwoo Jeong458396202409394176",
 			"point": 7,
-			"__v": 0
+			"__v": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c0a6fcbae3e56001a763ecc",
@@ -4717,7 +4790,8 @@
 			"badgePoint": 0,
 			"avatarUrl": "https://cdn.discordapp.com/avatars/427417736000307211/feff5ae9823738f29e1fd403c5069693.png?size=2048",
 			"point": 6,
-			"__v": 0
+			"__v": 0,
+			"langArray": ["Python"]
 		},
 		{
 			"_id": "5c0b9325bf32c2001a151994",
@@ -4726,7 +4800,8 @@
 			"badgePoint": 0,
 			"avatarUrl": "https://robohash.org/sirnotes335512706130116609",
 			"point": 2,
-			"__v": 0
+			"__v": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c0bebefbf32c2001a15199c",
@@ -4735,7 +4810,8 @@
 			"badgePoint": 0,
 			"avatarUrl": "https://cdn.discordapp.com/avatars/329336249997590529/cd8a0c1191c1a7cdedb4c6f441e190a6.png?size=2048",
 			"point": 11,
-			"__v": 0
+			"__v": 0,
+			"langArray": ["Javascript"]
 		},
 		{
 			"_id": "5c1070d3bf32c2001a1519d0",
@@ -4744,7 +4820,8 @@
 			"badgePoint": 0,
 			"avatarUrl": "https://cdn.discordapp.com/avatars/166037500404563970/6277b2dd6031143900e661df727d9fe0.png?size=2048",
 			"point": 1,
-			"__v": 0
+			"__v": 0,
+			"langArray": ["Java"]
 		}
 	]
 }
