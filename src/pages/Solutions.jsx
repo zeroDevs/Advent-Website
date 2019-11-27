@@ -72,6 +72,7 @@ function Solutions(props) {
 
 	const [showSearch, setShowSearch] = useState(false);
 	const [searchText, setSearchText] = useState("");
+	const [isLoadingData, setIsLoadingData] = useState(false);
 
 	const handleShowSearch = () => setShowSearch(!showSearch);
 	const handleTextInput = event => setSearchText(event.target.value);
@@ -80,6 +81,7 @@ function Solutions(props) {
 
 	useEffect(() => {
 		setSolutions(dataFromApi);
+		setIsLoadingData(!isLoadingData);
 	}, [dataFromApi]);
 
 	const applyFilters = (dateRange, selectedLangs, dateSort, nameSort) => {
@@ -169,7 +171,9 @@ function Solutions(props) {
 					</Button>
 				</div>
 			</div>
-
+			<div className="spinnerContainer">
+				{isLoadingData && <CometSpinLoader />}
+			</div>
 			<div className={classes.container}>
 				<div className={classes.solutionsContainer}>
 					{hasSolutionsToShow &&
@@ -185,7 +189,15 @@ function Solutions(props) {
 							/>
 						))}
 
-					{!hasSolutionsToShow && <CometSpinLoader />}
+					{!hasSolutionsToShow && (
+						<Typography
+							className={classes.emptyMessage}
+							variant="h6"
+							color="textSecondary"
+						>
+							Nothing to show
+						</Typography>
+					)}
 				</div>
 			</div>
 		</>
