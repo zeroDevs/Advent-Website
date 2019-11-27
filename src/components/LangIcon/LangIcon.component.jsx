@@ -14,7 +14,6 @@ const useStyles = makeStyles(theme => ({
 const languageMap = require("../../configs/languages.json");
 
 function LangIcon({ langName, ...props }) {
-	console.log(props);
 	const languageShortName =
 		(languageMap[langName] && languageMap[langName].shortName) || "?";
 	const languageColor =
