@@ -189,13 +189,14 @@ function Solutions(props) {
 							/>
 						))}
 
-					{!hasSolutionsToShow && (
+					{!hasSolutionsToShow && !isLoadingData && (
 						<Typography
 							className={classes.emptyMessage}
 							variant="h6"
 							color="textSecondary"
 						>
-							Nothing to show
+							Nothing to show{" "}
+							{queryParams.year ? `for AoC ${queryParams.year}` : null}
 						</Typography>
 					)}
 				</div>
