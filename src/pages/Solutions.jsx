@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { CometSpinLoader } from 'react-css-loaders'
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
@@ -24,6 +23,7 @@ import useSolutions from "../hooks/useSolutions";
 import useDrawer from "../hooks/useDrawer";
 
 import MetaTags from '../components/MetaTags/MetaTags.component'
+import { CircularProgress } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
 	container: {
@@ -36,7 +36,6 @@ const useStyles = makeStyles(theme => ({
 	solutionsContainer: {
 		flex: 1,
 		display: "flex",
-		justifyContent: "center",
 		flexWrap: "wrap"
 	},
 	emptyMessage: {
@@ -61,6 +60,11 @@ const useStyles = makeStyles(theme => ({
 		width: "250px",
 		marginLeft: "auto",
 		marginRight: "auto"
+	},
+	loading: {
+		display: "flex",
+		justifyContent: "center",
+		margin: theme.spacing(0, 2)
 	}
 }));
 
@@ -169,12 +173,12 @@ function Solutions(props) {
 					</Button>
 				</div>
 			</div>
-			<div className="spinnerContainer">
-			{isLoadingData && <CometSpinLoader />}
-			</div>
+		
+			{isLoadingData && <div className={classes.loading}><CircularProgress color="secondary" thickness={5} size={75} /></div>}
+			
 			<div className={classes.container}>
 				<div className={classes.solutionsContainer}>
-					
+
 					{hasSolutionsToShow &&
 						filteredSolutions.map(user => (
 							<Card
@@ -187,8 +191,8 @@ function Solutions(props) {
 								langName={user.langName}
 							/>
 						))}
-
-					{!hasSolutionsToShow && (
+						
+					{!hasSolutionsToShow && !isLoadingData &&(
 						<Typography
 							className={classes.emptyMessage}
 							variant="h6"

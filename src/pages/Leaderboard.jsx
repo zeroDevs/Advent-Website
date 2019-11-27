@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { CometSpinLoader } from 'react-css-loaders'
+import CircularProgress from "@material-ui/core/CircularProgress";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
@@ -51,6 +51,11 @@ const useStyles = makeStyles(theme => ({
 		width: "250px",
 		marginLeft: "auto",
 		marginRight: "auto"
+	},
+	loading: {
+		display: "flex",
+		justifyContent: "center",
+		margin: theme.spacing(0, 2)
 	}
 }));
 
@@ -115,6 +120,10 @@ function Leaderboard(props) {
 					</Button>
 				</div>
 			</div>
+			
+			{!hasUsersToShow && (
+						<div className={classes.loading}><CircularProgress color="secondary" thickness={5} size={75} /></div>
+					)}
 
 			<div className={classes.container}>
 				<div className={classes.usersContainer}>
@@ -129,10 +138,6 @@ function Leaderboard(props) {
 								index={filteredUsers.indexOf(user)}
 							/>
 						))}
-
-					{!hasUsersToShow && (
-						<CometSpinLoader />
-					)}
 				</div>
 			</div>
 		</>
