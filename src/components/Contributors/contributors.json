@@ -17,7 +17,7 @@
 				"url": "https://www.linkedin.com/in/erik-herbranson/"
 			}
 		]
-	}, 
+	},
 	{
 		"tag": "Matt",
 		"name": "Matt Smith",
@@ -72,6 +72,25 @@
 			{
 				"label": "linkedin",
 				"url": "https://www.linkedin.com/in/brittney-postma-868928178/"
+			}
+		]
+	},
+	{
+		"tag": "Abdus",
+		"name": "Abdus Samad Azad",
+		"avatarImage": "images/abdus.png",
+		"links": [
+			{
+				"label": "github",
+				"url": "https://github.com/thisisabdus"
+			},
+			{
+				"label": "default",
+				"url": "https://abdus.xyz"
+			},
+			{
+				"label": "twitter",
+				"url": "https://twitter.com/thisisabdus"
 			}
 		]
 	}
