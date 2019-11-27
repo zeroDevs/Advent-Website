@@ -35,7 +35,11 @@ function SocialLinks({ links }) {
 			? iconMap.get(label)
 			: iconMap.get("default");
 		return (
-			<IconButton component="a" href={link.url}>
+			<IconButton 
+				component="a" 
+				href={link.url} 
+				target="_blank"
+				rel="noopener noreferrer">
 				<SocialIcon className={classes.socialIcon} />
 			</IconButton>
 		);
