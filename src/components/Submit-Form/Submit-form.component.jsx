@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
@@ -16,7 +17,7 @@ const listOfLangs = require("../../configs/languages.json");
 
 const useStyles = makeStyles(theme => ({
 	input: {
-		marginTop: theme.spacing(2)
+		width: "100%"
 	},
 	infoContainer: {
 		minHeight: theme.spacing(12),
@@ -37,37 +38,9 @@ const useStyles = makeStyles(theme => ({
 		color: "#2ed92e",
 		textAlign: "center"
 	},
-	form: {
-		display: "flex",
-		flexDirection: "column"
-	},
-	row: ({ isMobile }) =>
-		isMobile
-			? {
-					display: "flex",
-					flexDirection: "column",
-					"&> *": {
-						width: "100%",
-						marginRight: "0px"
-					}
-			  }
-			: {
-					display: "flex",
-
-					"&> *": {
-						flexBasis: 0,
-						flexGrow: 1
-					},
-					"&> :not(:last-child)": {
-						marginRight: theme.spacing(2)
-					}
-			  },
 	name: {
 		...theme.typography.h5,
 		textAlign: "center"
-	},
-	hide: {
-		display: "none"
 	}
 }));
 
@@ -190,8 +163,8 @@ function SubmitForm({ user }) {
 				)}
 			</div>
 			{user && (
-				<div className={classes.form}>
-					<div className={classes.row}>
+				<Grid container spacing={2}>
+					<Grid item xs={12} sm={6}>
 						<MuiPickersUtilsProvider utils={DateFnsUtils}>
 							<DatePicker
 								format="MM/dd/yyyy"
@@ -202,8 +175,12 @@ function SubmitForm({ user }) {
 								className={classes.input}
 							/>
 						</MuiPickersUtilsProvider>
-
-						<FormControl className={classes.input}>
+					</Grid>
+					<Grid item xs={12} sm={6}>
+						<FormControl
+							className={classes.input}
+							style={{ gridAreas: "lang" }}
+						>
 							<InputLabel id="demo-simple-select-placeholder-label-label">
 								Language
 							</InputLabel>
@@ -220,31 +197,36 @@ function SubmitForm({ user }) {
 								))}
 							</Select>
 						</FormControl>
-					</div>
-					<TextField
-						className={classes.input}
-						label="Solution Url"
-						type="text"
-						value={url}
-						onChange={handleUrlInputChange}
-						fullWidth
-					/>
-
-					<Button
-						variant="contained"
-						color="secondary"
-						onClick={handleSubmit}
-						fullWidth
-						disabled={!user}
-						className={classes.input}
-					>
-						{isLoading ? (
-							<CircularProgress color="secondary" size={25} />
-						) : (
-							"Submit"
-						)}
-					</Button>
-				</div>
+					</Grid>
+					<Grid item xs={12}>
+						<TextField
+							style={{ gridAreas: "url" }}
+							className={classes.input}
+							label="Solution Url"
+							type="text"
+							value={url}
+							onChange={handleUrlInputChange}
+							fullWidth
+						/>
+					</Grid>
+					<Grid item xs={12}>
+						<Button
+							style={{ gridAreas: "sub" }}
+							variant="contained"
+							color="secondary"
+							onClick={handleSubmit}
+							fullWidth
+							disabled={!user}
+							className={classes.input}
+						>
+							{isLoading ? (
+								<CircularProgress color="secondary" size={25} />
+							) : (
+								"Submit"
+							)}
+						</Button>
+					</Grid>
+				</Grid>
 			)}
 		</>
 	);
