@@ -77,7 +77,7 @@ function Logo({
 						EmojiEvents: <EmojiEvents />
 					};
 					return (
-						<Fragment>
+						<Fragment key={Math.random * 10000}>
 							<NavLink
 								text={link.name}
 								link={`${link.route}${yearParam}`}

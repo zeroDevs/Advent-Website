@@ -4,6 +4,7 @@ import moment from "moment";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import LangIcon from "../LangIcon/LangIcon.component";
 import { red } from "@material-ui/core/colors";
+import LazyLoad from 'react-lazy-load';
 import {
 	Card,
 	CardMedia,
@@ -62,14 +63,20 @@ function SolutionCard({
 				avatar={<LangIcon langName={langName} />}
 			/>
 
-			<CardMedia
-				className={classes.cardMedia}
-				onError={e => {
-					e.target.src = `https://robohash.org/${username}`;
-				}}
-				src={imageUrl}
-				component="img"
-			/>
+			<LazyLoad
+	      debounce={false}
+	      offsetVertical={100}
+	      >
+				<CardMedia
+					className={classes.cardMedia}
+					onError={e => {
+						e.target.src = `https://robohash.org/${username}`;
+					}}
+					image={imageUrl}
+					height={80}
+					component="img"
+				/>
+			</LazyLoad>
 
 			<CardContent>
 				<div className={classes.dayContainer}>
