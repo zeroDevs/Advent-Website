@@ -140,6 +140,7 @@ function Leaderboard(props) {
 								username={user.username}
 								langArray={user.langArray}
 								point={user.point}
+								isZTM={user.isZTM}
 								index={filteredUsers.indexOf(user)}
 							/>
 						))}

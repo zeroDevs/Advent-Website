@@ -8,6 +8,7 @@ import {
 	Card,
 	CardMedia,
 	CardContent,
+	CardHeader,
 	Typography,
 	List,
 	ListItem
@@ -45,14 +46,24 @@ const useStyles = makeStyles(theme => ({
 	},
 	overImg: {
 		position: "absolute",
-		minHeight: 50,
-		minWidth: 50,
+		minHeight: 40,
+		minWidth: 40,
 		top: 10,
 		left: 10
-	}
+	},
+	memberImg: {
+		position: "absolute",
+		minHeight: 50,
+		minWidth: 50,
+		bottom: 15,
+		right: 15
+	},
+	title: {
+    color: "#2196f3"
+  }
 }));
 
-function UserCard({ avatarUrl, username, langArray, point, index, ...props }) {
+function UserCard({ avatarUrl, username, langArray, point, isZTM, index, ...props }) {
 	let classes = useStyles();
 
 	const imageUrl = avatarUrl || `https://robohash.org/${username}`;
@@ -78,6 +89,19 @@ function UserCard({ avatarUrl, username, langArray, point, index, ...props }) {
 
 	return (
 		<Card className={classes.root}>
+			<CardHeader
+					align="center"
+					color="secondary"
+					className={classes.title}
+					title={username.split("#")[0]}
+					subheader={username}
+				>
+				</CardHeader>
+				{
+					topThree(index) !== null ? (
+							<CardMedia className={classes.overImg} image={topThree(index)} />
+						) : (null)
+				}
 			<div className={classes.parent}>
 				<LazyLoad
 	      debounce={false}
@@ -93,17 +117,14 @@ function UserCard({ avatarUrl, username, langArray, point, index, ...props }) {
 					/>
 				</LazyLoad>
 				{
-					topThree(index) !== null ? (
-							<CardMedia className={classes.overImg} image={topThree(index)} />
-						) : (null)
+					isZTM ? (
+						<CardMedia className={classes.memberImg} image={"/images/member.png"} alt={"ZTM member"} />
+					) : (null)
 				}
 			</div>
 
 			{/* {topThree()} */}
 			<CardContent>
-				<Typography align="center" color="secondary" variant="h6">
-					{username}
-				</Typography>
 				<div className={classes.pointsContainer}>
 					<Typography align="center" variant="body1">
 						{point} {point === 1 ? "Point" : "Points"}
