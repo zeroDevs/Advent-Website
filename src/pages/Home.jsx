@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 
 import HeroSection from "../components/HeroSection/HeroSection.component";
 import MetaTags from "../components/MetaTags/MetaTags.component";
+import { currentYear } from "../utils/siteConfig";
 
 const useStyles = makeStyles(theme => ({
 	root: {},
@@ -39,7 +40,7 @@ function Home({ location: { search } }) {
 				<div className={classes.welcomeMessage}>
 					<div>Zero-to-Mastery</div>
 					<div>
-						Advent of Code <span className={classes.year}>2019</span>
+						Advent of Code <span className={classes.year}>{currentYear}</span>
 					</div>
 					<div className={classes.buttonRow}>
 						<Button

@@ -1,6 +1,7 @@
 import React from "react";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import { Typography } from "@material-ui/core";
+import { currentYear } from "../../utils/siteConfig";
 
 const useStyles = makeStyles(theme => ({
 	Container: {
@@ -30,7 +31,7 @@ const useStyles = makeStyles(theme => ({
 
 function NothingToSee({ year }) {
 	const classes = useStyles();
-	const aocYear = year || "2019";
+	const aocYear = year || currentYear;
 	return (
 		<div className={classes.Container}>
 			<div className={classes.Content}>
