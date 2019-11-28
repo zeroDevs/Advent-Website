@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { CircularProgress } from '@material-ui/core';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { Route, Switch, withRouter } from "react-router-dom";
 // import MetaTags from './components/MetaTags/MetaTags.component'
@@ -22,6 +23,9 @@ import Nav from "./components/Navigation/Navigation.component";
 import { parseUrlParams } from "./utils/utils";
 import endPoints from "./configs/endpoints.json";
 import "./App.css";
+
+// const Leaderboard = lazy(() => import('./pages/Leaderboard'));
+// const Solutions = lazy(() => import('./pages/Solutions'));
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -56,8 +60,8 @@ function App({ location, location: { search }, history }) {
 					<Switch>
 						<Route exact path="/" component={Home} />
 						<Route exact path="/about" component={About} />
-						<Route exact path="/solutions" component={Solutions} />
 						<Route exact path="/submit" component={Submit} />
+						<Route exact path="/solutions" component={Solutions} />
 						<Route exact path="/leaderboard" component={Leaderboard} />
 						<Route
 							from="/login"

@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import LangIcon from "../LangIcon/LangIcon.component.jsx";
 import makeStyles from "@material-ui/core/styles/makeStyles";
+import LazyLoad from 'react-lazy-load';
 
 import {
 	Card,
@@ -71,22 +72,31 @@ function UserCard({ avatarUrl, username, langArray, point, index, ...props }) {
 			case 2:
 				return "/images/bronze.png";
 			default:
-				break;
+				return null;
 		}
 	};
 
 	return (
 		<Card className={classes.root}>
 			<div className={classes.parent}>
-				<CardMedia
-					className={classes.cardMedia}
-					image={imageUrl}
-					component="img"
-					onError={e => {
-						e.target.src = `https://robohash.org/${username}`;
-					}}
-				/>
-				<CardMedia className={classes.overImg} image={topThree(index)} />
+				<LazyLoad
+	      debounce={false}
+	      offsetVertical={100}
+	      >
+					<CardMedia
+						className={classes.cardMedia}
+						image={imageUrl}
+						component="img"
+						onError={e => {
+							e.target.src = `https://robohash.org/${username}`;
+						}}
+					/>
+				</LazyLoad>
+				{
+					topThree(index) !== null ? (
+							<CardMedia className={classes.overImg} image={topThree(index)} />
+						) : (null)
+				}
 			</div>
 
 			{/* {topThree()} */}

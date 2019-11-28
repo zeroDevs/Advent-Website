@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import * as qs from "query-string";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, TextField } from "@material-ui/core";
+import { Button, TextField, CircularProgress } from "@material-ui/core";
 
 import {
 	Search as SearchIcon,
@@ -25,6 +25,8 @@ import useDrawer from "../hooks/useDrawer";
 import MetaTags from "../components/MetaTags/MetaTags.component";
 import NothingToSee from "../components/NothingToSee/NothingToSee.component";
 import LoadingCard from "../components/LoadingCard/LoadingCard.component";
+
+// const Card = lazy(() => import('../components/Card/Card.component'));
 
 const useStyles = makeStyles(theme => ({
 	container: {
@@ -189,7 +191,7 @@ function Solutions(props) {
 					<div className={classes.solutionsContainer}>
 						{filteredSolutions.map(user => (
 							<Card
-								key={user.username + user._id}
+								key={user.url}
 								avatarUrl={user.avatarUrl}
 								username={user.userName}
 								date={user.Time}
