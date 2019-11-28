@@ -65,14 +65,6 @@ function Home({ location: { search } }) {
 				</div>
 			</HeroSection>
 			<MostRecent />
-			<br />
-			<br />
-			<br />
-			<HeroSection>Stats Here?</HeroSection>
-
-			<br />
-			<br />
-			<br />
 			<MostLoved />
 		</>
 	);

@@ -2,13 +2,13 @@ import React from "react";
 import { useStyles } from "./MostLoved.styles";
 import useLoved from "../../hooks/useLoved";
 import Card from "../Card/Card.component";
-import { Typography } from "@material-ui/core";
+import { Typography, useMediaQuery, useTheme } from "@material-ui/core";
 
 function MostLoved() {
+	const theme = useTheme();
+	const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
 	const classes = useStyles();
-	const dataFromApi = useLoved();
-
-	console.log(dataFromApi);
+	const dataFromApi = useLoved(isMobile);
 	return (
 		<div className={classes.mostRecentContainer}>
 			<Typography className={classes.title} variant="h3" color="textSecondary">
