@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 
 import HeroSection from "../components/HeroSection/HeroSection.component";
 import MetaTags from "../components/MetaTags/MetaTags.component";
+import MostRecent from "../components/MostRecent/MostRecent.component";
 
 const useStyles = makeStyles(theme => ({
 	root: {},
@@ -61,6 +62,7 @@ function Home({ location: { search } }) {
 					</div>
 				</div>
 			</HeroSection>
+			<MostRecent />
 		</>
 	);
 }
