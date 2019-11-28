@@ -93,5 +93,24 @@
 				"url": "https://twitter.com/thisisabdus"
 			}
 		]
+	},
+	{
+		"tag": "Meet",
+		"name": "Meet Mehta",
+		"avatarImage": "images/meet.jpg",
+		"links": [
+			{
+				"label": "linkedin",
+				"url": "https://www.linkedin.com/in/meetmehta1103/"
+			},
+			{
+				"label": "github",
+				"url": "https://github.com/Meet1103"
+			},
+			{
+				"label": "default",
+				"url": "https://meet1103.github.io/myPortfolio/"
+			}
+		]
 	}
 ]

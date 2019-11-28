@@ -3,13 +3,11 @@ import { useState, useEffect } from "react";
 export default function useRecent() {
 	const [loved, setLoved] = useState([]);
 
-	useEffect(isMobile => {
-		console.log(isMobile);
+	useEffect(() => {
 		async function callLovedApiEndpoint() {
-			const qty = isMobile ? `?qty=3` : "";
-			const response = await fetch(
-				`https://aocbot.zerobot.xyz/solutions/top${qty}`
-			);
+			const width = window.innerWidth < 600;
+			const qty = width ? 3 : 6;
+			const response = await fetch(`https://aocbot.zerobot.xyz/solutions/top?qty=${qty}`);
 			const data = await response.json();
 			setLoved(data);
 		}
