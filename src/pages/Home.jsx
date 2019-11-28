@@ -7,6 +7,7 @@ import HeroSection from "../components/HeroSection/HeroSection.component";
 import MetaTags from "../components/MetaTags/MetaTags.component";
 import MostRecent from "../components/MostRecent/MostRecent.component";
 import { currentYear } from "../utils/siteConfig";
+import MostLoved from "../components/MostLoved/MostLoved.component";
 
 const useStyles = makeStyles(theme => ({
 	root: {},
@@ -54,7 +55,7 @@ function Home({ location: { search } }) {
 						</Button>
 						<Button
 							variant="contained"
-							color="secondary"
+							color="primary"
 							to="/solutions"
 							component={Link}
 						>
@@ -64,6 +65,15 @@ function Home({ location: { search } }) {
 				</div>
 			</HeroSection>
 			<MostRecent />
+			<br />
+			<br />
+			<br />
+			<HeroSection>Stats Here?</HeroSection>
+
+			<br />
+			<br />
+			<br />
+			<MostLoved />
 		</>
 	);
 }

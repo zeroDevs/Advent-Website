@@ -13,6 +13,5 @@ export default function useRecent() {
 		}
 		callRecentApiEndpoint();
 	}, []);
-	console.log(recent);
 	return recent;
 }
