@@ -3,12 +3,11 @@ import { useState, useEffect } from "react";
 export default function useRecent() {
 	const [recent, setRecent] = useState([]);
 
-	useEffect(isMobile => {
+	useEffect(() => {
 		async function callRecentApiEndpoint() {
-			const qty = isMobile ? "?qty=3" : "";
-			const response = await fetch(
-				`https://aocbot.zerobot.xyz/solutions/recent${qty}`
-			);
+			const width = window.innerWidth < 600;
+			const qty = width ? 3 : 6;
+			const response = await fetch(`https://aocbot.zerobot.xyz/solutions/recent?qty=${qty}`);
 			const data = await response.json();
 			setRecent(data);
 		}
