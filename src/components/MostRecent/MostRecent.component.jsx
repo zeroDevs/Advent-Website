@@ -2,13 +2,14 @@ import React from "react";
 import { useStyles } from "./MostRecent.styles";
 import useRecent from "../../hooks/useRecent";
 import Card from "../Card/Card.component";
-import { Typography } from "@material-ui/core";
+import { Typography, useTheme, useMediaQuery } from "@material-ui/core";
 
 function MostRecent() {
+	const theme = useTheme();
+	const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
 	const classes = useStyles();
-	const dataFromApi = useRecent();
+	const dataFromApi = useRecent(isMobile);
 
-	console.log(dataFromApi);
 	return (
 		<div className={classes.mostRecentContainer}>
 			<Typography className={classes.title} variant="h3" color="textSecondary">

@@ -5,7 +5,8 @@ export const useStyles = makeStyles(theme => ({
 		padding: "50px 0",
 		display: "flex",
 		flexDirection: "column",
-		textAlign: "center"
+		textAlign: "center",
+		background: "#282828"
 	},
 	solutionsContainer: {
 		marginTop: "50px",
