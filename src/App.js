@@ -1,4 +1,4 @@
-import React, { useEffect, lazy, Suspense } from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { CircularProgress } from '@material-ui/core';
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -23,9 +23,6 @@ import Nav from "./components/Navigation/Navigation.component";
 import { parseUrlParams } from "./utils/utils";
 import endPoints from "./configs/endpoints.json";
 import "./App.css";
-
-// const Leaderboard = lazy(() => import('./pages/Leaderboard'));
-// const Solutions = lazy(() => import('./pages/Solutions'));
 
 const useStyles = makeStyles(theme => ({
 	root: {
