@@ -5,7 +5,7 @@ export default function useRecent() {
 
 	useEffect(() => {
 		async function callLovedApiEndpoint() {
-			const response = await fetch("https://aocbot.zerobot.xyz/solutions/top");
+			const response = await fetch("https://aocbot.zerobot.xyz/solutions/top?qty=3");
 			const data = await response.json();
 			setLoved(data);
 		}
