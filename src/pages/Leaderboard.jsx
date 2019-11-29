@@ -91,7 +91,6 @@ function Leaderboard(props) {
 	title = "Advent of Code Leaderboard";
 	description = "Event Leaderboard.";
 	pageUrl = "https://aoc.zerotomastery.io/leaderboard";
-	console.log("1111", isLoadingData);
 	return (
 		<>
 			<MetaTags title={title} description={description} pageUrl={pageUrl} />
