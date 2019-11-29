@@ -5,9 +5,8 @@ import Button from "@material-ui/core/Button";
 
 import HeroSection from "../components/HeroSection/HeroSection.component";
 import MetaTags from "../components/MetaTags/MetaTags.component";
-import MostRecent from "../components/MostRecent/MostRecent.component";
 import { currentYear } from "../utils/siteConfig";
-import MostLoved from "../components/MostLoved/MostLoved.component";
+import HiglightsSection from "../components/HighlightsSection/HightlightSection.component";
 
 const useStyles = makeStyles(theme => ({
 	root: {},
@@ -64,8 +63,7 @@ function Home({ location: { search } }) {
 					</div>
 				</div>
 			</HeroSection>
-			<MostRecent />
-			<MostLoved />
+			<HiglightsSection />
 		</>
 	);
 }
