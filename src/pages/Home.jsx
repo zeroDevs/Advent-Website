@@ -1,4 +1,5 @@
 import React from "react";
+import * as qs from "query-string";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -33,6 +34,8 @@ const useStyles = makeStyles(theme => ({
 
 function Home({ location: { search } }) {
 	const classes = useStyles();
+	const year = qs.parse(search).year;
+	const param = year ? `?year=${year}` : "";
 
 	return (
 		<>
@@ -41,13 +44,14 @@ function Home({ location: { search } }) {
 				<div className={classes.welcomeMessage}>
 					<div>Zero-to-Mastery</div>
 					<div>
-						Advent of Code <span className={classes.year}>{currentYear}</span>
+						Advent of Code{" "}
+						<span className={classes.year}>{year || currentYear}</span>
 					</div>
 					<div className={classes.buttonRow}>
 						<Button
 							variant="contained"
 							color="secondary"
-							to="/about"
+							to={`/about${param}`}
 							component={Link}
 						>
 							About
@@ -55,7 +59,7 @@ function Home({ location: { search } }) {
 						<Button
 							variant="contained"
 							color="primary"
-							to="/solutions"
+							to={`/solutions${param}`}
 							component={Link}
 						>
 							Solutions

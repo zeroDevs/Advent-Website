@@ -88,6 +88,7 @@ function Solutions(props) {
 	useEffect(() => {
 		setSolutions(dataFromApi);
 		setIsLoadingData(!isLoadingData);
+		// eslint-disable-next-line
 	}, [dataFromApi]);
 
 	const applyFilters = (dateRange, selectedLangs, dateSort, nameSort) => {

@@ -33,7 +33,7 @@ function CarouselComponent({ data }) {
 	};
 	return (
 		<Carousel
-			swipeable={false}
+			swipeable={true}
 			draggable={false}
 			showDots={true}
 			responsive={responsive}
@@ -46,14 +46,17 @@ function CarouselComponent({ data }) {
 			customTransition="all .5"
 			transitionDuration={500}
 			containerClass="carousel-container"
-			removeArrowOnDeviceType={["tablet", "mobile"]}
+			removeArrowOnDeviceType={[]}
 			deviceType={"desktop"}
 			dotListClass="custom-dot-list-style"
 			itemClass="carousel-item-padding-40-px"
 		>
 			{data.map(user => {
 				return (
-					<div className={classes.container}>
+					<div
+						className={classes.container}
+						key={user._id + Math.random * 10000}
+					>
 						<Card
 							key={user.username + user._id}
 							avatarUrl={user.avatarUrl}
