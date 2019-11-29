@@ -5,7 +5,7 @@ import useStats from "../../hooks/useStats";
 
 import { FileCodeOutline, CalendarMonth, AccountGroup } from "mdi-material-ui";
 import { useTheme } from "@material-ui/styles";
-import { CircularProgress, Grid } from "@material-ui/core";
+import { CircularProgress, Grid, useMediaQuery } from "@material-ui/core";
 import CountUp from "react-countup";
 
 const convertHex3To6 = hex =>
@@ -16,11 +16,24 @@ const convertHex3To6 = hex =>
 		: hex;
 
 const useStyles = makeStyles(theme => ({
-	root: {},
+	root: ({ isMobile }) => ({
+		marginTop: theme.spacing(3),
+		...(isMobile
+			? {
+					justifyContent: "space-evenly",
+					flexDirection: "column"
+			  }
+			: {
+					justifyContent: "center",
+					flexDirection: "row"
+			  })
+	}),
 	stat: {
 		display: "flex",
 		flexDirection: "column",
-		alignItems: "center"
+		alignItems: "center",
+		justifyContent: "center",
+		margin: `0px ${theme.spacing(5)}px`
 	},
 	icon: {
 		...theme.typography.h2,
@@ -37,26 +50,26 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const GlobalStatsComponent = ({ className }) => {
-	const classes = useStyles();
+	const theme = useTheme();
+	const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
+	const classes = useStyles({ isMobile });
 	const { stats, updateStats, isLoading } = useStats();
 
 	return (
 		<Grid
 			container
 			spacing={2}
-			justify="space-evenly"
+			justify="center"
 			className={`${classes.root} ${className}`}
 		>
-			{" "}
-			<Grid item md={3}></Grid>
-			<Grid item xs={12} sm={"auto"} className={classes.stat}>
+			<Grid className={classes.stat}>
 				<FileCodeOutline className={classes.icon} />
 				<WaitingNum isLoading={isLoading} className={classes.number}>
 					{stats.totalSolutions}
 				</WaitingNum>
 				<div className={classes.text}>Total Submissions</div>
 			</Grid>
-			<Grid item xs={12} sm={"auto"} className={classes.stat}>
+			<Grid className={classes.stat}>
 				<CalendarMonth className={classes.icon} />
 				<WaitingNum isLoading={isLoading} className={classes.number}>
 					{stats.todaysSolutions}
@@ -69,14 +82,13 @@ const GlobalStatsComponent = ({ className }) => {
 					}
 				)} Submissions`}</div>
 			</Grid>
-			<Grid item xs={12} sm={"auto"} className={classes.stat}>
+			<Grid className={classes.stat}>
 				<AccountGroup className={classes.icon} />
 				<WaitingNum isLoading={isLoading} className={classes.number}>
 					{stats.totalUsers}
 				</WaitingNum>
 				<div className={classes.text}>Total Students</div>
 			</Grid>
-			<Grid item md={3}></Grid>
 		</Grid>
 	);
 };

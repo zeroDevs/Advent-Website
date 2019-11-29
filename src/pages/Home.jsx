@@ -1,21 +1,38 @@
 import React from "react";
+import * as qs from "query-string";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+import { useMediaQuery, useTheme } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 
 import HeroSection from "../components/HeroSection/HeroSection.component";
 import MetaTags from "../components/MetaTags/MetaTags.component";
+import { currentYear } from "../utils/siteConfig";
+import HiglightsSection from "../components/HighlightsSection/HightlightSection.component";
 
 import GlobalStats from "../components/GlobalStats/global-stats.component";
 
 const useStyles = makeStyles(theme => ({
 	root: {},
-	heroContentStyleOverride: {
-		...theme.typography.h3
-	},
+	hero: ({ isMobile }) => ({
+		height: `${isMobile ? "200%" : "100%"}`,
+		display: "flex",
+		flexDirection: "column",
+		"&> *": {
+			flexBasis: 0,
+			flexGrow: 1
+		}
+	}),
 	welcomeMessage: {
+		...theme.typography.h3,
 		textAlign: "center",
-		fontSize: "2em"
+		fontSize: "2em",
+		display: "flex",
+		justifyContent: "center",
+		alignItems: "center",
+		/* height: 100%; */
+		/* position: relative; */
+		flexDirection: "column"
 	},
 	year: {
 		color: "yellow"
@@ -29,37 +46,47 @@ const useStyles = makeStyles(theme => ({
 			margin: "0 .25rem"
 		}
 	},
-	stats: {
-		position: "absolute",
-		bottom: theme.spacing(4)
-	}
+	stats: ({ isMobile }) =>
+		isMobile
+			? {
+					background: "rgba(15,15,35,.7)"
+			  }
+			: {
+					position: "absolute",
+					bottom: theme.spacing(4)
+			  }
 }));
 
 function Home({ location: { search } }) {
-	const classes = useStyles();
+	const theme = useTheme();
+	const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
+	const classes = useStyles({ isMobile });
+	const year = qs.parse(search).year;
+	const param = year ? `?year=${year}` : "";
 
 	return (
 		<>
 			<MetaTags />
-			<HeroSection classes={{ content: classes.heroContentStyleOverride }}>
+			<HeroSection className={classes.hero}>
 				<div className={classes.welcomeMessage}>
 					<div>Zero-to-Mastery</div>
 					<div>
-						Advent of Code <span className={classes.year}>2019</span>
+						Advent of Code{" "}
+						<span className={classes.year}>{year || currentYear}</span>
 					</div>
 					<div className={classes.buttonRow}>
 						<Button
 							variant="contained"
 							color="secondary"
-							to="/about"
+							to={`/about${param}`}
 							component={Link}
 						>
 							About
 						</Button>
 						<Button
 							variant="contained"
-							color="secondary"
-							to="/solutions"
+							color="primary"
+							to={`/solutions${param}`}
 							component={Link}
 						>
 							Solutions
@@ -68,6 +95,8 @@ function Home({ location: { search } }) {
 				</div>
 				<GlobalStats className={classes.stats}></GlobalStats>
 			</HeroSection>
+
+			<HiglightsSection />
 		</>
 	);
 }

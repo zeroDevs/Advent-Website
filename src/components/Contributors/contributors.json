@@ -17,7 +17,7 @@
 				"url": "https://www.linkedin.com/in/erik-herbranson/"
 			}
 		]
-	}, 
+	},
 	{
 		"tag": "Matt",
 		"name": "Matt Smith",
@@ -72,6 +72,44 @@
 			{
 				"label": "linkedin",
 				"url": "https://www.linkedin.com/in/brittney-postma-868928178/"
+			}
+		]
+	},
+	{
+		"tag": "Abdus",
+		"name": "Abdus Samad Azad",
+		"avatarImage": "images/abdus.png",
+		"links": [
+			{
+				"label": "github",
+				"url": "https://github.com/thisisabdus"
+			},
+			{
+				"label": "default",
+				"url": "https://abdus.xyz"
+			},
+			{
+				"label": "twitter",
+				"url": "https://twitter.com/thisisabdus"
+			}
+		]
+	},
+	{
+		"tag": "Meet",
+		"name": "Meet Mehta",
+		"avatarImage": "https://media.licdn.com/dms/image/C5103AQHvyda6VXgTnQ/profile-displayphoto-shrink_200_200/0?e=1580342400&v=beta&t=W_imOQrqO-JtU29k17_bWLKdhzP0m_hi-uLSBlx1cGI",
+		"links": [
+			{
+				"label": "linkedin",
+				"url": "https://www.linkedin.com/in/meetmehta1103/"
+			},
+			{
+				"label": "github",
+				"url": "https://github.com/Meet1103"
+			},
+			{
+				"label": "default",
+				"url": "https://meet1103.github.io/myPortfolio/"
 			}
 		]
 	}

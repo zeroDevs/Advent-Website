@@ -2,21 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import {
-	red,
-	blue,
-	purple,
-	yellow,
-	pink,
-	brown
-} from "@material-ui/core/colors";
+import LangIcon from "../LangIcon/LangIcon.component";
+import LazyLoad from "react-lazy-load";
 import {
 	Card,
 	CardMedia,
 	CardContent,
 	Button,
 	CardHeader,
-	Avatar,
 	Typography
 } from "@material-ui/core";
 
@@ -40,19 +33,16 @@ const useStyles = makeStyles(theme => ({
 		top: theme.spacing(2),
 		left: theme.spacing(1)
 	},
-	langBackgroundColor: props => ({
-		backgroundColor: props.langColor,
-		color: theme.palette.getContrastText(props.langColor)
-	}),
 	dayContainer: {
 		border: `1px solid ${theme.palette.common.white}`,
 		marginBottom: theme.spacing(1),
 		borderRadius: theme.shape.borderRadius,
 		padding: theme.spacing(0.5)
+	},
+	imgContainer: {
+		minHeight: 200
 	}
 }));
-
-const languageMap = require("../../configs/languages.json");
 
 function SolutionCard({
 	avatarUrl,
@@ -63,34 +53,30 @@ function SolutionCard({
 	langName,
 	...props
 }) {
-	const languageShortName =
-		(languageMap[langName] && languageMap[langName].shortName) || "?";
-	const languageColor =
-		(languageMap[langName] && languageMap[langName].background) || red[500];
-
-	const classes = useStyles({
-		classes: props.classes,
-		langColor: languageColor
-	});
+	const classes = useStyles();
 
 	const imageUrl = avatarUrl || `https://robohash.org/${username}`;
-
-	console.log(langName);
 
 	return (
 		<Card className={classes.root}>
 			<CardHeader
 				title={username}
 				subheader={moment(date).format("MM/DD, hh:mm a")}
-				avatar={
-					<Avatar className={classes.langBackgroundColor} title={langName}>
-						{languageShortName}
-					</Avatar>
-				}
+				avatar={<LangIcon langName={langName} />}
 			/>
-
-			<CardMedia className={classes.cardMedia} image={imageUrl} />
-
+			<div className={classes.imgContainer}>
+				<LazyLoad debounce={false} offsetVertical={100}>
+					<CardMedia
+						className={classes.cardMedia}
+						onError={e => {
+							e.target.src = `https://robohash.org/${username}`;
+						}}
+						image={imageUrl}
+						height={80}
+						component="img"
+					/>
+				</LazyLoad>
+			</div>
 			<CardContent>
 				<div className={classes.dayContainer}>
 					<Typography align="center" variant="body1">
@@ -100,6 +86,7 @@ function SolutionCard({
 
 				<Button
 					target="_blank"
+					rel="noopener noreferrer"
 					component="a"
 					href={solutionUrl}
 					variant="contained"

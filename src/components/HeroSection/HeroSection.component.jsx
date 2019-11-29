@@ -4,11 +4,7 @@ import PropTypes from "prop-types";
 import "./HeroSection.styles.css";
 
 function HeroSection({ children, className }) {
-	return (
-		<div className={`root ${className}`}>
-			<div className="content">{children}</div>
-		</div>
-	);
+	return <div className={`root ${className}`}>{children}</div>;
 }
 
 HeroSection.propTypes = {

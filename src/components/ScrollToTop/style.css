@@ -1,0 +1,19 @@
+.STTContainer {
+    position: fixed;
+    right: -100px;
+    bottom: 10px;
+    transition: right 0.5s;
+    cursor: pointer;
+    background-color: rgb(0, 0, 0, 0.6);
+    border: 1px solid rgb(255, 255, 255, 0.7);
+    padding: 15px;
+    z-index: 99999;
+}
+
+.STTContainer:focus {
+    outline: none;
+}
+
+.STTTransition {
+    right: 20px;
+}
