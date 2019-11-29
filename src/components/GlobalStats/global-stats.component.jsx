@@ -56,12 +56,7 @@ const GlobalStatsComponent = ({ className }) => {
 	const { stats, updateStats, isLoading } = useStats();
 
 	return (
-		<Grid
-			container
-			spacing={2}
-			justify="center"
-			className={`${classes.root} ${className}`}
-		>
+		<Grid container justify="center" className={`${classes.root} ${className}`}>
 			<Grid className={classes.stat}>
 				<FileCodeOutline className={classes.icon} />
 				<WaitingNum isLoading={isLoading} className={classes.number}>
@@ -74,13 +69,12 @@ const GlobalStatsComponent = ({ className }) => {
 				<WaitingNum isLoading={isLoading} className={classes.number}>
 					{stats.todaysSolutions}
 				</WaitingNum>
-				<div className={classes.text}>{`${new Date().toLocaleDateString(
-					undefined,
-					{
-						month: "short",
-						day: "numeric"
-					}
-				)} Submissions`}</div>
+				<div className={classes.text}>{`${new Date(
+					new Date().setMonth(11)
+				).toLocaleDateString(undefined, {
+					month: "short",
+					day: "numeric"
+				})} Submissions`}</div>
 			</Grid>
 			<Grid className={classes.stat}>
 				<AccountGroup className={classes.icon} />
