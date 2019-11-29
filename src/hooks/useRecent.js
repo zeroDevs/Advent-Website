@@ -5,7 +5,9 @@ export default function useRecent() {
 
 	useEffect(() => {
 		async function callRecentApiEndpoint() {
-			const response = await fetch("https://aocbot.zerobot.xyz/solutions/recent?qty=3");
+			const width = window.innerWidth < 600;
+			const qty = width ? 3 : 6;
+			const response = await fetch(`https://aocbot.zerobot.xyz/solutions/recent?qty=${qty}`);
 			const data = await response.json();
 			setRecent(data);
 		}
