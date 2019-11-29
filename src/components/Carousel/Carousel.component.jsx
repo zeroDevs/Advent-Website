@@ -33,7 +33,7 @@ function CarouselComponent({ data }) {
 	};
 	return (
 		<Carousel
-			swipeable={false}
+			swipeable={true}
 			draggable={false}
 			showDots={true}
 			responsive={responsive}
@@ -46,7 +46,7 @@ function CarouselComponent({ data }) {
 			customTransition="all .5"
 			transitionDuration={500}
 			containerClass="carousel-container"
-			removeArrowOnDeviceType={["tablet", "mobile"]}
+			removeArrowOnDeviceType={[]}
 			deviceType={"desktop"}
 			dotListClass="custom-dot-list-style"
 			itemClass="carousel-item-padding-40-px"
