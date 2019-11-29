@@ -4,7 +4,7 @@ import moment from "moment";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import LangIcon from "../LangIcon/LangIcon.component";
 import { red } from "@material-ui/core/colors";
-import LazyLoad from 'react-lazy-load';
+import LazyLoad from "react-lazy-load";
 import {
 	Card,
 	CardMedia,
@@ -39,6 +39,9 @@ const useStyles = makeStyles(theme => ({
 		marginBottom: theme.spacing(1),
 		borderRadius: theme.shape.borderRadius,
 		padding: theme.spacing(0.5)
+	},
+	imgContainer: {
+		minHeight: 200
 	}
 }));
 
@@ -62,22 +65,19 @@ function SolutionCard({
 				subheader={moment(date).format("MM/DD, hh:mm a")}
 				avatar={<LangIcon langName={langName} />}
 			/>
-
-			<LazyLoad
-	      debounce={false}
-	      offsetVertical={100}
-	      >
-				<CardMedia
-					className={classes.cardMedia}
-					onError={e => {
-						e.target.src = `https://robohash.org/${username}`;
-					}}
-					image={imageUrl}
-					height={80}
-					component="img"
-				/>
-			</LazyLoad>
-
+			<div className={classes.imgContainer}>
+				<LazyLoad debounce={false} offsetVertical={100}>
+					<CardMedia
+						className={classes.cardMedia}
+						onError={e => {
+							e.target.src = `https://robohash.org/${username}`;
+						}}
+						image={imageUrl}
+						height={80}
+						component="img"
+					/>
+				</LazyLoad>
+			</div>
 			<CardContent>
 				<div className={classes.dayContainer}>
 					<Typography align="center" variant="body1">
