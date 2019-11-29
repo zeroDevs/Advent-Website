@@ -23,6 +23,7 @@ const useStyles = makeStyles(theme => ({
 	usersContainer: {
 		flex: 1,
 		display: "flex",
+		justifyContent: "center",
 		flexWrap: "wrap"
 	},
 	emptyMessage: {
@@ -72,7 +73,8 @@ function Leaderboard(props) {
 	useEffect(() => {
 		setUsers(dataFromApi);
 		setIsLoadingData(!isLoadingData);
-	}, [dataFromApi, isLoadingData]);
+		// eslint-disable-next-line
+	}, [dataFromApi]);
 
 	const filteredUsers = users.filter(
 		user =>
