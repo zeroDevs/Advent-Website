@@ -92,7 +92,7 @@ const WaitingNum = ({ isLoading, children: num, className }) => (
 		{isLoading ? (
 			<CircularProgress color="secondary" size={25} />
 		) : (
-			<CountUp start={0} end={num} duration={3} />
+			<CountUp start={0} end={num || 0} duration={3} />
 		)}
 	</div>
 );
