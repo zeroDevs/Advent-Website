@@ -5,7 +5,7 @@ import useStats from "../../hooks/useStats";
 
 import { FileCodeOutline, CalendarMonth, AccountGroup } from "mdi-material-ui";
 import { useTheme } from "@material-ui/styles";
-import { CircularProgress } from "@material-ui/core";
+import { CircularProgress, Grid } from "@material-ui/core";
 import CountUp from "react-countup";
 
 const convertHex3To6 = hex =>
@@ -16,9 +16,7 @@ const convertHex3To6 = hex =>
 		: hex;
 
 const useStyles = makeStyles(theme => ({
-	root: {
-		display: "flex"
-	},
+	root: {},
 	stat: {
 		display: "flex",
 		flexDirection: "column",
@@ -33,7 +31,7 @@ const useStyles = makeStyles(theme => ({
 		color: theme.palette.secondary.main
 	},
 	text: {
-		...theme.typography.h6,
+		fontSize: "1rem",
 		color: `${convertHex3To6(theme.palette.text.primary)}aa`
 	}
 }));
@@ -43,15 +41,22 @@ const GlobalStatsComponent = ({ className }) => {
 	const { stats, updateStats, isLoading } = useStats();
 
 	return (
-		<div className={`${classes.root} ${className}`}>
-			<div className={classes.stat}>
+		<Grid
+			container
+			spacing={2}
+			justify="space-evenly"
+			className={`${classes.root} ${className}`}
+		>
+			{" "}
+			<Grid item md={3}></Grid>
+			<Grid item xs={12} sm={"auto"} className={classes.stat}>
 				<FileCodeOutline className={classes.icon} />
 				<WaitingNum isLoading={isLoading} className={classes.number}>
 					{stats.totalSolutions}
 				</WaitingNum>
 				<div className={classes.text}>Total Submissions</div>
-			</div>
-			<div className={classes.stat}>
+			</Grid>
+			<Grid item xs={12} sm={"auto"} className={classes.stat}>
 				<CalendarMonth className={classes.icon} />
 				<WaitingNum isLoading={isLoading} className={classes.number}>
 					{stats.todaysSolutions}
@@ -63,15 +68,16 @@ const GlobalStatsComponent = ({ className }) => {
 						day: "numeric"
 					}
 				)} Submissions`}</div>
-			</div>
-			<div className={classes.stat}>
+			</Grid>
+			<Grid item xs={12} sm={"auto"} className={classes.stat}>
 				<AccountGroup className={classes.icon} />
 				<WaitingNum isLoading={isLoading} className={classes.number}>
 					{stats.totalUsers}
 				</WaitingNum>
 				<div className={classes.text}>Total Students</div>
-			</div>
-		</div>
+			</Grid>
+			<Grid item md={3}></Grid>
+		</Grid>
 	);
 };
 
