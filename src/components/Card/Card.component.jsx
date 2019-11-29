@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import moment from "moment";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import LangIcon from "../LangIcon/LangIcon.component";
-import { red } from "@material-ui/core/colors";
 import LazyLoad from "react-lazy-load";
 import {
 	Card,

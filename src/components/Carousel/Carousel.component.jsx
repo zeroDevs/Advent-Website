@@ -53,7 +53,10 @@ function CarouselComponent({ data }) {
 		>
 			{data.map(user => {
 				return (
-					<div className={classes.container}>
+					<div
+						className={classes.container}
+						key={user._id + Math.random * 10000}
+					>
 						<Card
 							key={user.username + user._id}
 							avatarUrl={user.avatarUrl}

@@ -26,7 +26,7 @@ import { useStyles } from "./MenuDraw.styles";
 import NavLink from "../NavLink/NavLink.component";
 import { menuLinks } from "../../utils/siteConfig";
 
-function Logo({
+function MenuDraw({
 	open,
 	toggleDrawer,
 	toggleSubmissions,
@@ -38,7 +38,7 @@ function Logo({
 }) {
 	const classes = useStyles();
 	const queryParam = qs.parse(location.search).year;
-	const yearParam = queryParam ? `?year=${queryParam.year}` : "";
+	const yearParam = queryParam ? `?year=${queryParam}` : "";
 
 	return (
 		<Drawer
@@ -77,7 +77,7 @@ function Logo({
 						EmojiEvents: <EmojiEvents />
 					};
 					return (
-						<Fragment key={link.name+Math.random * 10000}>
+						<Fragment key={link.name + Math.random * 10000}>
 							<NavLink
 								text={link.name}
 								link={`${link.route}${yearParam}`}
@@ -119,4 +119,4 @@ function Logo({
 	);
 }
 
-export default Logo;
+export default MenuDraw;

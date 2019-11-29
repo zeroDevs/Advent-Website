@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { CircularProgress } from '@material-ui/core';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { Route, Switch, withRouter } from "react-router-dom";
-// import MetaTags from './components/MetaTags/MetaTags.component'
 
 import {
 	useUserContext,
@@ -23,6 +21,7 @@ import Nav from "./components/Navigation/Navigation.component";
 import { parseUrlParams } from "./utils/utils";
 import endPoints from "./configs/endpoints.json";
 import "./App.css";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop.component";
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -32,17 +31,23 @@ const useStyles = makeStyles(theme => ({
 
 function App({ location, location: { search }, history }) {
 	const classes = useStyles();
+	// eslint-disable-next-line
 	const [{ user }, userDispatch] = useUserContext();
 
 	useEffect(() => {
-		userDispatch({ type: USER_ACTION_TYPES.LOGIN });
+		userDispatch({
+			type: USER_ACTION_TYPES.LOGIN
+		});
 	}, [userDispatch]);
 
 	useEffect(() => {
 		if (search) {
 			const params = parseUrlParams(search);
 			if (params.token) {
-				userDispatch({ type: USER_ACTION_TYPES.LOGIN, payload: params.token });
+				userDispatch({
+					type: USER_ACTION_TYPES.LOGIN,
+					payload: params.token
+				});
 			}
 		}
 	}, [search, userDispatch]);
@@ -50,9 +55,9 @@ function App({ location, location: { search }, history }) {
 	return (
 		<React.Fragment>
 			<CssBaseline />
-			{/* <MetaTags /> */}
 			<main className={classes.root}>
 				<Nav className="navbar" />
+				<ScrollToTop />
 				<section className="main-section">
 					<Switch>
 						<Route exact path="/" component={Home} />
