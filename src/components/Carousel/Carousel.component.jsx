@@ -65,6 +65,7 @@ function CarouselComponent({ data }) {
 							day={user.dayNumber}
 							solutionUrl={user.url}
 							langName={user.langName}
+							isCarousel={true}
 						></Card>
 					</div>
 				);

@@ -25,6 +25,7 @@ function MostLoved() {
 							day={user.dayNumber}
 							solutionUrl={user.url}
 							langName={user.langName}
+							isCarousel={true}
 						/>
 					);
 				})}

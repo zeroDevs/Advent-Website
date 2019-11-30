@@ -26,6 +26,7 @@ function MostRecent() {
 							day={user.dayNumber}
 							solutionUrl={user.url}
 							langName={user.langName}
+							isCarousel={true}
 						/>
 					);
 				})}
