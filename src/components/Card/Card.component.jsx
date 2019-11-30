@@ -13,6 +13,11 @@ import {
 	Typography
 } from "@material-ui/core";
 
+import {
+	useUserContext,
+	USER_ACTION_TYPES
+} from "../../contexts/user/user.context";
+
 import UserRating from "../UserRating/UserRating.component";
 
 const useStyles = makeStyles(theme => ({
@@ -47,15 +52,21 @@ const useStyles = makeStyles(theme => ({
 function SolutionCard({
 	avatarUrl,
 	username,
+	userid,
 	date,
 	day,
 	solutionUrl,
 	langName,
+	ratings,
+	solutionId,
 	isCarousel,
 	...props
 }) {
 	const classes = useStyles();
-	console.log(isCarousel);
+
+	const [value, setValue] = React.useState(ratings);
+
+	const [{ user }, userDispatch] = useUserContext();
 
 	const imageUrl = avatarUrl || `https://robohash.org/${username}`;
 
@@ -114,7 +125,32 @@ function SolutionCard({
 					Solution
 				</Button>
 				{/* TODO: implement ratings */}
-				<UserRating value={0} onChange={() => {}} />
+				{/*hide ratings if user is not logged in*/}
+				{
+					user === null ? (null) : (
+
+						<UserRating value={value} username={username} onChange={
+							(event, newRating) => {
+								setValue(newRating);
+								console.log(`Rated with value ${newRating}`);
+
+								const response = fetch("https://aocbot.zerobot.xyz/solutions/vote", {
+									method: "POST",
+									headers: {
+										"Content-Type": "application/json",
+										"Authorization": `Bearer ${window.localStorage.getItem("token")}`
+									},
+									body: JSON.stringify({
+										solutionId,
+										userId: user.id,
+										ratingScore: newRating
+									})
+								})
+							}
+						} />
+
+					)
+				}
 			</CardContent>
 		</Card>
 	);
@@ -122,10 +158,13 @@ function SolutionCard({
 
 SolutionCard.propTypes = {
 	username: PropTypes.string.isRequired,
+	userid: PropTypes.number.isRequired,
 	date: PropTypes.string.isRequired,
 	day: PropTypes.string.isRequired,
 	avatarUrl: PropTypes.string,
 	solutionUrl: PropTypes.string.isRequired,
+	ratings: PropTypes.number.isRequired,
+	solutionId: PropTypes.string.isRequired,
 	isCarousel: PropTypes.bool.isRequired
 };
 
