@@ -72,7 +72,7 @@ function HiglightsSection({ data }) {
 						value="Most Recent"
 						control={<Radio color="primary" />}
 						label="Most Recent"
-						labelPlacement="start"
+						labelPlacement="center"
 						className={classes.radio}
 					/>
 					<FormControlLabel

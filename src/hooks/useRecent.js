@@ -6,7 +6,12 @@ export default function useRecent() {
 	useEffect(() => {
 		async function callRecentApiEndpoint() {
 			const width = window.innerWidth < 600;
-			const qty = width ? 3 : 6;
+			let qty = width ? 3 : 6;
+			const abc = () => {
+				const width = window.innerWidth < 600;
+				qty = width ? 3 : 6;
+			}
+			window.addEventListener("resize", abc);
 			const response = await fetch(`https://aocbot.zerobot.xyz/solutions/recent?qty=${qty}`);
 			const data = await response.json();
 			setRecent(data);
