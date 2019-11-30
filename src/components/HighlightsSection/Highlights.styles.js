@@ -5,16 +5,16 @@ import Radio from "@material-ui/core/Radio";
 
 export const useStyles = makeStyles(theme => ({
 	title: {
-		padding: "50px 0 0 0",
+		padding: "50px 0 20px 0",
 		textAlign: "center"
 	},
 	radio: {
 		display: "flex",
-		justifyContent: "center",
-		padding: "10px 0"
+		justifyContent: "center"
 	},
 	solutionsContainer: {
-		marginBottom: "50px"
+		marginTop: "50px",
+		marginBottom: "80px"
 	}
 }));
 
