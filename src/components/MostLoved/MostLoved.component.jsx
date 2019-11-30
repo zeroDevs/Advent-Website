@@ -21,10 +21,13 @@ function MostLoved() {
 							key={user.username + user._id}
 							avatarUrl={user.avatarUrl}
 							username={user.userName}
+							userid={user.userid}
 							date={user.Time}
 							day={user.dayNumber}
 							solutionUrl={user.url}
 							langName={user.langName}
+							ratings={user.averageRating}
+							solutionId={user._id}
 							isCarousel={true}
 						/>
 					);

@@ -21,12 +21,13 @@ const StyledRating = withStyles({
 	}
 })(Rating);
 
-function UserRating({ value, onChange }) {
+function UserRating({ value, username, onChange }) {
 	const classes = useStyles();
 	return (
 		<div className={classes.root}>
 			<StyledRating
-				name="solution-rating"
+				key={username}
+				name={username+(Math.random()*1000).toString()}
 				value={value}
 				precision={0.5}
 				onChange={onChange}
