@@ -21,7 +21,8 @@ const StyledRating = withStyles({
 	}
 })(Rating);
 
-function UserRating({ value, username, onChange }) {
+function UserRating({ value, isDisabled, username, onChange }) {
+	console.log(isDisabled)
 	const classes = useStyles();
 	return (
 		<div className={classes.root}>
@@ -29,6 +30,7 @@ function UserRating({ value, username, onChange }) {
 				key={username}
 				name={username+(Math.random()*1000).toString()}
 				value={value}
+				disabled={isDisabled}
 				precision={0.5}
 				onChange={onChange}
 				icon={<FavoriteIcon fontSize="inherit" />}
