@@ -89,6 +89,7 @@ const Nav = ({ location, history, className }) => {
 				openSubmissions={openSubmissions}
 				location={location}
 				user={user}
+				token={token}
 			/>
 		</>
 	);
