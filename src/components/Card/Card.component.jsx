@@ -55,7 +55,6 @@ function SolutionCard({
 	...props
 }) {
 	const classes = useStyles();
-	console.log(isCarousel);
 
 	const imageUrl = avatarUrl || `https://robohash.org/${username}`;
 
