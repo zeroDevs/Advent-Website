@@ -112,5 +112,20 @@
 				"url": "https://meet1103.github.io/myPortfolio/"
 			}
 		]
+	},
+	{
+		"tag": "E",
+		"name": "Sterling Walsh",
+		"avatarImage": "https://r1.ilikewallpaper.net/pic/201505/Tired_Minion_Coffee_Lover_iPad_Wallpaper_HD_640.jpg",
+		"links": [
+			{
+				"label": "linkedin",
+				"url": "https://www.linkedin.com/in/sterling-walsh-845a3416/"
+			},
+			{
+				"label": "github",
+				"url": "https://github.com/sterlingwalsh"
+			}
+		]
 	}
 ]
