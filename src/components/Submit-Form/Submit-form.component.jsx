@@ -132,7 +132,7 @@ function SubmitForm({ user }) {
 		if (isSuccessful) {
 			console.log("isSuccessful", isSuccessful);
 			setSuccessMessage(
-				`Submission Success!\n${langName} - ${date.toLocaleDateString()}`
+				`Submission Success!\n${langName}`
 			);
 			//add more messages
 			setState({ open: true, vertical: 'top', horizontal: 'right', snackMsg: `YAY!! You did it. 🙌🎉` });
