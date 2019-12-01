@@ -10,7 +10,8 @@ import {
 	CardContent,
 	Button,
 	CardHeader,
-	Typography
+	Typography,
+	Snackbar
 } from "@material-ui/core";
 
 import {
@@ -70,6 +71,20 @@ function SolutionCard({
 
 	const imageUrl = avatarUrl || `https://robohash.org/${username}`;
 
+	//snackbar
+	const [state, setState] = React.useState({
+    open: false,
+    vertical: 'top',
+    horizontal: 'center',
+    message: ''
+  });
+
+  const { vertical, horizontal, open, message } = state;
+
+  const handleClose = () => {
+    setState({ ...state, open: false });
+  };
+
 	return (
 		<Card className={classes.root}>
 			<CardHeader
@@ -127,11 +142,13 @@ function SolutionCard({
 				{/* TODO: implement ratings */}
 
 					<UserRating value={value} isDisabled={user===null?true:false} username={username} onChange={
-						(event, newRating) => {
+						
+						async(event, newRating) => {
+							//open snackbar
 							setValue(newRating);
 							console.log(`Rated with value ${newRating}`);
 
-							const response = fetch("https://aocbot.zerobot.xyz/solutions/vote", {
+							const response = await fetch("https://aocbot.zerobot.xyz/solutions/vote", {
 								method: "POST",
 								headers: {
 									"Content-Type": "application/json",
@@ -143,9 +160,23 @@ function SolutionCard({
 									ratingScore: newRating
 								})
 							})
+							const data = await response.json();
+							setState({ open: true, vertical: 'bottom', horizontal: 'center', message: data.error });
+							setValue(value)
+							console.log(data);
 						}
 					} />
 				}
+				<Snackbar
+	        anchorOrigin={{ vertical, horizontal }}
+	        key={`${vertical},${horizontal}`}
+	        open={open}
+	        onClose={handleClose}
+	        ContentProps={{
+	          'aria-describedby': 'message-id',
+	        }}
+	        message={<span id="message-id">{message}</span>}
+	      />
 			</CardContent>
 		</Card>
 	);
