@@ -88,6 +88,7 @@ function Solutions(props) {
 	useEffect(() => {
 		setSolutions(dataFromApi);
 		setIsLoadingData(!isLoadingData);
+		// eslint-disable-next-line
 	}, [dataFromApi]);
 
 	const applyFilters = (dateRange, selectedLangs, dateSort, nameSort) => {
@@ -197,6 +198,7 @@ function Solutions(props) {
 								day={user.dayNumber}
 								solutionUrl={user.url}
 								langName={user.langName}
+								isCarousel={false}
 							/>
 						))}
 					</div>

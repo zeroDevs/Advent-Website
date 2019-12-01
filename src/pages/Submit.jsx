@@ -42,9 +42,13 @@ const useStyles = makeStyles(theme => ({
 const Submit = props => {
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
-	const classes = useStyles({ isMobile, classes: props.classes });
+	const classes = useStyles({
+		isMobile,
+		classes: props.classes
+	});
 	// const fullScreen = useMediaQuery(theme.breakpoints.down("xs"));
 
+	// eslint-disable-next-line
 	const [{ user: userInfo }, userDispatch] = useUserContext();
 
 	const userId = userInfo && userInfo.id;

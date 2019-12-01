@@ -4,10 +4,11 @@ export default function useSolutions(year) {
 	const [solutions, setSolutions] = useState([]);
 
 	useEffect(() => {
+		const y = year;
 		async function callSolutionsApiEndpoint() {
-			if (year) {
+			if (y) {
 				try {
-					setSolutions(require(`../data/${year}.data.json`).solutions);
+					setSolutions(require(`../data/${y}.data.json`).solutions);
 				} catch (err) {
 					// Do nothing, user is notified no data exists for this year
 				}
@@ -18,7 +19,7 @@ export default function useSolutions(year) {
 			}
 		}
 		callSolutionsApiEndpoint();
-	}, []);
+	}, [year]);
 
 	return solutions;
 }

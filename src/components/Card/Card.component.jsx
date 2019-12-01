@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import moment from "moment";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import LangIcon from "../LangIcon/LangIcon.component";
-import { red } from "@material-ui/core/colors";
 import LazyLoad from "react-lazy-load";
 import {
 	Card,
@@ -52,9 +51,11 @@ function SolutionCard({
 	day,
 	solutionUrl,
 	langName,
+	isCarousel,
 	...props
 }) {
 	const classes = useStyles();
+	console.log(isCarousel);
 
 	const imageUrl = avatarUrl || `https://robohash.org/${username}`;
 
@@ -66,17 +67,33 @@ function SolutionCard({
 				avatar={<LangIcon langName={langName} />}
 			/>
 			<div className={classes.imgContainer}>
-				<LazyLoad debounce={false} offsetVertical={100}>
-					<CardMedia
-						className={classes.cardMedia}
-						onError={e => {
-							e.target.src = `https://robohash.org/${username}`;
-						}}
-						image={imageUrl}
-						height={80}
-						component="img"
-					/>
-				</LazyLoad>
+				{/*temporary fix*/}
+				{
+					isCarousel ? 
+						(
+							<CardMedia
+								className={classes.cardMedia}
+								onError={e => {
+									e.target.src = `https://robohash.org/${username}`;
+								}}
+								image={imageUrl}
+								height={80}
+								component="img"
+							/>
+						) : (
+							<LazyLoad debounce={false} offset={100}>
+								<CardMedia
+									className={classes.cardMedia}
+									onError={e => {
+										e.target.src = `https://robohash.org/${username}`;
+									}}
+									image={imageUrl}
+									height={80}
+									component="img"
+								/>
+							</LazyLoad>
+						)
+				}
 			</div>
 			<CardContent>
 				<div className={classes.dayContainer}>
@@ -108,7 +125,8 @@ SolutionCard.propTypes = {
 	date: PropTypes.string.isRequired,
 	day: PropTypes.string.isRequired,
 	avatarUrl: PropTypes.string,
-	solutionUrl: PropTypes.string.isRequired
+	solutionUrl: PropTypes.string.isRequired,
+	isCarousel: PropTypes.bool.isRequired
 };
 
 export default React.memo(SolutionCard);

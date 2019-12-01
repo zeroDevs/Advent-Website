@@ -1,38 +1,11 @@
-import React, { Fragment, useState, useEffect } from "react";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
-import { pink } from "@material-ui/core/colors";
-import Radio from "@material-ui/core/Radio";
+import React, { Fragment, useEffect } from "react";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { Typography } from "@material-ui/core";
 import useRecent from "../../hooks/useRecent";
 import useLoved from "../../hooks/useLoved";
 import CarouselComponent from "../Carousel/Carousel.component";
-
-const useStyles = makeStyles(theme => ({
-	title: {
-		padding: "50px 0 0 0",
-		textAlign: "center"
-	},
-	radio: {
-		display: "flex",
-		justifyContent: "center",
-		padding: "10px 50px"
-	},
-	solutionsContainer: {
-		marginBottom: "50px"
-	}
-}));
-
-const PinkRadio = withStyles({
-	root: {
-		color: pink[400],
-		"&$checked": {
-			color: pink[600]
-		}
-	},
-	checked: {}
-})(props => <Radio color="default" {...props} />);
+import { useStyles, PinkRadio, BlueRadio } from "./Highlights.styles";
 
 function HiglightsSection({ data }) {
 	const classes = useStyles();
@@ -53,7 +26,7 @@ function HiglightsSection({ data }) {
 
 	useEffect(() => {
 		setApiData(dataObj[radioValue]);
-	}, [dataObj[radioValue]]);
+	}, [dataObj, radioValue]);
 
 	return (
 		<Fragment>
@@ -70,7 +43,7 @@ function HiglightsSection({ data }) {
 				>
 					<FormControlLabel
 						value="Most Recent"
-						control={<Radio color="primary" />}
+						control={<BlueRadio color="default" />}
 						label="Most Recent"
 						labelPlacement="start"
 						className={classes.radio}

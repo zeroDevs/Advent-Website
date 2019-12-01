@@ -1,5 +1,5 @@
 import React, { useCallback, Fragment } from "react";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import {
 	useUserContext,
@@ -85,9 +85,11 @@ const Nav = ({ location, history, className }) => {
 				open={open}
 				toggleDrawer={toggleDrawer}
 				toggleSubmissions={toggleSubmissions}
+				handleLogout={handleLogout}
 				openSubmissions={openSubmissions}
 				location={location}
 				user={user}
+				token={token}
 			/>
 		</>
 	);

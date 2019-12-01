@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as qs from "query-string";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-	Button,
-	TextField,
-	Typography,
-	LinearProgress,
-	CircularProgress
-} from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
 
 import { Search as SearchIcon } from "@material-ui/icons";
 
@@ -79,6 +73,7 @@ function Leaderboard(props) {
 	useEffect(() => {
 		setUsers(dataFromApi);
 		setIsLoadingData(!isLoadingData);
+		// eslint-disable-next-line
 	}, [dataFromApi]);
 
 	const filteredUsers = users.filter(

@@ -6,7 +6,7 @@
 		background-repeat: no-repeat;
 		background-size: cover;
 		background-attachment: fixed;
-		height: 100%;
+		/* height: 100%; */
 	}
 
 	@media only screen and (max-width: 600px) {
@@ -16,7 +16,7 @@
 			background-repeat: no-repeat;
 			background-size: cover;
 			background-attachment: fixed;
-			height: 100%;
+			/* height: 100%; */
 		}
 	}
 }
@@ -28,16 +28,17 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
-	height: 100vh;
+	/* height: 100%; */
 }
 
-.content {
+/* .content {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 100%;
-	position: relative;
-}
+	 height: 100%; 
+	 position: relative; 
+	flex-direction: column;
+} */
 
 @media only screen and (max-width: 600px) {
 	.root {
@@ -46,6 +47,6 @@
 		background-repeat: no-repeat;
 		background-size: cover;
 		background-attachment: fixed;
-		height: 100vh;
+		/* height: 100%; */
 	}
 }
