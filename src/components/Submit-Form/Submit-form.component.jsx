@@ -4,6 +4,8 @@ import TextField from "@material-ui/core/TextField";
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import Snackbar from '@material-ui/core/Snackbar';
+import { amber, green } from '@material-ui/core/colors';
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { MuiPickersUtilsProvider, DatePicker } from "@material-ui/pickers";
@@ -41,7 +43,10 @@ const useStyles = makeStyles(theme => ({
 	name: {
 		...theme.typography.h5,
 		textAlign: "center"
-	}
+	},
+  info: {
+    backgroundColor: theme.palette.primary.main,
+  }
 }));
 
 function SubmitForm({ user }) {
@@ -53,6 +58,20 @@ function SubmitForm({ user }) {
 	const [isLoading, setIsLoading] = useState(false);
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
+
+	//snackbar
+	const [state, setState] = useState({
+    open: false,
+    vertical: 'top',
+    horizontal: 'right',
+    snackMsg: ''
+  });
+
+  const { vertical, horizontal, open, snackMsg } = state;
+
+  const handleClose = () => {
+    setState({ ...state, open: false });
+  };
 
 	const userName = user ? `${user.username}#${user.discriminator}` : "";
 	const avatarUrl = user
@@ -115,6 +134,8 @@ function SubmitForm({ user }) {
 			setSuccessMessage(
 				`Submission Success!\n${langName} - ${date.toLocaleDateString()}`
 			);
+			//add more messages
+			setState({ open: true, vertical: 'top', horizontal: 'right', snackMsg: `YAY!! You did it. 🙌🎉` });
 		} else {
 			console.log("isNotSuccessful", error);
 			setErrorMessage(error);
@@ -134,6 +155,20 @@ function SubmitForm({ user }) {
 
 	return (
 		<>
+			<Snackbar
+        anchorOrigin={{ vertical, horizontal }}
+        key={`${vertical},${horizontal}`}
+        open={open}
+        className={classes.info}
+        onClose={handleClose}
+        autoHideDuration={6000}
+        ContentProps={{
+          'aria-describedby': 'message-id',
+        }}
+        message={<span id="message-id" className={`${isError ? classes.error : classes.success}`}>
+        		{snackMsg}
+        	</span>}
+      />
 			<div className={classes.infoContainer}>
 				{user ? (
 					<>
