@@ -23,7 +23,9 @@ const useStyles = makeStyles(theme => ({
 	usersContainer: {
 		flex: 1,
 		display: "flex",
-		justifyContent: "center",
+		[theme.breakpoints.down('xs')]: {
+			justifyContent: "center",
+		},
 		flexWrap: "wrap"
 	},
 	emptyMessage: {
