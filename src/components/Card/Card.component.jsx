@@ -144,8 +144,6 @@ function SolutionCard({
 					<UserRating value={value} isDisabled={user===null?true:false} username={username} onChange={
 						
 						async(event, newRating) => {
-							//open snackbar
-							setValue(newRating);
 							console.log(`Rated with value ${newRating}`);
 
 							const response = await fetch("https://aocbot.zerobot.xyz/solutions/vote", {
@@ -157,13 +155,14 @@ function SolutionCard({
 								body: JSON.stringify({
 									solutionId,
 									userId: user.id,
-									ratingScore: newRating
+									ratingScore: newRating,
+									authorId: {userid}
 								})
 							})
 							const data = await response.json();
+							//open snackbar
 							setState({ open: true, vertical: 'bottom', horizontal: 'center', message: data.error });
-							setValue(value)
-							console.log(data);
+							data.isSuccessful ? setValue(newRating) : setValue(value)
 						}
 					} />
 				}
