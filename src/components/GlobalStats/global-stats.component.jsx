@@ -28,13 +28,13 @@ const useStyles = makeStyles(theme => ({
 					flexDirection: "row"
 			  })
 	}),
-	stat: {
+	stat: ({ isMed }) => ({
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
 		justifyContent: "center",
-		margin: `0px ${theme.spacing(5)}px`
-	},
+		margin: `0px ${theme.spacing(isMed ? 3 : 5)}px`
+	}),
 	icon: {
 		...theme.typography.h2,
 		color: `${convertHex3To6(theme.palette.text.primary)}55`
@@ -52,7 +52,8 @@ const useStyles = makeStyles(theme => ({
 const GlobalStatsComponent = ({ className }) => {
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
-	const classes = useStyles({ isMobile });
+	const isMed = useMediaQuery(theme.breakpoints.between("sm", "md"));
+	const classes = useStyles({ isMed, isMobile });
 	const { stats, updateStats, isLoading } = useStats();
 
 	return (

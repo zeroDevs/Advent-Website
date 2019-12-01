@@ -49,7 +49,7 @@ function MenuDraw({
 		>
 			{token ? (
 				<Fragment>
-					<Toolbar className={`menuUserContainer ${classes.userContainer}`}>
+					<Toolbar className={`menuUserContainer ${classes.menuUserContainer}`}>
 						<Typography variant="button">{user.username}</Typography>
 						<Avatar
 							variant={`${user.avatar ? "circle" : "square"}`}
