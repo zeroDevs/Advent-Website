@@ -65,7 +65,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function SubmitForm({ user }) {
-	const [date, setDate] = useState(Date.now());
+	const [date, setDate] = useState(1);
 	const [url, setUrl] = useState("");
 	const [langName, setLangName] = useState(Object.keys(listOfLangs)[0]);
 	const [message, setMessage] = useState("");
@@ -149,14 +149,14 @@ function SubmitForm({ user }) {
 		setLangName(event.target.value);
 	};
 	const handleDateChange = event => {
-		setDate(event.target.value.slice(4));
+		setDate(event.target.value);
 	};
 
 	const populateDates = () => {
 		let i;
 		const list = [];
 		for (i = 1; i < 26; i++) {
-			list.push(`Day ${i}`);
+			list.push(i);
 		}
 		return list;
 	};
@@ -198,7 +198,7 @@ function SubmitForm({ user }) {
 							className={classes.input}
 							style={{ gridAreas: "lang" }}
 						>
-							<InputLabel id="daypicker">Challenge</InputLabel>
+							<InputLabel id="daypicker">Challenge Day</InputLabel>
 							<Select
 								labelId="daypicker"
 								id="daypicker-label"
@@ -208,7 +208,7 @@ function SubmitForm({ user }) {
 								{populateDates().map(date => {
 									return (
 										<MenuItem key={date} value={date}>
-											{date}
+											Day {date}
 										</MenuItem>
 									);
 								})}
