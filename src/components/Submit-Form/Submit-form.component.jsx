@@ -10,14 +10,34 @@ import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { MuiPickersUtilsProvider, DatePicker } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
-import { FormControl, MenuItem, InputLabel } from "@material-ui/core";
+import { FormControl, MenuItem, InputLabel, Chip } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import FaceIcon from "@material-ui/icons/Error";
+import { red, purple, orange } from "@material-ui/core/colors";
 
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const listOfLangs = require("../../configs/languages.json");
 
 const useStyles = makeStyles(theme => ({
+	protip: {
+		display: "flex",
+		justifyContent: "center",
+		alignItems: "center",
+		marginTop: "25px",
+
+		"& p": {
+			paddingLeft: "15px"
+		}
+	},
+	chip: {
+		borderColor: orange[500],
+		color: orange[300],
+
+		"& i": {
+			color: orange[300]
+		}
+	},
 	input: {
 		width: "100%"
 	},
@@ -149,8 +169,17 @@ function SubmitForm({ user }) {
 	const handleLangNameInputChange = event => {
 		setLangName(event.target.value);
 	};
-	const handleDateChange = date => {
-		setDate(date);
+	const handleDateChange = event => {
+		setDate(event.target.value.slice(4));
+	};
+
+	const populateDates = () => {
+		let i;
+		const list = [];
+		for (i = 1; i < 26; i++) {
+			list.push(`Day ${i}`);
+		}
+		return list;
 	};
 
 	return (
@@ -200,16 +229,38 @@ function SubmitForm({ user }) {
 			{user && (
 				<Grid container spacing={2}>
 					<Grid item xs={12} sm={6}>
-						<MuiPickersUtilsProvider utils={DateFnsUtils}>
-							<DatePicker
-								format="MM/dd/yyyy"
-								id="date-picker-inline"
-								label="Advent Challenge Date"
+						<FormControl
+							className={classes.input}
+							style={{ gridAreas: "lang" }}
+						>
+							<InputLabel id="daypicker">Challenge</InputLabel>
+							<Select
+								labelId="daypicker"
+								id="daypicker-label"
 								value={date}
 								onChange={handleDateChange}
-								className={classes.input}
-							/>
-						</MuiPickersUtilsProvider>
+							>
+								{populateDates().map(date => {
+									return (
+										<MenuItem key={date} value={date}>
+											{date}
+										</MenuItem>
+									);
+								})}
+							</Select>
+						</FormControl>
+						{
+							// 	<MuiPickersUtilsProvider utils={DateFnsUtils}>
+							// 	<DatePicker
+							// 		format="MM/dd/yyyy"
+							// 		id="date-picker-inline"
+							// 		label="Advent Challenge Date"
+							// 		value={date}
+							// 		onChange={handleDateChange}
+							// 		className={classes.input}
+							// 	/>
+							// </MuiPickersUtilsProvider>
+						}
 					</Grid>
 					<Grid item xs={12} sm={6}>
 						<FormControl
@@ -243,7 +294,20 @@ function SubmitForm({ user }) {
 							onChange={handleUrlInputChange}
 							fullWidth
 						/>
+
+						<div className={classes.protip}>
+							<Chip
+								className={classes.chip}
+								icon={<FaceIcon />}
+								label="TIP"
+								color="secondary"
+								variant="outlined"
+							/>
+
+							<p>Part 1 and Part 2 should be submitted in the same link!</p>
+						</div>
 					</Grid>
+
 					<Grid item xs={12}>
 						<Button
 							style={{ gridAreas: "sub" }}
