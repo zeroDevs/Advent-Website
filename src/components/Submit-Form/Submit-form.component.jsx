@@ -149,8 +149,7 @@ function SubmitForm({ user }) {
 		setLangName(event.target.value);
 	};
 	const handleDateChange = event => {
-		console.log(event.target.value);
-		setDate(event.target.value);
+		setDate(event.target.value.slice(4));
 	};
 
 	const populateDates = () => {
@@ -159,8 +158,6 @@ function SubmitForm({ user }) {
 		for (i = 1; i < 26; i++) {
 			list.push(`Day ${i}`);
 		}
-
-		console.log(list);
 		return list;
 	};
 
