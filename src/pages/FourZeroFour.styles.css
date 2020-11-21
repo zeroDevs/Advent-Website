@@ -1,7 +1,7 @@
 /* IOS SPECIFIC CSS */
 @supports (-webkit-overflow-scrolling: touch) {
     .hero {
-        background-image: url('/images/adventlightsout.png');
+        background-image: url('https://host.abdus.net/images/adventlightsout.png');
         background-position: center center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -11,7 +11,7 @@
 
   @media only screen and (max-width: 600px) {
     .hero {
-        background-image: url('/images/adventlightsout-mobile.png');
+        background-image: url('https://host.abdus.net/images/adventlightsout-mobile.png');
         background-position: center center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -23,7 +23,7 @@
 
 /* OTHER CSS */
 .hero {
-    background-image: url('/images/adventlightsout.png');
+    background-image: url('https://host.abdus.net/images/adventlightsout.png');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -54,7 +54,7 @@
 
 @media only screen and (max-width: 600px) {
     .hero {
-        background-image: url('/images/adventlightsout-mobile.png');
+        background-image: url('https://host.abdus.net/images/adventlightsout-mobile.png');
         background-position: center center;
         background-repeat: no-repeat;
         background-size: cover;
