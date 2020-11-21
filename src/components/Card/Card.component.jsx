@@ -15,8 +15,7 @@ import {
 } from "@material-ui/core";
 
 import {
-	useUserContext,
-	USER_ACTION_TYPES
+	useUserContext
 } from "../../contexts/user/user.context";
 
 import UserRating from "../UserRating/UserRating.component";
@@ -67,6 +66,7 @@ function SolutionCard({
 
 	const [value, setValue] = React.useState(ratings);
 
+	// eslint-disable-next-line no-unused-vars
 	const [{ user }, userDispatch] = useUserContext();
 
 	const imageUrl = avatarUrl || `https://robohash.org/${username}`;
@@ -129,17 +129,15 @@ function SolutionCard({
 								component="img"
 							/>
 						) : (
-							// <LazyLoad debounce={false} offset={100}>
-								<CardMedia
-									className={classes.cardMedia}
-									onError={e => {
-										e.target.src = `https://robohash.org/${username}`;
-									}}
-									image={imageUrl}
-									height={80}
-									component="img"
-								/>
-							// </LazyLoad>
+							<CardMedia
+								className={classes.cardMedia}
+								onError={e => {
+									e.target.src = `https://robohash.org/${username}`;
+								}}
+								image={imageUrl}
+								height={80}
+								component="img"
+							/>
 						)
 				}
 			</div>

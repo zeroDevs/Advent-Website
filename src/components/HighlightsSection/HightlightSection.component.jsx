@@ -9,6 +9,7 @@ import { useStyles, PinkRadio, BlueRadio } from "./Highlights.styles";
 
 function HiglightsSection({ data }) {
 	const classes = useStyles();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const dataObj = {
 		"Most Recent": useRecent(),
 		"Most Loved": useLoved()

@@ -6,12 +6,12 @@ const useInfiniteScroll = (callback) => {
   const handleScroll = () => {
     if (!(window.innerHeight + window.pageYOffset >= document.body.scrollHeight) || isFetching) return;
     setIsFetching(true);
-    console.log('hell2')
   }
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -19,6 +19,7 @@ const useInfiniteScroll = (callback) => {
     callback(() => {
       console.log('called back');
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFetching]);
 
   return [isFetching, setIsFetching];

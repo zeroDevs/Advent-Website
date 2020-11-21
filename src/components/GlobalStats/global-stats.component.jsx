@@ -54,6 +54,7 @@ const GlobalStatsComponent = ({ className }) => {
 	const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
 	const isMed = useMediaQuery(theme.breakpoints.between("sm", "md"));
 	const classes = useStyles({ isMed, isMobile });
+	// eslint-disable-next-line no-unused-vars
 	const { stats, updateStats, isLoading } = useStats();
 
 	return (
