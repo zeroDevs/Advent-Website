@@ -22,7 +22,6 @@ const StyledRating = withStyles({
 })(Rating);
 
 function UserRating({ value, isDisabled, username, onChange }) {
-	console.log(isDisabled)
 	const classes = useStyles();
 	return (
 		<div className={classes.root}>

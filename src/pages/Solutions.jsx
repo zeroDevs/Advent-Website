@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as qs from "query-string";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, TextField } from "@material-ui/core";
+import { Button, TextField, CircularProgress } from "@material-ui/core";
 
 import {
 	Search as SearchIcon,
@@ -21,6 +21,7 @@ import {
 } from "../utils/sorts";
 import useSolutions from "../hooks/useSolutions";
 import useDrawer from "../hooks/useDrawer";
+import useInfiniteScroll from "../hooks/useInfiniteScroll";
 
 import MetaTags from "../components/MetaTags/MetaTags.component";
 import NothingToSee from "../components/NothingToSee/NothingToSee.component";
@@ -69,7 +70,13 @@ const useStyles = makeStyles(theme => ({
 		display: "flex",
 		justifyContent: "center",
 		margin: theme.spacing(0, 2)
-	}
+	},
+	circularProgress: {
+		color: "#fff",
+		margin: "auto",
+		borderRadius: "50%",
+		boxShadow: "0 0 20px 5px rgba(255, 255, 255, .45)",
+	},
 }));
 
 function Solutions(props) {
@@ -82,6 +89,33 @@ function Solutions(props) {
 	const [searchText, setSearchText] = useState("");
 	const [isLoadingData, setIsLoadingData] = useState(false);
 
+	const [listItems, setListItems] = useState([]);
+	const [isFetching, setIsFetching] = useInfiniteScroll(fetchMoreSolutions);
+	const [currentPointer, setCurrentPointer] = useState(0);
+
+	// hoist
+	function fetchMoreSolutions() {
+		console.log('ping')
+		setListItems((prevState) => [
+			...prevState,
+			...solutions.slice(currentPointer, currentPointer + 20)
+		]);
+		setCurrentPointer(currentPointer + 20);
+
+		setIsFetching(false);
+	}
+
+	// const updateLazySolutions = () => {
+	// 	console.log('112')
+	// 	const splicedArray = solutions.slice(0, listItems.length);
+	// 	let areArraysEqual = listItems.length === splicedArray.length && listItems.every((e, i) => {
+	// 		return e === splicedArray[i];
+	// 	});
+
+	// 	if(!areArraysEqual) setListItems(() => [...solutions.slice(0, currentPointer)]);
+	// 	else return;
+	// }
+
 	const handleShowSearch = () => setShowSearch(!showSearch);
 	const handleTextInput = event => setSearchText(event.target.value);
 
@@ -89,7 +123,18 @@ function Solutions(props) {
 
 	useEffect(() => {
 		setSolutions(dataFromApi);
+		console.log(dataFromApi)
 		setIsLoadingData(!isLoadingData);
+
+		if(dataFromApi) {
+			console.log('ping22')
+			setListItems((prevState) => [
+				...prevState,
+				...dataFromApi.slice(currentPointer, currentPointer + 20)
+			]);
+			setCurrentPointer(currentPointer + 20);
+		}
+
 		// eslint-disable-next-line
 	}, [dataFromApi]);
 
@@ -118,12 +163,15 @@ function Solutions(props) {
 
 		setSolutions(copyOfMainData);
 	};
-
-	const filteredSolutions = solutions.filter(
+	
+	const filteredSolutions = listItems.filter(
 		solution =>
 			solution.userName &&
 			solution.userName.toLowerCase().includes(searchText.toLowerCase())
 	);
+
+	console.log(listItems)
+	console.log(filteredSolutions)
 
 	const hasSolutionsToShow = filteredSolutions && filteredSolutions.length > 0;
 
@@ -206,6 +254,14 @@ function Solutions(props) {
 								isCarousel={false}
 							/>
 						))}
+						{isFetching && (
+							<CircularProgress
+							className={classes.circularProgress}
+								size={64}
+								disableShrink
+								thickness={4}
+							/>
+						)}
 					</div>
 				</div>
 			)}

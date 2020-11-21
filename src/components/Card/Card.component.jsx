@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import moment from "moment";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import LangIcon from "../LangIcon/LangIcon.component";
-import LazyLoad from "react-lazy-load";
+// import LazyLoad from "react-lazy-load";
 import {
 	Card,
 	CardMedia,
@@ -85,6 +85,28 @@ function SolutionCard({
     setState({ ...state, open: false });
   };
 
+  const handleRatings = async (event, newRating) => {
+			console.log(`Rated with value ${newRating}`);
+
+			const response = await fetch("https://aocbot.zerobot.xyz/solutions/vote", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					"Authorization": `Bearer ${window.localStorage.getItem("token")}`
+				},
+				body: JSON.stringify({
+					solutionId,
+					userId: user.id,
+					ratingScore: newRating,
+					authorId: {userid}
+				})
+			})
+			const data = await response.json();
+			//open snackbar
+			setState({ open: true, vertical: 'bottom', horizontal: 'center', message: data.error });
+			data.isSuccessful ? setValue(newRating) : setValue(value)
+  }
+
 	return (
 		<Card className={classes.root}>
 			<CardHeader
@@ -107,7 +129,7 @@ function SolutionCard({
 								component="img"
 							/>
 						) : (
-							<LazyLoad debounce={false} offset={100}>
+							// <LazyLoad debounce={false} offset={100}>
 								<CardMedia
 									className={classes.cardMedia}
 									onError={e => {
@@ -117,7 +139,7 @@ function SolutionCard({
 									height={80}
 									component="img"
 								/>
-							</LazyLoad>
+							// </LazyLoad>
 						)
 				}
 			</div>
@@ -141,30 +163,7 @@ function SolutionCard({
 				</Button>
 				{/* TODO: implement ratings */}
 
-					<UserRating value={value} isDisabled={user===null?true:false} username={username} onChange={
-						
-						async(event, newRating) => {
-							console.log(`Rated with value ${newRating}`);
-
-							const response = await fetch("https://aocbot.zerobot.xyz/solutions/vote", {
-								method: "POST",
-								headers: {
-									"Content-Type": "application/json",
-									"Authorization": `Bearer ${window.localStorage.getItem("token")}`
-								},
-								body: JSON.stringify({
-									solutionId,
-									userId: user.id,
-									ratingScore: newRating,
-									authorId: {userid}
-								})
-							})
-							const data = await response.json();
-							//open snackbar
-							setState({ open: true, vertical: 'bottom', horizontal: 'center', message: data.error });
-							data.isSuccessful ? setValue(newRating) : setValue(value)
-						}
-					} />
+					<UserRating value={value} isDisabled={user===null?true:false} username={username} onChange={(event, newRating) => handleRatings(event, newRating)} />
 				}
 				<Snackbar
 	        anchorOrigin={{ vertical, horizontal }}
