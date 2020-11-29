@@ -91,6 +91,7 @@ const Archive = () => {
           onChange={handleChange}
           aria-label="styled tabs example"
           variant="scrollable"
+          position="fixed"
           scrollButtons="on">
           {
             years.map(year => (

@@ -240,6 +240,7 @@ function Solutions(props) {
 								ratings={user.averageRating}
 								solutionId={user._id}
 								isCarousel={false}
+								isArchiveCard={false}
 							/>
 						))}
 						{isFetching && (

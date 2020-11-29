@@ -60,6 +60,7 @@ function SolutionCard({
 	ratings,
 	solutionId,
 	isCarousel,
+	isArchiveCard,
 	...props
 }) {
 	const classes = useStyles();
@@ -161,8 +162,10 @@ function SolutionCard({
 				</Button>
 				{/* TODO: implement ratings */}
 
+				{!isArchiveCard && (
 					<UserRating value={value} isDisabled={user===null?true:false} username={username} onChange={(event, newRating) => handleRatings(event, newRating)} />
-				}
+				)}
+
 				<Snackbar
 	        anchorOrigin={{ vertical, horizontal }}
 	        key={`${vertical},${horizontal}`}
