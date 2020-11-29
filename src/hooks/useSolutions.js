@@ -8,7 +8,7 @@ export default function useSolutions(year) {
 		async function callSolutionsApiEndpoint() {
 			if (y) {
 				try {
-					const response = await fetch(`http://localhost:8001/archive/${y}`);
+					const response = await fetch(`https://aocbot.zerobot.xyz/archive/${y}`);
 					const data = await response.json();
 					setSolutions(data);
 				} catch (err) {
