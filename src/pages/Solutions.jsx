@@ -97,7 +97,7 @@ function Solutions(props) {
 		console.log('ping')
 		setListItems((prevState) => [
 			...prevState,
-			...solutions.slice(currentPointer, currentPointer + 20)
+			...solutions.filter(s => s.userName.toLowerCase().includes(searchText.toLowerCase())).slice(currentPointer, currentPointer + 20)
 		]);
 		setCurrentPointer(currentPointer + 20);
 
@@ -105,9 +105,24 @@ function Solutions(props) {
 	}
 
 	const handleShowSearch = () => setShowSearch(!showSearch);
-	const handleTextInput = event => setSearchText(event.target.value);
+	const handleTextInput = event => {
+		setSearchText(event.target.value);
+	}
+
+	const resetLazyItems = (data) => {
+		console.log('fo')
+		setListItems(() => [
+			...data.filter(s => s.userName.toLowerCase().includes(searchText.toLowerCase())).slice(0, 20)
+		]);
+		setCurrentPointer(20);
+	}
 
 	const classes = useStyles();
+
+	useEffect(() => {
+		resetLazyItems(solutions);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [searchText]);
 
 	useEffect(() => {
 		setSolutions(dataFromApi);
@@ -116,11 +131,7 @@ function Solutions(props) {
 
 		if(dataFromApi) {
 			console.log('ping22')
-			setListItems((prevState) => [
-				...prevState,
-				...dataFromApi.slice(0, 20)
-			]);
-			setCurrentPointer(20);
+			resetLazyItems(dataFromApi);
 		}
 
 		// eslint-disable-next-line
@@ -150,18 +161,10 @@ function Solutions(props) {
 		}
 
 		setSolutions(copyOfMainData);
+		resetLazyItems(copyOfMainData);
 	};
-	
-	const filteredSolutions = listItems.filter(
-		solution =>
-			solution.userName &&
-			solution.userName.toLowerCase().includes(searchText.toLowerCase())
-	);
 
-	console.log(listItems)
-	console.log(filteredSolutions)
-
-	const hasSolutionsToShow = filteredSolutions && filteredSolutions.length > 0;
+	const hasSolutionsToShow = listItems && listItems.length > 0;
 
 	let { title, description, pageUrl } = props;
 	title = "Advent of Code Solutions";
@@ -227,7 +230,7 @@ function Solutions(props) {
 			{hasSolutionsToShow && !isLoadingData && (
 				<div className={classes.container}>
 					<div className={classes.solutionsContainer}>
-						{filteredSolutions.map(user => (
+						{listItems.map(user => (
 							<Card
 								key={user.username + user._id}
 								avatarUrl={user.avatarUrl}

@@ -66,7 +66,7 @@ function App({ location, location: { search }, history }) {
 						<Route exact path="/submit" component={Submit} />
 						<Route exact path="/solutions" component={Solutions} />
 						<Route exact path="/leaderboard" component={Leaderboard} />
-						<Route path="/archive" component={Archive} />
+						<Route exact path="/archive" component={Archive} />
 						<Route
 							from="/login"
 							component={({ location }) => {
