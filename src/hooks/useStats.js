@@ -4,9 +4,6 @@ import { useState, useEffect, useCallback } from "react";
 export default () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [stats, setStats] = useState({
-		// todaysSolutions: 34135,
-		// totalSolutions: 18944,
-		// totalUsers: 123
 	});
 
 	const updateStats = useCallback(async () => {
