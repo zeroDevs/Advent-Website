@@ -28,6 +28,12 @@ module.exports = {
 			dividerAfter: true
 		},
 		{
+			name: "Archive",
+			route: "/archive",
+			icon: "",
+			dividerAfter: true
+		},
+		{
 			name: "View Solutions",
 			route: "/solutions",
 			icon: "EyeOutline"

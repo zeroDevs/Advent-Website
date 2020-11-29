@@ -8,7 +8,9 @@ export default function useSolutions(year) {
 		async function callSolutionsApiEndpoint() {
 			if (y) {
 				try {
-					setSolutions(require(`../data/${y}.data.json`).solutions);
+					const response = await fetch(`http://localhost:8001/archive/${y}`);
+					const data = await response.json();
+					setSolutions(data);
 				} catch (err) {
 					// Do nothing, user is notified no data exists for this year
 				}

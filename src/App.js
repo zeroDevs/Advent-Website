@@ -15,6 +15,7 @@ import Solutions from "./pages/Solutions";
 import FourZeroFour from "./pages/FourZeroFour";
 import Submit from "./pages/Submit";
 import Leaderboard from "./pages/Leaderboard";
+import Archive from "./pages/Archive";
 
 import Nav from "./components/Navigation/Navigation.component";
 
@@ -65,6 +66,7 @@ function App({ location, location: { search }, history }) {
 						<Route exact path="/submit" component={Submit} />
 						<Route exact path="/solutions" component={Solutions} />
 						<Route exact path="/leaderboard" component={Leaderboard} />
+						<Route path="/archive" component={Archive} />
 						<Route
 							from="/login"
 							component={({ location }) => {

@@ -93,7 +93,6 @@ function Solutions(props) {
 	const [isFetching, setIsFetching] = useInfiniteScroll(fetchMoreSolutions);
 	const [currentPointer, setCurrentPointer] = useState(0);
 
-	// hoist
 	function fetchMoreSolutions() {
 		console.log('ping')
 		setListItems((prevState) => [
@@ -104,17 +103,6 @@ function Solutions(props) {
 
 		setIsFetching(false);
 	}
-
-	// const updateLazySolutions = () => {
-	// 	console.log('112')
-	// 	const splicedArray = solutions.slice(0, listItems.length);
-	// 	let areArraysEqual = listItems.length === splicedArray.length && listItems.every((e, i) => {
-	// 		return e === splicedArray[i];
-	// 	});
-
-	// 	if(!areArraysEqual) setListItems(() => [...solutions.slice(0, currentPointer)]);
-	// 	else return;
-	// }
 
 	const handleShowSearch = () => setShowSearch(!showSearch);
 	const handleTextInput = event => setSearchText(event.target.value);
