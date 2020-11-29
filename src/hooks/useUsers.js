@@ -8,7 +8,7 @@ export default function useUsers(year) {
 			async function callUsersApiEndpoint() {
 				if (year) {
 					try {
-						setUsers(require(`../data/${year}.data.json`).users);
+						// setUsers(require(`../data/${year}.data.json`).users);
 					} catch (err) {
 						// Do nothing, user is notified no data exists for this year
 					}

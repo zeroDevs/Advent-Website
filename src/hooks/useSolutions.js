@@ -10,7 +10,8 @@ export default function useSolutions(year) {
 				try {
 					const response = await fetch(`https://aocbot.zerobot.xyz/archive/${y}`);
 					const data = await response.json();
-					setSolutions(data);
+					if(y===2018) setSolutions(data.solutions)
+					else setSolutions(data);
 				} catch (err) {
 					// Do nothing, user is notified no data exists for this year
 				}

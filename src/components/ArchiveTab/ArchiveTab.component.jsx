@@ -76,15 +76,14 @@ const ArchiveTabComponent = (props) => {
 
   useEffect(() => {
     if(dataFromApi.error) setIsError(true);
-    else setSolutions(dataFromApi.solutions);
-    console.log(dataFromApi);
+    else setSolutions(dataFromApi);
     setIsLoading(!isLoading);
 
-    if(dataFromApi.solutions) {
+    if(dataFromApi) {
 			console.log('ping22')
 			setListItems((prevState) => [
 				...prevState,
-				...dataFromApi.solutions.slice(0, 20)
+				...dataFromApi.slice(0, 20)
 			]);
 			setCurrentPointer(20);
 		}
