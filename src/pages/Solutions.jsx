@@ -130,9 +130,9 @@ function Solutions(props) {
 			console.log('ping22')
 			setListItems((prevState) => [
 				...prevState,
-				...dataFromApi.slice(currentPointer, currentPointer + 20)
+				...dataFromApi.slice(0, 20)
 			]);
-			setCurrentPointer(currentPointer + 20);
+			setCurrentPointer(20);
 		}
 
 		// eslint-disable-next-line
