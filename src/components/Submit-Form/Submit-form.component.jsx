@@ -175,7 +175,7 @@ function SubmitForm({ user }) {
 			return setIsLoading(false);
 		}
 
-		const submissionEndpoint = "http://localhost:8001/api/submit";
+		const submissionEndpoint = "https://aocbot.zerobot.xyz/api/submit";
 		const { isSuccessful, error } = await fetch(submissionEndpoint, {
 			method: "POST",
 			headers: {
