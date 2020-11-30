@@ -64,7 +64,37 @@ const useStyles = makeStyles(theme => ({
 	},
   info: {
     backgroundColor: theme.palette.primary.main,
-  }
+  },
+  btnPush: {
+  	display: "block",
+	  position: "relative",
+	  paddingLeft: "10px",
+	  paddingRight: "10px",
+	  margin: "10px 20px 10px 0",
+	  textAlign: "center",
+	  lineHeight: "50px",
+	  color: "rgba(0, 0, 0, 0.87)",
+	  background: "#00bcd4",
+	  borderRadius: "5px",
+	  transition: "all 0.2s",
+	  textDecoration: "none",
+	  boxShadow: "0px 5px 0px 0px #1E8185",
+
+	  "&:hover": {
+		  marginTop: "15px",
+		  marginBottom: "5px",
+		  boxShadow: "0px 0px 0px 0px #1E8185",
+		}
+	},
+	welcomeMessage: {
+		...theme.typography.body,
+		textAlign: "center",
+		fontSize: "1.2em",
+		display: "flex",
+		justifyContent: "center",
+		alignItems: "center",
+		flexDirection: "column"
+	},
 }));
 
 function SubmitForm({ user }) {
@@ -82,10 +112,18 @@ function SubmitForm({ user }) {
     open: false,
     vertical: 'top',
     horizontal: 'right',
-    snackMsg: ''
+    snackMsg: '',
+    isSubmitted: false,
+    isSuccess: false,
+    twitterIntentUrl: ''
   });
 
-  const { vertical, horizontal, open, snackMsg } = state;
+  //twitter intent
+  const twitterIntentGenerator = (date, url) => {
+  	return `https://twitter.com/intent/tweet?text=I%20just%20posted%20my%20solution%20for%20AoC%20day%20${date}%20on%20@zerotomasteryio%27s%20leaderboard%2C%20check%20it%20out%20here%3A${url}%20or%20find%20out%20more%20here%3A%20https%3A//bit.ly/aoc-ztm-2020&hashtags=ztm%2Czerotomastery%2CWebDev%2CDEVCommunity%2CCodeNewbie%2C100DaysOfCode`;
+  }
+
+  const { vertical, horizontal, open, snackMsg, isSubmitted, isSuccess, twitterIntentUrl } = state;
 
   const handleClose = () => {
     setState({ ...state, open: false });
@@ -137,7 +175,7 @@ function SubmitForm({ user }) {
 			return setIsLoading(false);
 		}
 
-		const submissionEndpoint = "https://aocbot.zerobot.xyz/api/submit";
+		const submissionEndpoint = "http://localhost:8001/api/submit";
 		const { isSuccessful, error } = await fetch(submissionEndpoint, {
 			method: "POST",
 			headers: {
@@ -153,10 +191,12 @@ function SubmitForm({ user }) {
 				`Submission Success!\n${langName}`
 			);
 			//add more messages
-			setState({ open: true, vertical: 'top', horizontal: 'right', snackMsg: `YAY!! You did it. 🙌🎉` });
+			const twUrl = twitterIntentGenerator(date, url);
+			setState({ open: true, twitterIntentUrl: twUrl, isSubmitted: true, isSuccess: true, vertical: 'top', horizontal: 'right', snackMsg: `YAY!! You did it. 🙌🎉` });
 		} else {
 			console.log("isNotSuccessful", error);
 			setErrorMessage(error);
+			setState({ isSubmitted: true });
 		}
 		setIsLoading(false);
 	};
@@ -200,7 +240,7 @@ function SubmitForm({ user }) {
 				{user ? (
 					<>
 						<div className={classes.name}>{userName}</div>
-						{message ? (
+						{message && !isSuccess ? (
 							<div className={`${isError ? classes.error : classes.success}`}>
 								{message.split("\n").reduce((acc, item, index, arr) => {
 									acc.push(item);
@@ -224,7 +264,7 @@ function SubmitForm({ user }) {
 					</Button>
 				)}
 			</div>
-			{user && (
+			{user && !isSuccess && (
 				<Grid container spacing={2}>
 					<Grid item xs={12} sm={6}>
 						<FormControl
@@ -325,6 +365,14 @@ function SubmitForm({ user }) {
 					</Grid>
 				</Grid>
 			)}
+
+			{user && isSubmitted && isSuccess && (
+				<div className={classes.welcomeMessage}>
+					<div>Phew!! One more down.</div>
+					<a href={twitterIntentUrl} target="_blank" rel="noopener noreferrer" title="Button push lightblue" className={classes.btnPush}>Tweet and let the world know!</a>
+				</div>
+			)}
+
 		</>
 	);
 }
