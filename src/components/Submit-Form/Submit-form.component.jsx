@@ -121,7 +121,7 @@ function SubmitForm({ user }) {
 	//twitter intent
 	const twitterIntentGenerator = (date, rawUrl) => {
 		const url = rawUrl.split('#')[0]
-		return `https://twitter.com/intent/tweet?text=I%20just%20posted%20my%20solution%20for%20AoC%20day%20${date}%20on%20@zerotomasteryio%27s%20leaderboard%2C%20check%20it%20out%20here%3A%20${url}%20or%20find%20out%20more%20here%3A%20https%3A//bit.ly/aoc-ztm-2020&hashtags=ztm%2Czerotomastery%2CWebDev%2CDEVCommunity%2CCodeNewbie%2C100DaysOfCode%2CAdventOfCode%2Cadventofcode2020%2CAOC `;
+		return `https://twitter.com/intent/tweet?text=I%20just%20posted%20my%20solution%20for%20AoC%20day%20${date}%20on%20@zerotomasteryio%27s%20leaderboard%2C%20check%20it%20out%20here%3A%20${url}%20or%20find%20out%20more%20here%3A%20https%3A//bit.ly/aoc-2020-ztm&hashtags=ztm%2Czerotomastery%2CWebDev%2CDEVCommunity%2CCodeNewbie%2C100DaysOfCode%2CAdventOfCode%2Cadventofcode2020%2CAOC `;
 	}
 
 	const { vertical, horizontal, open, snackMsg, isSubmitted, isSuccess, twitterIntentUrl } = state;
