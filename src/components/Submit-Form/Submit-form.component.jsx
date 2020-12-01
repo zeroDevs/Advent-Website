@@ -62,28 +62,28 @@ const useStyles = makeStyles(theme => ({
 		...theme.typography.h5,
 		textAlign: "center"
 	},
-  info: {
-    backgroundColor: theme.palette.primary.main,
-  },
-  btnPush: {
-  	display: "block",
-	  position: "relative",
-	  paddingLeft: "10px",
-	  paddingRight: "10px",
-	  margin: "10px 20px 10px 0",
-	  textAlign: "center",
-	  lineHeight: "50px",
-	  color: "rgba(0, 0, 0, 0.87)",
-	  background: "#00bcd4",
-	  borderRadius: "5px",
-	  transition: "all 0.2s",
-	  textDecoration: "none",
-	  boxShadow: "0px 5px 0px 0px #1E8185",
+	info: {
+		backgroundColor: theme.palette.primary.main,
+	},
+	btnPush: {
+		display: "block",
+		position: "relative",
+		paddingLeft: "10px",
+		paddingRight: "10px",
+		margin: "10px 20px 10px 0",
+		textAlign: "center",
+		lineHeight: "50px",
+		color: "rgba(0, 0, 0, 0.87)",
+		background: "#00bcd4",
+		borderRadius: "5px",
+		transition: "all 0.2s",
+		textDecoration: "none",
+		boxShadow: "0px 5px 0px 0px #1E8185",
 
-	  "&:hover": {
-		  marginTop: "15px",
-		  marginBottom: "5px",
-		  boxShadow: "0px 0px 0px 0px #1E8185",
+		"&:hover": {
+			marginTop: "15px",
+			marginBottom: "5px",
+			boxShadow: "0px 0px 0px 0px #1E8185",
 		}
 	},
 	welcomeMessage: {
@@ -109,25 +109,26 @@ function SubmitForm({ user }) {
 
 	//snackbar
 	const [state, setState] = useState({
-    open: false,
-    vertical: 'top',
-    horizontal: 'right',
-    snackMsg: '',
-    isSubmitted: false,
-    isSuccess: false,
-    twitterIntentUrl: ''
-  });
+		open: false,
+		vertical: 'top',
+		horizontal: 'right',
+		snackMsg: '',
+		isSubmitted: false,
+		isSuccess: false,
+		twitterIntentUrl: ''
+	});
 
-  //twitter intent
-  const twitterIntentGenerator = (date, url) => {
-  	return `https://twitter.com/intent/tweet?text=I%20just%20posted%20my%20solution%20for%20AoC%20day%20${date}%20on%20@zerotomasteryio%27s%20leaderboard%2C%20check%20it%20out%20here%3A%20${url}%20or%20find%20out%20more%20here%3A%20https%3A//bit.ly/aoc-ztm-2020&hashtags=ztm%2Czerotomastery%2CWebDev%2CDEVCommunity%2CCodeNewbie%2C100DaysOfCode`;
-  }
+	//twitter intent
+	const twitterIntentGenerator = (date, rawUrl) => {
+		const url = rawUrl.split('#')[0]
+		return `https://twitter.com/intent/tweet?text=I%20just%20posted%20my%20solution%20for%20AoC%20day%20${date}%20on%20@zerotomasteryio%27s%20leaderboard%2C%20check%20it%20out%20here%3A%20${url}%20or%20find%20out%20more%20here%3A%20https%3A//bit.ly/aoc-ztm-2020&hashtags=ztm%2Czerotomastery%2CWebDev%2CDEVCommunity%2CCodeNewbie%2C100DaysOfCode%2CAdventOfCode%2Cadventofcode2020%2CAOC `;
+	}
 
-  const { vertical, horizontal, open, snackMsg, isSubmitted, isSuccess, twitterIntentUrl } = state;
+	const { vertical, horizontal, open, snackMsg, isSubmitted, isSuccess, twitterIntentUrl } = state;
 
-  const handleClose = () => {
-    setState({ ...state, open: false });
-  };
+	const handleClose = () => {
+		setState({ ...state, open: false });
+	};
 
 	const userName = user ? `${user.username}#${user.discriminator}` : "";
 	const avatarUrl = user
@@ -223,19 +224,19 @@ function SubmitForm({ user }) {
 	return (
 		<>
 			<Snackbar
-        anchorOrigin={{ vertical, horizontal }}
-        key={`${vertical},${horizontal}`}
-        open={open}
-        className={classes.info}
-        onClose={handleClose}
-        autoHideDuration={6000}
-        ContentProps={{
-          'aria-describedby': 'message-id',
-        }}
-        message={<span id="message-id" className={`${isError ? classes.error : classes.success}`}>
-        		{snackMsg}
-        	</span>}
-      />
+				anchorOrigin={{ vertical, horizontal }}
+				key={`${vertical},${horizontal}`}
+				open={open}
+				className={classes.info}
+				onClose={handleClose}
+				autoHideDuration={6000}
+				ContentProps={{
+					'aria-describedby': 'message-id',
+				}}
+				message={<span id="message-id" className={`${isError ? classes.error : classes.success}`}>
+					{snackMsg}
+				</span>}
+			/>
 			<div className={classes.infoContainer}>
 				{user ? (
 					<>
@@ -251,18 +252,18 @@ function SubmitForm({ user }) {
 						) : null}
 					</>
 				) : (
-					<Button
-						variant="contained"
-						color="secondary"
-						to={{
-							pathname: "/login",
-							state: { from: "/submit" }
-						}}
-						component={Link}
-					>
-						Please Login
-					</Button>
-				)}
+						<Button
+							variant="contained"
+							color="secondary"
+							to={{
+								pathname: "/login",
+								state: { from: "/submit" }
+							}}
+							component={Link}
+						>
+							Please Login
+						</Button>
+					)}
 			</div>
 			{user && !isSuccess && (
 				<Grid container spacing={2}>
@@ -359,8 +360,8 @@ function SubmitForm({ user }) {
 							{isLoading ? (
 								<CircularProgress color="secondary" size={25} />
 							) : (
-								"Submit"
-							)}
+									"Submit"
+								)}
 						</Button>
 					</Grid>
 				</Grid>
