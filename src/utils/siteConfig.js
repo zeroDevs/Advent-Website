@@ -1,6 +1,6 @@
 module.exports = {
 	siteTitle: "Advent of Code | Zero To Mastery",
-	currentYear: 2020,
+	currentYear: 2021,
 	publisher: "Zero To Mastery Contributors",
 	siteDescription:
 		"Zero to Mastery site to post and rate solutions for Advent of Code",
