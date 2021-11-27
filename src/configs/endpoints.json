@@ -1,4 +1,4 @@
 {
-  "backend": "https://aocbot.zerobot.xyz/",
+  "backend": "https://aocbot.zerobot.app/",
   "login": "api/login"
 }
