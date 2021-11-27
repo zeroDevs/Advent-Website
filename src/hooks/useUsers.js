@@ -4,7 +4,7 @@ export default function useUsers(year) {
 	const [users, setUsers] = useState([]);
 
 	useEffect(
-		year => {
+		(year) => {
 			async function callUsersApiEndpoint() {
 				if (year) {
 					try {
@@ -13,7 +13,7 @@ export default function useUsers(year) {
 						// Do nothing, user is notified no data exists for this year
 					}
 				} else {
-					const response = await fetch("https://aocbot.zerobot.xyz/users");
+					const response = await fetch("https://aocbot.zerobot.app/users");
 					const data = await response.json();
 					setUsers(data);
 				}

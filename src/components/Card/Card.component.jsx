@@ -14,13 +14,11 @@ import {
 	Snackbar
 } from "@material-ui/core";
 
-import {
-	useUserContext
-} from "../../contexts/user/user.context";
+import { useUserContext } from "../../contexts/user/user.context";
 
 import UserRating from "../UserRating/UserRating.component";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
 	root: {
 		width: theme.spacing(30),
 		height: theme.spacing(52),
@@ -74,39 +72,44 @@ function SolutionCard({
 
 	//snackbar
 	const [state, setState] = React.useState({
-    open: false,
-    vertical: 'top',
-    horizontal: 'center',
-    message: ''
-  });
+		open: false,
+		vertical: "top",
+		horizontal: "center",
+		message: ""
+	});
 
-  const { vertical, horizontal, open, message } = state;
+	const { vertical, horizontal, open, message } = state;
 
-  const handleClose = () => {
-    setState({ ...state, open: false });
-  };
+	const handleClose = () => {
+		setState({ ...state, open: false });
+	};
 
-  const handleRatings = async (event, newRating) => {
-			console.log(`Rated with value ${newRating}`);
+	const handleRatings = async (event, newRating) => {
+		console.log(`Rated with value ${newRating}`);
 
-			const response = await fetch("https://aocbot.zerobot.xyz/solutions/vote", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-					"Authorization": `Bearer ${window.localStorage.getItem("token")}`
-				},
-				body: JSON.stringify({
-					solutionId,
-					userId: user.id,
-					ratingScore: newRating,
-					authorId: {userid}
-				})
+		const response = await fetch("https://aocbot.zerobot.app/solutions/vote", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${window.localStorage.getItem("token")}`
+			},
+			body: JSON.stringify({
+				solutionId,
+				userId: user.id,
+				ratingScore: newRating,
+				authorId: { userid }
 			})
-			const data = await response.json();
-			//open snackbar
-			setState({ open: true, vertical: 'bottom', horizontal: 'center', message: data.error });
-			data.isSuccessful ? setValue(newRating) : setValue(value)
-  }
+		});
+		const data = await response.json();
+		//open snackbar
+		setState({
+			open: true,
+			vertical: "bottom",
+			horizontal: "center",
+			message: data.error
+		});
+		data.isSuccessful ? setValue(newRating) : setValue(value);
+	};
 
 	return (
 		<Card className={classes.root}>
@@ -117,30 +120,27 @@ function SolutionCard({
 			/>
 			<div className={classes.imgContainer}>
 				{/*temporary fix*/}
-				{
-					isCarousel ? 
-						(
-							<CardMedia
-								className={classes.cardMedia}
-								onError={e => {
-									e.target.src = `https://robohash.org/${username}`;
-								}}
-								image={imageUrl}
-								height={80}
-								component="img"
-							/>
-						) : (
-							<CardMedia
-								className={classes.cardMedia}
-								onError={e => {
-									e.target.src = `https://robohash.org/${username}`;
-								}}
-								image={imageUrl}
-								height={80}
-								component="img"
-							/>
-						)
-				}
+				{isCarousel ? (
+					<CardMedia
+						className={classes.cardMedia}
+						onError={(e) => {
+							e.target.src = `https://robohash.org/${username}`;
+						}}
+						image={imageUrl}
+						height={80}
+						component="img"
+					/>
+				) : (
+					<CardMedia
+						className={classes.cardMedia}
+						onError={(e) => {
+							e.target.src = `https://robohash.org/${username}`;
+						}}
+						image={imageUrl}
+						height={80}
+						component="img"
+					/>
+				)}
 			</div>
 			<CardContent>
 				<div className={classes.dayContainer}>
@@ -163,19 +163,24 @@ function SolutionCard({
 				{/* TODO: implement ratings */}
 
 				{!isArchiveCard && (
-					<UserRating value={value} isDisabled={user===null?true:false} username={username} onChange={(event, newRating) => handleRatings(event, newRating)} />
+					<UserRating
+						value={value}
+						isDisabled={user === null ? true : false}
+						username={username}
+						onChange={(event, newRating) => handleRatings(event, newRating)}
+					/>
 				)}
 
 				<Snackbar
-	        anchorOrigin={{ vertical, horizontal }}
-	        key={`${vertical},${horizontal}`}
-	        open={open}
-	        onClose={handleClose}
-	        ContentProps={{
-	          'aria-describedby': 'message-id',
-	        }}
-	        message={<span id="message-id">{message}</span>}
-	      />
+					anchorOrigin={{ vertical, horizontal }}
+					key={`${vertical},${horizontal}`}
+					open={open}
+					onClose={handleClose}
+					ContentProps={{
+						"aria-describedby": "message-id"
+					}}
+					message={<span id="message-id">{message}</span>}
+				/>
 			</CardContent>
 		</Card>
 	);

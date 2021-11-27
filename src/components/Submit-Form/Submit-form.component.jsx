@@ -4,7 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Snackbar from '@material-ui/core/Snackbar';
+import Snackbar from "@material-ui/core/Snackbar";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 // import DateFnsUtils from "@date-io/date-fns";
@@ -17,7 +17,7 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const listOfLangs = require("../../configs/languages.json");
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
 	protip: {
 		display: "flex",
 		justifyContent: "center",
@@ -63,7 +63,7 @@ const useStyles = makeStyles(theme => ({
 		textAlign: "center"
 	},
 	info: {
-		backgroundColor: theme.palette.primary.main,
+		backgroundColor: theme.palette.primary.main
 	},
 	btnPush: {
 		display: "block",
@@ -83,7 +83,7 @@ const useStyles = makeStyles(theme => ({
 		"&:hover": {
 			marginTop: "15px",
 			marginBottom: "5px",
-			boxShadow: "0px 0px 0px 0px #1E8185",
+			boxShadow: "0px 0px 0px 0px #1E8185"
 		}
 	},
 	welcomeMessage: {
@@ -94,7 +94,7 @@ const useStyles = makeStyles(theme => ({
 		justifyContent: "center",
 		alignItems: "center",
 		flexDirection: "column"
-	},
+	}
 }));
 
 function SubmitForm({ user }) {
@@ -110,21 +110,29 @@ function SubmitForm({ user }) {
 	//snackbar
 	const [state, setState] = useState({
 		open: false,
-		vertical: 'top',
-		horizontal: 'right',
-		snackMsg: '',
+		vertical: "top",
+		horizontal: "right",
+		snackMsg: "",
 		isSubmitted: false,
 		isSuccess: false,
-		twitterIntentUrl: ''
+		twitterIntentUrl: ""
 	});
 
 	//twitter intent
 	const twitterIntentGenerator = (date, rawUrl) => {
-		const url = rawUrl.split('#')[0]
+		const url = rawUrl.split("#")[0];
 		return `https://twitter.com/intent/tweet?text=I%20just%20posted%20my%20solution%20for%20AoC%20day%20${date}%20on%20@zerotomasteryio%27s%20leaderboard%2C%20check%20it%20out%20here%3A%20${url}%20or%20find%20out%20more%20here%3A%20https%3A//bit.ly/aoc-2020-ztm&hashtags=ztm%2Czerotomastery%2CWebDev%2CDEVCommunity%2CCodeNewbie%2C100DaysOfCode%2CAdventOfCode%2Cadventofcode2020%2CAOC `;
-	}
+	};
 
-	const { vertical, horizontal, open, snackMsg, isSubmitted, isSuccess, twitterIntentUrl } = state;
+	const {
+		vertical,
+		horizontal,
+		open,
+		snackMsg,
+		isSubmitted,
+		isSuccess,
+		twitterIntentUrl
+	} = state;
 
 	const handleClose = () => {
 		setState({ ...state, open: false });
@@ -137,17 +145,17 @@ function SubmitForm({ user }) {
 
 	const classes = useStyles({ isMobile });
 
-	const setErrorMessage = useCallback(msg => {
+	const setErrorMessage = useCallback((msg) => {
 		setMessage(msg);
 		setIsError(true);
 	}, []);
 
-	const setSuccessMessage = useCallback(msg => {
+	const setSuccessMessage = useCallback((msg) => {
 		setMessage(msg);
 		setIsError(false);
 	}, []);
 
-	const handleSubmit = async event => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
 		if (isLoading) return;
 		setIsLoading(true);
@@ -176,7 +184,7 @@ function SubmitForm({ user }) {
 			return setIsLoading(false);
 		}
 
-		const submissionEndpoint = "https://aocbot.zerobot.xyz/api/submit";
+		const submissionEndpoint = "https://aocbot.zerobot.app/api/submit";
 		const { isSuccessful, error } = await fetch(submissionEndpoint, {
 			method: "POST",
 			headers: {
@@ -184,16 +192,22 @@ function SubmitForm({ user }) {
 				Authorization: `Bearer ${window.localStorage.getItem("token")} `
 			},
 			body
-		}).then(res => res.json());
+		}).then((res) => res.json());
 
 		if (isSuccessful) {
 			console.log("isSuccessful", isSuccessful);
-			setSuccessMessage(
-				`Submission Success!\n${langName}`
-			);
+			setSuccessMessage(`Submission Success!\n${langName}`);
 			//add more messages
 			const twUrl = twitterIntentGenerator(date, url);
-			setState({ open: true, twitterIntentUrl: twUrl, isSubmitted: true, isSuccess: true, vertical: 'top', horizontal: 'right', snackMsg: `YAY!! You did it. 🙌🎉` });
+			setState({
+				open: true,
+				twitterIntentUrl: twUrl,
+				isSubmitted: true,
+				isSuccess: true,
+				vertical: "top",
+				horizontal: "right",
+				snackMsg: `YAY!! You did it. 🙌🎉`
+			});
 		} else {
 			console.log("isNotSuccessful", error);
 			setErrorMessage(error);
@@ -202,13 +216,13 @@ function SubmitForm({ user }) {
 		setIsLoading(false);
 	};
 
-	const handleUrlInputChange = event => {
+	const handleUrlInputChange = (event) => {
 		setUrl(event.target.value);
 	};
-	const handleLangNameInputChange = event => {
+	const handleLangNameInputChange = (event) => {
 		setLangName(event.target.value);
 	};
-	const handleDateChange = event => {
+	const handleDateChange = (event) => {
 		setDate(event.target.value);
 	};
 
@@ -231,11 +245,16 @@ function SubmitForm({ user }) {
 				onClose={handleClose}
 				autoHideDuration={6000}
 				ContentProps={{
-					'aria-describedby': 'message-id',
+					"aria-describedby": "message-id"
 				}}
-				message={<span id="message-id" className={`${isError ? classes.error : classes.success}`}>
-					{snackMsg}
-				</span>}
+				message={
+					<span
+						id="message-id"
+						className={`${isError ? classes.error : classes.success}`}
+					>
+						{snackMsg}
+					</span>
+				}
 			/>
 			<div className={classes.infoContainer}>
 				{user ? (
@@ -252,18 +271,18 @@ function SubmitForm({ user }) {
 						) : null}
 					</>
 				) : (
-						<Button
-							variant="contained"
-							color="secondary"
-							to={{
-								pathname: "/login",
-								state: { from: "/submit" }
-							}}
-							component={Link}
-						>
-							Please Login
-						</Button>
-					)}
+					<Button
+						variant="contained"
+						color="secondary"
+						to={{
+							pathname: "/login",
+							state: { from: "/submit" }
+						}}
+						component={Link}
+					>
+						Please Login
+					</Button>
+				)}
 			</div>
 			{user && !isSuccess && (
 				<Grid container spacing={2}>
@@ -279,7 +298,7 @@ function SubmitForm({ user }) {
 								value={date}
 								onChange={handleDateChange}
 							>
-								{populateDates().map(date => {
+								{populateDates().map((date) => {
 									return (
 										<MenuItem key={date} value={date}>
 											Day {date}
@@ -315,7 +334,7 @@ function SubmitForm({ user }) {
 								value={langName}
 								onChange={handleLangNameInputChange}
 							>
-								{Object.keys(listOfLangs).map(lang => (
+								{Object.keys(listOfLangs).map((lang) => (
 									<MenuItem key={lang} value={lang}>
 										{lang}
 									</MenuItem>
@@ -360,8 +379,8 @@ function SubmitForm({ user }) {
 							{isLoading ? (
 								<CircularProgress color="secondary" size={25} />
 							) : (
-									"Submit"
-								)}
+								"Submit"
+							)}
 						</Button>
 					</Grid>
 				</Grid>
@@ -370,10 +389,17 @@ function SubmitForm({ user }) {
 			{user && isSubmitted && isSuccess && (
 				<div className={classes.welcomeMessage}>
 					<div>Phew!! One more down.</div>
-					<a href={twitterIntentUrl} target="_blank" rel="noopener noreferrer" title="Button push lightblue" className={classes.btnPush}>Tweet and let the world know!</a>
+					<a
+						href={twitterIntentUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+						title="Button push lightblue"
+						className={classes.btnPush}
+					>
+						Tweet and let the world know!
+					</a>
 				</div>
 			)}
-
 		</>
 	);
 }
