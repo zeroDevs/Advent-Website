@@ -44,6 +44,11 @@
 		"shortName": "Go",
 		"background": "#00A7D1"
 	},
+	"Rust": {
+		"name": "Rust",
+		"shortName": "RS",
+		"background": "#B94700"
+	},	
 	"Other": {
 		"name": "Other",
 		"shortName": "O",
