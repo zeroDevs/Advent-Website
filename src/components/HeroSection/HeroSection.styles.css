@@ -1,7 +1,7 @@
 /* IOS SPECIFIC CSS */
 @supports (-webkit-overflow-scrolling: touch) {
 	.root {
-		background-image: url("https: //aoc.zerotomastery.io/images/advent.png");
+		background-image: url("https://aoc.zerotomastery.io/images/advent.png");
 		background-position: center center;
 		background-repeat: no-repeat;
 		background-size: cover;
@@ -11,7 +11,7 @@
 
 	@media only screen and (max-width: 600px) {
 		.root {
-			background-image: url("https: //aoc.zerotomastery.io/images/advent-mobile.png");
+			background-image: url("https://aoc.zerotomastery.io/images/advent-mobile.png");
 			background-position: center center;
 			background-repeat: no-repeat;
 			background-size: cover;
@@ -23,7 +23,7 @@
 
 /* OTHER CSS */
 .root {
-	background-image: url("https: //aoc.zerotomastery.io/images/advent.png");
+	background-image: url("https://aoc.zerotomastery.io/images/advent.png");
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -42,7 +42,7 @@
 
 @media only screen and (max-width: 600px) {
 	.root {
-		background-image: url("https: //aoc.zerotomastery.io/images/advent-mobile.png");
+		background-image: url("https://aoc.zerotomastery.io/images/advent-mobile.png");
 		background-position: center center;
 		background-repeat: no-repeat;
 		background-size: cover;
