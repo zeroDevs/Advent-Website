@@ -48,7 +48,17 @@
 		"name": "Rust",
 		"shortName": "RS",
 		"background": "#B94700"
-	},	
+	},
+	"TypeScript": {
+		"name": "TypeScript",
+		"shortName": "TS",
+		"background": "#0096FF"
+	},
+	"Scala": {
+		"name": "Scala",
+		"shortName": "SC",
+		"background": "#C70039"
+	},
 	"Other": {
 		"name": "Other",
 		"shortName": "O",
