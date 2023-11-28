@@ -1,6 +1,8 @@
+import moment from "moment";
+
 module.exports = {
 	siteTitle: "Advent of Code | Zero To Mastery",
-	currentYear: 2022,
+	currentYear: moment().format("YYYY"),
 	publisher: "Zero To Mastery Contributors",
 	siteDescription:
 		"Zero to Mastery site to post and rate solutions for Advent of Code",
