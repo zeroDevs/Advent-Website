@@ -1,5 +1,5 @@
 import React from "react";
-const moment = require("moment");
+import moment from "moment";
 
 import * as qs from "query-string";
 import { Link } from "react-router-dom";

@@ -1,5 +1,5 @@
 import React from "react";
-const moment = require("moment");
+import moment from "moment";
 
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import { Typography } from "@material-ui/core";
