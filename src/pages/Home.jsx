@@ -1,4 +1,6 @@
 import React from "react";
+const moment = require("moment");
+
 import * as qs from "query-string";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
@@ -7,12 +9,11 @@ import Button from "@material-ui/core/Button";
 
 import HeroSection from "../components/HeroSection/HeroSection.component";
 import MetaTags from "../components/MetaTags/MetaTags.component";
-import { currentYear } from "../utils/siteConfig";
 import HiglightsSection from "../components/HighlightsSection/HightlightSection.component";
 
 import GlobalStats from "../components/GlobalStats/global-stats.component";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
 	root: {},
 	hero: ({ isMobile }) => ({
 		height: `${isMobile ? "200%" : "100%"}`,
@@ -63,6 +64,7 @@ function Home({ location: { search } }) {
 	const classes = useStyles({ isMobile });
 	const year = qs.parse(search).year;
 	const param = year ? `?year=${year}` : "";
+	const currentYear = moment().format("YYYY");
 
 	return (
 		<>

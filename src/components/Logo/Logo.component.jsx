@@ -1,13 +1,16 @@
 import React from "react";
+const moment = require("moment");
+
 import * as qs from "query-string";
 import { Badge, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { useStyles } from "./Logo.styles";
-import { currentYear } from "../../utils/siteConfig";
 
 function Logo({ location }) {
 	const queryParams = qs.parse(location.search);
 	const classes = useStyles();
+	const currentYear = moment().format("YYYY");
+
 	return (
 		<Link to="/" className={classes.clearLink}>
 			<Badge

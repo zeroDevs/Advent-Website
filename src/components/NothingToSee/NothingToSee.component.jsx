@@ -1,9 +1,10 @@
 import React from "react";
+const moment = require("moment");
+
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import { Typography } from "@material-ui/core";
-import { currentYear } from "../../utils/siteConfig";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
 	Container: {
 		display: "flex",
 		alignItems: "center",
@@ -31,6 +32,7 @@ const useStyles = makeStyles(theme => ({
 
 function NothingToSee({ year }) {
 	const classes = useStyles();
+	const currentYear = moment().format("YYYY");
 	const aocYear = year || currentYear;
 	return (
 		<div className={classes.Container}>
