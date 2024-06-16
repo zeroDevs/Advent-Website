@@ -4,7 +4,7 @@ const useInfiniteScroll = (callback) => {
   const [isFetching, setIsFetching] = useState(false);
 
   const handleScroll = () => {
-    if (!(window.innerHeight + window.pageYOffset >= document.body.scrollHeight) || isFetching) return;
+    if (!(Math.ceil(window.innerHeight + window.pageYOffset) >= document.body.scrollHeight) || isFetching) return;
     setIsFetching(true);
   }
 
