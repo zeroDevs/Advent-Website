@@ -40,7 +40,12 @@ module.exports = {
 		{
 			name: "Submit Solution",
 			route: "/submit",
-			icon: "Send",
+			icon: "Send"
+		},
+		{
+			name: "My Submissions",
+			route: "/my-submissions",
+			icon: "",
 			dividerAfter: true
 		},
 		{

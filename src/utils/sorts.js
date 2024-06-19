@@ -60,3 +60,12 @@ export function filterByDates(from, to, dataSet) {
 		return dataSet;
 	}
 }
+
+export function sortByDay(dataSet) {
+	const mutableCopy = [...dataSet];
+	return mutableCopy.sort((a, b) => {
+		const dayA = Number(a.dayNumber);
+		const dayB = Number(b.dayNumber);
+		return dayA > dayB ? 1 : -1;
+	});
+}
