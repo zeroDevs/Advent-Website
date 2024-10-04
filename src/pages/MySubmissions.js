@@ -43,7 +43,7 @@ const MySubmissions = () => {
 
 
 	const userInfoRef = useRef(null);
-	const [{ user: userInfo }, userDispatch] = useUserContext();
+	const userInfo = useUserContext()[0]["user"];
 
 	const [dataFromApi,setDataFromApi] = useState({});
 	const [isLoadingData,setIsLoadingData] = useState(true);
@@ -104,7 +104,7 @@ const MySubmissions = () => {
 					}
 					setDataFromApi({...prevData});
 					yearRef.current += 1;
-					setIsLoadingData(!isLoadingData);
+					setIsLoadingData(prevValue => !prevValue);
 				});
 			}else {
 				console.log(dataFromApi);
